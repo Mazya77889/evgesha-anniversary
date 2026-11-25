@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Montserrat:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Press Start 2P', monospace;
+    color: #ffffff;
+    /* Нейтральный атмосферный пейзаж с мягким затемнением для идеальной читаемости */
+    background-image:
+      linear-gradient(180deg, rgba(16, 20, 30, 0.58) 0%, rgba(16, 20, 30, 0.76) 100%),
+      url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=85');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 36px 18px 56px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* ==================== STARDEW VALLEY ==================== */
+  .sd-panel {
+    background: rgba(230, 184, 125, 0.86);
+    border: 4px solid #592e13;
+    box-shadow: inset 0 0 0 4px rgba(198, 139, 73, 0.9), 0 12px 28px rgba(0, 0, 0, 0.4);
+    padding: 22px;
+    text-align: center;
+    color: #4a230a;
+    backdrop-filter: blur(5px);
+  }
+
+  .sd-tag {
+    display: inline-block;
+    background: rgba(245, 216, 168, 0.92);
+    border: 2px solid #8a4b21;
+    padding: 6px 10px;
+    font-size: 9px;
+    color: #7c3f18;
+    margin-bottom: 12px;
+  }
+
+  .sd-panel h1, .sd-panel h2 {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0 0 12px 0;
+    color: #4a230a;
+  }
+
+  .sd-sub {
+    font-size: 10px;
+    line-height: 1.85;
+    color: #592e13;
+    margin-bottom: 16px;
+  }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .t-box {
+    background: rgba(245, 216, 168, 0.92);
+    border: 3px solid #8a4b21;
+    padding: 10px;
+    min-width: 80px;
+  }
+
+  .t-box span {
+    display: block;
+    font-size: 16px;
+    color: #b83227;
+    margin-bottom: 5px;
+  }
+
+  .t-box label {
+    font-size: 8px;
+    color: #592e13;
+  }
+
+  .hearts-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0 14px 0;
+    flex-wrap: wrap;
+  }
+
+  .heart {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1.8s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  .quests {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    text-align: left;
+  }
+
+  .quest {
+    background: rgba(245, 216, 168, 0.92);
+    border: 3px solid #8a4b21;
+    padding: 10px 12px;
+    font-size: 9px;
+    line-height: 1.75;
+    color: #4a230a;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .star { color: #c25900; flex-shrink: 0; }
+
+  /* ==================== UNDERTALE ==================== */
+  .ut-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ut-top {
+    font-size: 10px;
+    color: #f3f3f3;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  }
+
+  .ut-top .red { color: #ff3b3b; }
+  .ut-top .yellow { color: #ffe600; }
+
+  .ut-box {
+    background: rgba(0, 0, 0, 0.78);
+    border: 4px solid #ffffff;
+    padding: 20px;
+    min-height: 130px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    position: relative;
+    backdrop-filter: blur(5px);
+  }
+
+  .ut-clickable { cursor: pointer; }
+
+  .ut-text {
+    font-size: 11px;
+    line-height: 1.85;
+    color: #ffffff;
+    white-space: pre-wrap;
+    word-spacing: 2px;
+  }
+
+  .ut-tip {
+    position: absolute;
+    bottom: 7px;
+    right: 11px;
+    font-size: 8px;
+    color: #bbbbbb;
+  }
+
+  .ut-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ut-btn {
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    padding: 9px 12px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+
+  .ut-btn:hover {
+    color: #ffe600;
+    border-color: #ffe600;
+  }
+
+  .ut-mercy-box {
+    background: rgba(0, 0, 0, 0.78);
+    border: 4px solid #ffe600;
+    padding: 22px 20px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+  }
+
+  .ut-mercy-title {
+    font-size: 11px;
+    color: #ffe600;
+    margin-bottom: 12px;
+  }
+
+  .ut-mercy-text {
+    font-size: 10px;
+    line-height: 1.9;
+    color: #ffffff;
+    white-space: pre-wrap;
+  }
+
+  /* ==================== АТАКА ТИТАНОВ ==================== */
+  .aot-card {
+    background: rgba(20, 23, 33, 0.76);
+    border: 1px solid rgba(244, 211, 166, 0.55);
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+
+  .aot-wings {
+    width: 58px;
+    height: 32px;
+    fill: #f4d3a6;
+    margin: 0 auto 10px auto;
+    display: block;
+  }
+
+  .aot-kicker {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f4c08a;
+    margin-bottom: 8px;
+  }
+
+  .aot-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: #fff8f0;
+  }
+
+  .aot-card p {
+    font-size: 14px;
+    line-height: 1.78;
+    font-weight: 300;
+    color: #f4e8dc;
+    max-width: 560px;
+    margin: 0 auto 14px auto;
+  }
+
+  .aot-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #f4c08a;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 520px) {
+    .sd-panel h1, .sd-panel h2 { font-size: 11px; }
+    .ut-text { font-size: 10px; line-height: 1.75; }
+    .aot-card h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- 1. STARDEW VALLEY: Таймер -->
+    <section class="sd-panel">
+      <div class="sd-tag">С 30 НОЯБРЯ 2025</div>
+      <h1>Евгеша, с годовщиной!</h1>
+      <div class="sd-sub">
+        Всё это — одна общая история на фоне нашего мира.<br>
+        С любовью, твоя Марина ✿
+      </div>
+      <div class="timer">
+        <div class="t-box"><span id="days">0</span><label>ДНЕЙ</label></div>
+        <div class="t-box"><span id="hours">0</span><label>ЧАСОВ</label></div>
+        <div class="t-box"><span id="minutes">0</span><label>МИН</label></div>
+        <div class="t-box"><span id="seconds">0</span><label>СЕК</label></div>
+      </div>
+    </section>
+
+    <!-- 2. STARDEW VALLEY: Сердечки -->
+    <section class="sd-panel">
+      <div class="sd-tag">УРОВЕНЬ БЛИЗОСТИ: MAX</div>
+      <h2>Наши тёплые будни</h2>
+      <div class="hearts-row">
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="heart" viewBox="0 0 16 16" fill="#d93829"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+      </div>
+      <div class="sd-sub" style="margin-bottom:0;">
+        Спасибо за твою заботу, юмор и тепло.<br>
+        Рядом с тобой спокойно и радостно даже в мелочах.
+      </div>
+    </section>
+
+    <!-- 3. STARDEW VALLEY: Будущие мечты -->
+    <section class="sd-panel">
+      <div class="sd-tag">НОВЫЕ СЕЗОНЫ ВПЕРЕДИ</div>
+      <h2>Наши будущие приключения</h2>
+      <div class="quests">
+        <div class="quest"><span class="star">★</span><span>Открыть ещё больше новых мест и дорог вдвоём</span></div>
+        <div class="quest"><span class="star">★</span><span>Собрать ещё сотни тёплых вечеров и общих воспоминаний</span></div>
+        <div class="quest"><span class="star">★</span><span>Пройти следующие главы жизни рука об руку</span></div>
+      </div>
+    </section>
+
+    <!-- 4. UNDERTALE (Блок 1): Диалог Решимости -->
+    <section class="ut-wrap">
+      <div class="ut-top">ЕВГЕША &nbsp;&nbsp; LV 99 &nbsp;&nbsp; <span class="red">♥ РЕШИМОСТЬ</span></div>
+      <div class="ut-box ut-clickable" onclick="cycleLine()">
+        <svg style="width:18px;height:18px;flex-shrink:0;margin-top:2px;" viewBox="0 0 16 16" fill="#ff2a2a">
+          <path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/>
+        </svg>
+        <div class="ut-text" id="utText"></div>
+        <div class="ut-tip">[кликни для следующей строки]</div>
+      </div>
+      <div class="ut-btns">
+        <button class="ut-btn" onclick="pickChoice(0)">♥ Обнять Марину</button>
+        <button class="ut-btn" onclick="pickChoice(1)">♥ Сохранить момент</button>
+      </div>
+    </section>
+
+    <!-- 5. UNDERTALE (Блок 2): Инвентарь тёплых моментов -->
+    <section class="ut-wrap">
+      <div class="ut-top">[ITEM] &nbsp;&nbsp; <span class="yellow">★ СОКРОВИЩА НАШЕЙ ИСТОРИИ</span></div>
+      <div class="ut-box">
+        <svg style="width:18px;height:18px;flex-shrink:0;margin-top:2px;" viewBox="0 0 16 16" fill="#ffe600">
+          <path d="M7 0h2v5h5v2H9v2h3v2H9v5H7v-5H4V9h3V7H2V5h5V0z"/>
+        </svg>
+        <div class="ut-text" id="itemText">* Выбери любой предмет ниже, чтобы проверить его описание...</div>
+      </div>
+      <div class="ut-btns">
+        <button class="ut-btn" onclick="inspectItem(0)">* Тёплые объятия</button>
+        <button class="ut-btn" onclick="inspectItem(1)">* Наш общий смех</button>
+        <button class="ut-btn" onclick="inspectItem(2)">* Звезда 30.11.2025</button>
+      </div>
+    </section>
+
+    <!-- 6. UNDERTALE (Блок 3): Точка сохранения и нежность -->
+    <section class="ut-mercy-box">
+      <div class="ut-mercy-title">★ ТОЧКА СОХРАНЕНИЯ ДОСТИГНУТА ★</div>
+      <div class="ut-mercy-text">* В этом мире не нужно ни от кого защищаться, когда мы вдвоём.
+* Евгеша &amp; Марина — команда с бесконечным запасом тепла.
+* Файл сохранён. Продолжение следует... ♥</div>
+    </section>
+
+    <!-- 7. АТАКА ТИТАНОВ (Блок 1): Клятва доверия -->
+    <section class="aot-card">
+      <svg class="aot-wings" viewBox="0 0 64 36">
+        <path d="M30 14 C22 6, 10 5, 2 11 C9 12, 14 15, 18 19 C11 19, 6 22, 3 26 C11 25, 19 26, 27 23 L30 20 Z"/>
+        <path d="M34 14 C42 6, 54 5, 62 11 C55 12, 50 15, 46 19 C53 19, 58 22, 61 26 C53 25, 45 26, 37 23 L34 20 Z"/>
+        <circle cx="32" cy="18" r="3"/>
+      </svg>
+      <div class="aot-kicker">Глава I • Доверие и верность</div>
+      <h2>Посвятить сердце тому, кто дорог</h2>
+      <p>
+        В мире, где всё постоянно меняется, самое ценное — знать, что есть человек,
+        который всегда на твоей стороне. Спасибо, Евгеша, что ты моя надёжная опора и мой самый близкий человек.
+      </p>
+      <div class="aot-quote">«Рядом с тобой не страшен ни один шторм»</div>
+    </section>
+
+    <!-- 8. АТАКА ТИТАНОВ (Блок 2): Символ тепла и заботы -->
+    <section class="aot-card">
+      <div class="aot-kicker">Глава II • Тепло, которое согревает</div>
+      <h2>Обещание беречь друг друга</h2>
+      <p>
+        Иногда один простой жест заботы значит больше любых громких слов.
+        Я хочу всегда быть тем человеком, который согреет тебя в холодный день,
+        поддержит в любую минуту и напомнит, как сильно я тебя люблю.
+      </p>
+      <div class="aot-quote">«Спасибо, что ты есть в моей жизни»</div>
+    </section>
+
+    <!-- 9. АТАКА ТИТАНОВ (Блок 3): Горизонт свободы -->
+    <section class="aot-card">
+      <div class="aot-kicker">Глава III • За пределами стен</div>
+      <h2>Наш собственный мир</h2>
+      <p>
+        За стенами повседневной суеты нас ждёт ещё столько всего невероятного:
+        мечты, рассветы, дороги и маленькие чудеса, которые мы создаём сами.
+        Я счастлива идти по этому пути именно с тобой.
+      </p>
+      <div class="aot-quote">«Свобода — это быть собой рядом с любимым»</div>
+    </section>
+
+    <!-- 10. АТАКА ТИТАНОВ (Финал): Вперёд к нашему завтра -->
+    <section class="aot-card">
+      <svg class="aot-wings" viewBox="0 0 64 36">
+        <path d="M30 14 C22 6, 10 5, 2 11 C9 12, 14 15, 18 19 C11 19, 6 22, 3 26 C11 25, 19 26, 27 23 L30 20 Z"/>
+        <path d="M34 14 C42 6, 54 5, 62 11 C55 12, 50 15, 46 19 C53 19, 58 22, 61 26 C53 25, 45 26, 37 23 L34 20 Z"/>
+        <circle cx="32" cy="18" r="3"/>
+      </svg>
+      <div class="aot-kicker">30.11.2025 — Бесконечность</div>
+      <h2>Вперёд — к нашему завтра</h2>
+      <p>
+        С годовщиной, любимый Евгеша. Пусть эта дата будет лишь одной из многих
+        светлых глав нашей большой и красивой истории.
+      </p>
+      <div class="aot-quote">Всегда твоя, Марина</div>
+    </section>
+
+  </div>
+
+  <script>
+    const startDate = new Date(2025, 10, 30, 0, 0, 0);
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = Math.max(0, now - startDate);
+      document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60);
+      document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60);
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    const lines = [
+      "* Евгеша, с 30 ноября 2025 года моё сердце всегда выбирает тебя.",
+      "* Рядом с тобой даже сложные дни становятся проще.",
+      "* Твоя Марина рядом. Наполняет тебя РЕШИМОСТЬЮ."
+    ];
+
+    const replies = [
+      "* Марина обнимает тебя крепко-крепко. HP полностью восстановлены!",
+      "* Воспоминание с 30 ноября 2025 бережно сохранено в файле «Навсегда»."
+    ];
+
+    let lineIdx = 0;
+    let charPos = 0;
+    let typingTimer;
+
+    function typeText(str) {
+      clearInterval(typingTimer);
+      const el = document.getElementById('utText');
+      el.textContent = '';
+      charPos = 0;
+      typingTimer = setInterval(() => {
+        if (charPos < str.length) {
+          el.textContent = str.slice(0, charPos + 1);
+          charPos++;
+        } else {
+          clearInterval(typingTimer);
+        }
+      }, 36);
+    }
+
+    function cycleLine() {
+      lineIdx = (lineIdx + 1) % lines.length;
+      typeText(lines[lineIdx]);
+    }
+
+    function pickChoice(i) {
+      typeText(replies[i]);
+    }
+
+    typeText(lines[0]);
+
+    const itemDescriptions = [
+      "* [Тёплые объятия] — мгновенно снимает любую усталость и согревает душу. Эффект бесконечный.",
+      "* [Наш общий смех] — редкий артефакт. Делает любой день ярче на +100%.",
+      "* [Звезда 30.11.2025] — день, с которого началась наша самая любимая история."
+    ];
+
+    function inspectItem(idx) {
+      document.getElementById('itemText').textContent = itemDescriptions[idx];
+    }
+  </script>
+</body>
+</html>
