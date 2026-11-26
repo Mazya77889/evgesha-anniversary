@@ -50,6 +50,23 @@
     z-index: 1;
   }
 
+  /* Сугроб внизу на странице Stardew Valley */
+  .bottom-snow-drift {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 44px;
+    pointer-events: none;
+    z-index: 6;
+    display: none;
+    transition: transform 0.35s ease;
+  }
+
+  body.stardew-sunset-bg .bottom-snow-drift {
+    display: block;
+  }
+
   /* Брызги на весь экран при победе над Мамой Айзека */
   .screen-splash-overlay {
     position: fixed;
@@ -277,10 +294,12 @@
     letter-spacing: 4px;
     line-height: 1;
     margin: 0 0 18px 0;
+    cursor: pointer;
     background: linear-gradient(180deg, #ffffff 20%, #cce0ff 75%, #f7cad0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 6px 24px rgba(173, 210, 255, 0.35));
+    user-select: none;
   }
 
   .hero-subtitle {
@@ -786,7 +805,7 @@
   .aot-card p { font-size: 14.5px; line-height: 1.85; font-weight: 300; color: #efe2d5; max-width: 580px; margin: 0 auto 16px auto; }
   .aot-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #ebc694; }
 
-  /* ==================== ВКЛАДКА 3: THE BINDING OF ISAAC (6 БЛОКОВ, БЕЗ R.E.P.O.) ==================== */
+  /* ==================== ВКЛАДКА 3: THE BINDING OF ISAAC ==================== */
   .isaac-card {
     background: linear-gradient(160deg, rgba(36, 20, 26, 0.9) 0%, rgba(18, 14, 22, 0.94) 100%);
     border: 1.5px solid rgba(235, 145, 155, 0.42);
@@ -795,7 +814,6 @@
   }
   .isaac-kicker { font-size: 10.5px; letter-spacing: 3.5px; text-transform: uppercase; color: #ff9eb0; margin-bottom: 8px; }
   .isaac-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; margin: 0 0 12px 0; color: #fff3f6; }
-  .isaac-card p { font-size: 14px; line-height: 1.82; font-weight: 300; color: #eddce2; max-width: 600px; margin: 0 auto 16px auto; }
 
   .isaac-stage {
     border-radius: 20px;
@@ -939,7 +957,7 @@
   .wife-vow-card p { font-family: 'Cormorant Garamond', serif; font-size: 23px; line-height: 1.65; color: #ffeef2; max-width: 620px; margin: 0 auto 18px auto; }
   .wife-sign { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; font-weight: 600; color: #ffd6de; margin-top: 10px; }
 
-  /* ==================== ВКЛАДКА 5: UNDERTALE (ОСНОВНОЙ + 3 НОВЫХ БЛОКА) ==================== */
+  /* ==================== ВКЛАДКА 5: UNDERTALE ==================== */
   .ut-section { font-family: 'Press Start 2P', monospace; display: flex; flex-direction: column; gap: 14px; }
   .ut-status { font-size: 10px; color: #d8e2f0; text-align: center; letter-spacing: 1px; }
   .ut-status .red { color: #ff3b3b; }
@@ -988,7 +1006,7 @@
     50% { transform: translateY(16px) translateX(8px); opacity: 1; }
   }
 
-  /* ==================== ВКЛАДКА 6: STARDEW VALLEY (ЗАКАТ, ЖЕНЯ И МАСЯ, ИСТОРИЯ) ==================== */
+  /* ==================== ВКЛАДКА 6: STARDEW VALLEY (ЗАКАТ, ЕВГЕША, СНЕГ ВНИЗУ, ДЖУНИМО, ФИНАЛ) ==================== */
   .sd-dark-card {
     position: relative;
     background: linear-gradient(180deg, rgba(44, 22, 28, 0.88) 0%, rgba(28, 22, 34, 0.92) 100%);
@@ -1011,12 +1029,94 @@
     50% { transform: translateY(4px); }
   }
 
+  .sd-hearts-bar { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 14px 0 18px 0; }
+  .sd-px-heart { width: 22px; height: 22px; animation: beatHeart 1.8s infinite ease-in-out; }
+  .sd-px-heart:nth-child(even) { animation-delay: 0.3s; }
+  @keyframes beatHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.16); }
+  }
+
+  .sd-season-btns { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .sd-season-btn {
+    background: #3b1c20; border: 2px solid #c97b42; color: #ffebd2;
+    font-family: 'Press Start 2P', monospace; font-size: 9px; padding: 9px 12px;
+    cursor: pointer; transition: 0.15s;
+  }
+  .sd-season-btn:hover, .sd-season-btn.active { background: #632e31; border-color: #ffd28a; color: #ffffff; }
+
+  .sd-night-finale {
+    position: relative;
+    background: radial-gradient(circle at 50% 25%, rgba(255, 168, 92, 0.24) 0%, rgba(28, 22, 34, 0.94) 75%);
+    border: 4px solid #e09156;
+    box-shadow: inset 0 0 0 4px #5e2c26, 0 20px 50px rgba(0, 0, 0, 0.55);
+    padding: 36px 24px 42px 24px;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    color: #fff2dc;
+    overflow: hidden;
+  }
+
+  .firefly { position: absolute; width: 6px; height: 6px; background: #fff48f; box-shadow: 0 0 12px 3px rgba(255, 240, 110, 0.85); animation: fireflyMove 5s infinite ease-in-out; pointer-events: none; }
+  .ff1 { top: 20%; left: 14%; animation-delay: 0s; }
+  .ff2 { top: 32%; right: 16%; animation-delay: 1.4s; }
+  .ff3 { bottom: 26%; left: 22%; animation-delay: 2.3s; }
+  .ff4 { bottom: 22%; right: 20%; animation-delay: 0.8s; }
+  @keyframes fireflyMove {
+    0%, 100% { transform: translate(0, 0) scale(0.9); opacity: 0.4; }
+    50% { transform: translate(12px, -16px) scale(1.25); opacity: 1; }
+  }
+
+  .junimo-wrap { display: inline-block; margin: 10px auto 14px auto; cursor: pointer; animation: junimoHop 2.2s infinite ease-in-out; }
+  @keyframes junimoHop {
+    0%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(0); }
+    75% { transform: translateY(-5px); }
+  }
+
+  .sd-night-finale h2 { font-size: 13px; line-height: 1.8; color: #ffd28a; margin: 0 0 16px 0; }
+  .sd-night-text { font-size: 10px; line-height: 2; color: #f5dcc0; max-width: 580px; margin: 0 auto 22px auto; }
+
   .sd-gift-btn {
     background: #472124; border: 3px solid #f0a868; color: #ffe8c2;
     font-family: 'Press Start 2P', monospace; font-size: 10px; padding: 13px 18px;
     cursor: pointer; transition: 0.2s;
   }
   .sd-gift-btn:hover { background: #632e31; border-color: #ffd28a; transform: scale(1.03); }
+
+  .secret-letter {
+    display: none;
+    margin: 22px auto 0 auto;
+    max-width: 560px;
+    background: #fff8e7;
+    color: #3d2514;
+    border: 4px solid #b5733b;
+    padding: 20px 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.55;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+  .secret-letter.open { display: block; animation: fadeIn 0.4s ease; }
+
+  .anniversary-final-vow {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(255, 210, 138, 0.45);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 27px;
+    font-weight: 700;
+    color: #ffe3b8;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   @media (max-width: 560px) {
     .top-nav { border-radius: 22px; gap: 5px; }
@@ -1028,8 +1128,9 @@
     .anime-card h2, .map-card h2, .together-card h2, .letter-section h2, .seasons-hero-card h2, .family-card h3, .isaac-card h2 { font-size: 26px; }
     .ut-text { font-size: 10px; line-height: 1.75; }
     .aot-card h2 { font-size: 27px; }
-    .sd-dark-card h3 { font-size: 11.5px; }
+    .sd-dark-card h3, .sd-night-finale h2 { font-size: 11.5px; }
     .handwritten-sheet p, .wife-vow-card p { font-size: 19px; }
+    .anniversary-final-vow { font-size: 23px; }
   }
 </style>
 </head>
@@ -1037,6 +1138,12 @@
 
   <canvas id="snowCanvas"></canvas>
   <audio id="bgMusicPlayer" loop preload="metadata"></audio>
+
+  <!-- Сугроб внизу на странице Stardew Valley -->
+  <svg class="bottom-snow-drift" id="bottomSnowDrift" viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path d="M0 30 Q 150 6, 300 28 T 600 24 T 900 30 T 1200 20 L 1200 60 L 0 60 Z" fill="rgba(244, 249, 255, 0.92)"/>
+    <path d="M0 40 Q 220 20, 440 38 T 880 34 T 1200 38 L 1200 60 L 0 60 Z" fill="#ffffff"/>
+  </svg>
 
   <!-- Брызги на весь экран при победе над Мамой Айзека -->
   <svg class="screen-splash-overlay" id="screenSplashOverlay" viewBox="0 0 1000 1000" preserveAspectRatio="none">
@@ -1083,13 +1190,13 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 1: ЗИМНИЙ БАННЕР, АНИМЕ-БЛОКИ, СЦЕНА ЧУВСТВ И КАРТА          -->
+  <!-- ВКЛАДКА 1                                                             -->
   <!-- ===================================================================== -->
   <main class="tab-panel active" id="tab1">
 
     <header class="hero-banner">
       <div class="hero-kicker">Зимняя сказка • Женечка &amp; Мася</div>
-      <h1 class="hero-date">30.11.2025</h1>
+      <h1 class="hero-date" onclick="secretDateEasterEgg(event)" title="Секретная дата...">30.11.2025</h1>
       <p class="hero-subtitle">
         В тот зимний день за окном кружился снег, а для нас началась самая тёплая история.
         Каждый миг с тобой — как кадр из любимого аниме, который хочется пересматривать бесконечно.
@@ -1317,7 +1424,7 @@
   </main>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И ЭРЕН + МИКАСА (АТАКА ТИТАНОВ)   -->
+  <!-- ВКЛАДКА 2                                                             -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab2">
 
@@ -1505,11 +1612,10 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 3: THE BINDING OF ISAAC (6 БЛОКОВ, БЕЗ R.E.P.O.)            -->
+  <!-- ВКЛАДКА 3: THE BINDING OF ISAAC                                      -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab3">
 
-    <!-- Блок 1: Айзек и Азазель + луч сердечек -->
     <section class="isaac-card" id="isaacStageCard">
       <div class="isaac-kicker">The Binding of Isaac • Айзек и Азазель</div>
       <h2>Подземелье на двоих</h2>
@@ -1553,21 +1659,18 @@
       </button>
     </section>
 
-    <!-- Блок 2: Качественный артефакт -->
     <section class="isaac-card">
       <div class="isaac-kicker">Комната сокровищ • Quality 4</div>
       <h2>Самый редкий предмет в забеге</h2>
       <div class="anime-footer-note">«Sacred Heart + Brimstone отдыхают рядом с тем, как сильно я тебя люблю ♥»</div>
     </section>
 
-    <!-- Блок 3: Шкала сердец -->
     <section class="isaac-card">
       <div class="isaac-kicker">Сделка на всю жизнь</div>
       <h2>Полная шкала сердец рядом с тобой</h2>
       <div class="anime-footer-note">«Твоя Мася — вечный напарник в каждом ране»</div>
     </section>
 
-    <!-- Блок 4: Большой интерактивный бой с Мамой Айзека (слёзы + кровь Азазеля + брызги на весь экран) -->
     <section class="isaac-card" id="momBossCard">
       <div class="isaac-kicker">Босс • Мама Айзека</div>
       <h2>Вдвоём против Мамы</h2>
@@ -1584,7 +1687,6 @@
 
       <div class="isaac-stage" style="cursor:pointer;" onclick="hitMomBoss()">
         <svg viewBox="0 0 600 220" width="100%" style="max-height:220px;display:block;">
-          <!-- Айзек (бьёт слезами) -->
           <g class="isaac-bob">
             <ellipse cx="115" cy="118" rx="28" ry="25" fill="#f4c7bc" stroke="#3a2323" stroke-width="2.2"/>
             <circle cx="105" cy="118" r="5.5" fill="#1e1518"/>
@@ -1593,7 +1695,6 @@
             <text x="115" y="186" text-anchor="middle" font-size="10" fill="#ffd6de" font-family="Montserrat">Мася</text>
           </g>
 
-          <!-- Азазель (бьёт кровью/лучом) -->
           <g class="azazel-bob">
             <path d="M 142 152 C 122 140, 116 156, 132 166 Z" fill="#231820" stroke="#ff758f" stroke-width="1.4"/>
             <ellipse cx="165" cy="148" rx="24" ry="21" fill="#443038" stroke="#181014" stroke-width="2"/>
@@ -1602,7 +1703,6 @@
             <text x="165" y="188" text-anchor="middle" font-size="10" fill="#ff9eb0" font-family="Montserrat">Женечка</text>
           </g>
 
-          <!-- Атака: слёзы + кровь Азазеля -->
           <g class="attack-tear-stream">
             <circle cx="165" cy="118" r="5" fill="#7ad7ff"/>
             <circle cx="210" cy="114" r="6" fill="#7ad7ff"/>
@@ -1610,7 +1710,6 @@
             <line x1="192" y1="148" x2="395" y2="122" stroke="#d91e36" stroke-width="11" stroke-linecap="round" opacity="0.82"/>
           </g>
 
-          <!-- Мама Айзека (огромная голова/фигура справа) -->
           <g id="momBossGroup">
             <ellipse cx="455" cy="112" rx="68" ry="60" fill="#f0c4b4" stroke="#472424" stroke-width="3"/>
             <path d="M 388 96 Q 455 34 522 96 Q 498 62 455 62 Q 412 62 388 96 Z" fill="#7d4932"/>
@@ -1628,7 +1727,6 @@
       <div class="emotion-caption" id="momBattleStatus">Жми на сцену или кнопку — добьём её вместе!</div>
     </section>
 
-    <!-- Блок 5: Как Мася умирала много раз, а Женечка терпеливо учил -->
     <section class="isaac-card">
       <div class="isaac-kicker">Уроки терпения • Счётчик попыток</div>
       <h2>Я падала много раз, а ты учил</h2>
@@ -1654,7 +1752,6 @@
       <button class="mini-pill-btn" onclick="addTeachingAttempt()">+1 попытка с подсказкой Женечки</button>
     </section>
 
-    <!-- Блок 6: Слеза и пульсирующее сердце -->
     <section class="isaac-card">
       <div class="isaac-kicker">Финал забега • Любовь</div>
       <h2>Слезинка храбрости и бьющееся сердце</h2>
@@ -1680,7 +1777,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ ГОДА (С ЖИВЫМ ФОНОМ) И НАША СЕМЬЯ           -->
+  <!-- ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ (В КОНЦЕ: МАРИНА)                   -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab4">
 
@@ -1757,7 +1854,7 @@
         Я хочу разделить с тобой жизнь, стать твоей верной спутницей, опорой и самым родным человеком —
         в радости и в любых переменах, в каждом новом сезоне и в каждом нашем завтра.
       </p>
-      <div class="wife-sign">Навсегда твоя, твоя будущая жена — Мася ♥</div>
+      <div class="wife-sign">Навсегда твоя, твоя будущая жена — Марина ♥</div>
     </section>
 
     <div class="next-part-bar">
@@ -1769,7 +1866,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 5: UNDERTALE (ИСХОДНЫЙ БЛОК + 3 НОВЫХ БЛОКА С ЦВЕТКОМ И ЛЕПЕСТКАМИ) -->
+  <!-- ВКЛАДКА 5: UNDERTALE                                                  -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab5">
 
@@ -1827,7 +1924,6 @@
       </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК UNDERTALE 1: Большой цветок, с которым деремся -->
     <section class="ut-section">
       <div class="ut-status"><span class="red">♠ БОЙ</span> &nbsp;&nbsp; БОЛЬШОЙ ЦВЕТОК</div>
       <div class="ut-box ut-click" style="flex-direction:column;align-items:center;" onclick="flowerCheer()">
@@ -1852,7 +1948,6 @@
       </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК UNDERTALE 2: Золотые лепестки в конце как в самом прохождении -->
     <section class="ut-section">
       <div class="ut-status"><span class="gold">✦ ЗОЛОТЫЕ ЛЕПЕСТКИ</span> &nbsp;&nbsp; ФИНАЛ ПУТИ</div>
       <div class="ut-box ut-gold-box">
@@ -1868,7 +1963,6 @@
       </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК UNDERTALE 3: Очень милые фразы в стиле Undertale -->
     <section class="ut-section">
       <div class="ut-status"><span class="red">♥</span> &nbsp;&nbsp; МИЛЫЕ ФРАЗЫ ИЗ ПОДЗЕМЕЛЬЯ</div>
       <div class="ut-box ut-click" onclick="cycleSweetUtPhrase()">
@@ -1886,20 +1980,18 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 6: STARDEW VALLEY (ЗАКАТ, ЖЕНЯ И МАСЯ, ИСТОРИЯ)             -->
+  <!-- ВКЛАДКА 6: STARDEW VALLEY (ЗАКАТ, ЕВГЕША, СНЕГ ВНИЗУ, ДЖУНИМО, ФИНАЛ) -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab6">
 
     <section class="sd-dark-card">
       <div class="sd-dark-tag">STARDEW VALLEY • ЗАКАТ НАД ДОЛИНОЙ</div>
-      <h3>Женя и Мася у вечернего озера</h3>
+      <h3>Евгеша и Мася у вечернего озера</h3>
 
       <div class="sd-farm-stage">
         <svg viewBox="0 0 560 190" width="100%" style="max-height:190px;display:block;">
-          <!-- Закатное солнце -->
-          <circle cx="465" cy="54" r="32" fill="#ffe082" opacity="0.88"/>
+          <circle id="sunsetSunSvg" cx="465" cy="54" r="32" fill="#ffe082" opacity="0.9" style="cursor:pointer;" onclick="cycleSunsetMood()"/>
 
-          <!-- Мася -->
           <text x="125" y="28" text-anchor="middle" font-size="11" fill="#ffd6de" font-family="'Press Start 2P', monospace">Мася ♥</text>
           <rect x="111" y="42" width="28" height="24" fill="#7c5638"/>
           <rect x="115" y="46" width="20" height="18" fill="#f7d7c4"/>
@@ -1909,13 +2001,11 @@
           <rect x="127" y="88" width="6" height="14" fill="#3c4c70"/>
           <rect x="137" y="70" width="14" height="10" fill="#89a8b8"/>
 
-          <!-- Мостик -->
           <rect x="275" y="102" width="115" height="12" fill="#8c5a36" stroke="#472b16" stroke-width="2"/>
           <rect x="295" y="114" width="8" height="28" fill="#5e3a20"/>
           <rect x="360" y="114" width="8" height="28" fill="#5e3a20"/>
 
-          <!-- Женя -->
-          <text x="335" y="24" text-anchor="middle" font-size="11" fill="#ffe8c2" font-family="'Press Start 2P', monospace">Женя ♥</text>
+          <text x="335" y="24" text-anchor="middle" font-size="11" fill="#ffe8c2" font-family="'Press Start 2P', monospace">Евгеша ♥</text>
           <rect x="323" y="34" width="24" height="10" fill="#38281d"/>
           <rect x="325" y="42" width="20" height="18" fill="#f2d2be"/>
           <rect x="339" y="48" width="3" height="3" fill="#1e1510"/>
@@ -1931,15 +2021,89 @@
         </svg>
       </div>
 
-      <div class="sd-dark-desc">
+      <div class="sd-dark-desc" id="sdSunsetNote">
         Именно со Stardew Valley началась наша история — тихая, тёплая и родная, как закат над долиной ♥
       </div>
     </section>
 
+    <section class="sd-dark-card">
+      <div class="sd-dark-tag">STARDEW VALLEY • 10/10 СЕРДЕЧЕК</div>
+      <div class="sd-hearts-bar">
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+        <svg class="sd-px-heart" viewBox="0 0 16 16" fill="#ff6b6b"><path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/></svg>
+      </div>
+      <div class="sd-season-btns">
+        <button class="sd-season-btn active" id="sbtn-winter" onclick="pickSdSeason('winter')">❄ Зима</button>
+        <button class="sd-season-btn" id="sbtn-spring" onclick="pickSdSeason('spring')">🌸 Весна</button>
+        <button class="sd-season-btn" id="sbtn-summer" onclick="pickSdSeason('summer')">☀ Лето</button>
+        <button class="sd-season-btn" id="sbtn-autumn" onclick="pickSdSeason('autumn')">🍂 Осень</button>
+      </div>
+      <div class="sd-dark-desc" id="sdSeasonText">
+        30 ноября 2025 началась наша первая зима. За окном падал снег, а наши вечерние разговоры грели лучше любого камина.
+      </div>
+    </section>
+
+    <footer class="sd-night-finale">
+      <div class="firefly ff1"></div>
+      <div class="firefly ff2"></div>
+      <div class="firefly ff3"></div>
+      <div class="firefly ff4"></div>
+
+      <div class="sd-dark-tag">НОЧНАЯ ДОЛИНА • ПРИКОЛ С ДЖУНИМО</div>
+
+      <div class="junimo-wrap" onclick="junimoChirps(event)" title="Нажми на Джунимо!">
+        <svg viewBox="0 0 16 16" width="76" height="76">
+          <rect x="7" y="1" width="2" height="2" fill="#4e8c44"/>
+          <rect x="9" y="1" width="3" height="2" fill="#76c464"/>
+          <rect x="5" y="3" width="6" height="2" fill="#68b86e"/>
+          <rect x="3" y="5" width="10" height="6" fill="#68b86e"/>
+          <rect x="4" y="11" width="8" height="2" fill="#529c58"/>
+          <rect x="1" y="7" width="2" height="2" fill="#45824a"/>
+          <rect x="13" y="7" width="2" height="2" fill="#45824a"/>
+          <rect x="5" y="13" width="2" height="2" fill="#45824a"/>
+          <rect x="9" y="13" width="2" height="2" fill="#45824a"/>
+          <rect x="5" y="7" width="2" height="2" fill="#1a1412"/>
+          <rect x="9" y="7" width="2" height="2" fill="#1a1412"/>
+          <rect x="4" y="9" width="1" height="1" fill="#f28b82"/>
+          <rect x="11" y="9" width="1" height="1" fill="#f28b82"/>
+        </svg>
+      </div>
+
+      <h2 id="junimoSpeech">Джунимо спрятал в кустах поцелуй для Женечки!</h2>
+
+      <div class="sd-night-text">
+        Наш маленький узелок счастья за этот год полностью собран.<br>
+        Пусть в нашей долине всегда будет тихо, уютно и тепло,<br>
+        а впереди ждут самые светлые сезоны вдвоём.
+      </div>
+
+      <button class="sd-gift-btn" onclick="toggleSecretLetter()">
+        ✉ Открыть тайную записку
+      </button>
+
+      <div class="secret-letter" id="secretLetter">
+        «Евгеша, спасибо тебе за каждый день начиная с 30 ноября 2025 года.
+        Ты — моё самое любимое место на земле, мой покой, мой смех и моё вдохновение.
+        Я очень сильно тебя люблю!» — Мася ♥
+      </div>
+
+      <div class="anniversary-final-vow">
+        С годовщиной, любимый Женечка, Мася всегда рядом ♥
+      </div>
+    </footer>
+
   </section>
 
   <script>
-    // 0. МУЗЫКА ПО ВКЛАДКАМ (ВСЕ 6 ВКЛАДОК СО СВОИМИ МЕЛОДИЯМИ)
+    // 0. МУЗЫКА ПО ВКЛАДКАМ
     const tracksByTab = {
       tab1: { src: 'the-dragon-boy.mp3', title: 'The Dragon Boy' },
       tab2: { src: 'howls-moving-castle.mp3', title: 'Howl\'s Moving Castle' },
@@ -2000,7 +2164,7 @@
 
     syncTrackForTab('tab1', false);
 
-    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК + ЗАКАТНЫЙ ФОН НА STARDEW VALLEY + ФОН СЕЗОНОВ
+    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
     let activeFamilySeason = 'winter';
 
     function openTab(tabId) {
@@ -2033,7 +2197,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 1. ТАЙМЕР ОТ 30 НОЯБРЯ 2025
+    // 1. ТАЙМЕР + ПАСХАЛКА НА ДАТЕ 30.11.2025
     const startDate = new Date(2025, 10, 30, 0, 0, 0);
 
     function updateTimer() {
@@ -2046,6 +2210,34 @@
     }
     setInterval(updateTimer, 1000);
     updateTimer();
+
+    let dateClickCount = 0;
+    function secretDateEasterEgg(e) {
+      dateClickCount++;
+      spawnHeartBurst(e.clientX, e.clientY);
+      if (dateClickCount >= 3) {
+        document.getElementById('loveToast').textContent =
+          '✦ Секрет найден: 30.11.2025 — самый лучший день в году, Женечка! ♥';
+      }
+    }
+
+    function spawnHeartBurst(x, y) {
+      for (let i = 0; i < 6; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = i % 2 === 0 ? '♥' : '✦';
+        heart.style.left = `${x + (Math.random() * 70 - 35)}px`;
+        heart.style.top = `${y + (Math.random() * 24 - 12)}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key && e.key.toLowerCase() === 'h') {
+        spawnHeartBurst(window.innerWidth * Math.random(), window.innerHeight * 0.55);
+      }
+    });
 
     // 2. ЖИВОЙ ФОН: ЗИМА, ВЕСНА, ЛЕТО, ОСЕНЬ
     const canvas = document.getElementById('snowCanvas');
@@ -2145,12 +2337,13 @@
 
     function toggleBlizzard() {
       isBlizzard = !isBlizzard;
+      const drift = document.getElementById('bottomSnowDrift');
+      drift.style.transform = isBlizzard ? 'translateY(4px) scaleY(1.25)' : 'translateY(0) scaleY(1)';
       document.getElementById('blizzardBtn').textContent = isBlizzard
         ? '❄ Ослабить ветер'
         : '❄ Усилить метель';
     }
 
-    // 2.5 КНОПКА-СЕРДЕЧКО
     let loveCount = 0;
     const loveMessages = [
       "Тепло отправлено Женечке! Даже сквозь километры моё сердце с тобой ♥",
@@ -2163,19 +2356,9 @@
       loveCount++;
       const msg = loveMessages[(loveCount - 1) % loveMessages.length];
       document.getElementById('loveToast').textContent = `${msg} (импульсов отправлено: ${loveCount})`;
-
       const x = e && e.clientX ? e.clientX : window.innerWidth / 2;
       const y = e && e.clientY ? e.clientY : window.innerHeight / 2;
-
-      for (let i = 0; i < 6; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'floating-heart';
-        heart.textContent = i % 2 === 0 ? '♥' : '✦';
-        heart.style.left = `${x + (Math.random() * 60 - 30)}px`;
-        heart.style.top = `${y + (Math.random() * 20 - 10)}px`;
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 1500);
-      }
+      spawnHeartBurst(x, y);
     }
 
     let threadConnected = false;
@@ -2192,7 +2375,6 @@
       }
     }
 
-    // 3. БИЛЕТ
     let stamped = false;
     function stampTicket() {
       const el = document.getElementById('ticketStatus');
@@ -2357,7 +2539,7 @@
       }
     }
 
-    // 6.4 АЙЗЕК, АЗАЗЕЛЬ, БОЙ С МАМОЙ + БРЫЗГИ НА ВЕСЬ ЭКРАН + ПОПЫТКИ
+    // 6.4 ISAAC
     function toggleBrimstoneHearts() {
       const card = document.getElementById('isaacStageCard');
       const btn = document.getElementById('brimstoneBtn');
@@ -2562,6 +2744,49 @@
     function cycleSweetUtPhrase() {
       sweetUtIdx = (sweetUtIdx + 1) % sweetUtPhrases.length;
       document.getElementById('utSweetPhrase').textContent = sweetUtPhrases[sweetUtIdx];
+    }
+
+    // 8. STARDEW VALLEY (ЗАКАТ, СЕЗОНЫ, ДЖУНИМО)
+    let sunMoodIdx = 0;
+    const sunMoods = [
+      "Именно со Stardew Valley началась наша история — тихая, тёплая и родная, как закат над долиной ♥",
+      "Закат окрасил небо в золото и розу — а у Евгеши на крючке уже клюёт счастье ♥",
+      "Пасхалка солнца: даже в пиксельном закате наш уют светится по-настоящему ♥"
+    ];
+    function cycleSunsetMood() {
+      sunMoodIdx = (sunMoodIdx + 1) % sunMoods.length;
+      document.getElementById('sdSunsetNote').textContent = sunMoods[sunMoodIdx];
+    }
+
+    const sdSeasons = {
+      winter: "30 ноября 2025 началась наша первая зима. За окном падал снег, а наши вечерние разговоры грели лучше любого камина.",
+      spring: "Весной расцвели новые мечты и надежды на встречу — каждый день с тобой приносил свежее дыхание и улыбки.",
+      summer: "Летом было много света, тёплых слов и веры в то, что любые километры однажды останутся позади.",
+      autumn: "Осенью мы подошли к нашему первому большому рубежу — целый год вместе, плечом к плечу и сердце к сердцу."
+    };
+
+    function pickSdSeason(key) {
+      document.querySelectorAll('.sd-season-btn').forEach(b => b.classList.remove('active'));
+      const btn = document.getElementById(`sbtn-${key}`);
+      if (btn) btn.classList.add('active');
+      document.getElementById('sdSeasonText').textContent = sdSeasons[key];
+    }
+
+    const junimoPhrases = [
+      "Джунимо спрятал в кустах поцелуй для Женечки!",
+      "Джунимо подсказывает: нажми клавишу H на клавиатуре! ♪",
+      "Джунимо: «Мася и Евгеша — лучшая команда долины!» ★"
+    ];
+    let jIdx = 0;
+
+    function junimoChirps(e) {
+      jIdx = (jIdx + 1) % junimoPhrases.length;
+      document.getElementById('junimoSpeech').textContent = junimoPhrases[jIdx];
+      if (e && e.clientX) spawnHeartBurst(e.clientX, e.clientY);
+    }
+
+    function toggleSecretLetter() {
+      document.getElementById('secretLetter').classList.toggle('open');
     }
   </script>
 </body>
