@@ -101,21 +101,32 @@
       }
     }
 
-    /* Навигация и плеер */
+    /* Навигация, кнопка метели справа и плеер по центру */
     .top-nav-wrap {
       position: sticky;
       top: 10px;
       z-index: 30;
-      max-width: 980px;
+      width: 100%;
+      max-width: 1180px;
       margin: 12px auto 0 auto;
-      padding: 0 12px;
+      padding: 0 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
     }
 
+    .top-header-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+
     .top-nav {
+      grid-column: 2;
+      justify-self: center;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -126,6 +137,13 @@
       border-radius: 999px;
       padding: 6px 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .top-right-slot {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
     }
 
     .nav-tab-btn {
@@ -152,8 +170,30 @@
       font-weight: 600;
     }
 
+    .blizzard-top-btn {
+      background: rgba(14, 22, 36, 0.85);
+      backdrop-filter: blur(12px);
+      color: #dcebff;
+      border: 1px solid rgba(180, 214, 255, 0.45);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 9px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .blizzard-top-btn:hover {
+      background: rgba(180, 214, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
     .music-bar {
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 10px;
       background: rgba(15, 23, 38, 0.78);
@@ -282,7 +322,6 @@
     }
 
     .love-pulse-btn,
-    .blizzard-hero-btn,
     .mini-pill-btn,
     .next-part-btn,
     .c-chip,
@@ -307,21 +346,6 @@
     }
 
     .love-pulse-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .blizzard-hero-btn {
-      background: rgba(180, 214, 255, 0.14);
-      color: #dcebff;
-      border: 1px solid rgba(180, 214, 255, 0.42);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 11px 18px;
-      border-radius: 999px;
-    }
-
-    .blizzard-hero-btn:hover {
-      background: rgba(180, 214, 255, 0.24);
       transform: translateY(-2px);
     }
 
@@ -1260,6 +1284,17 @@
       }
     }
 
+    @media (max-width: 920px) {
+      .top-header-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .top-right-slot {
+        justify-self: center;
+      }
+    }
+
     @media (max-width: 560px) {
       .top-nav {
         border-radius: 22px;
@@ -1268,6 +1303,10 @@
       .nav-tab-btn {
         font-size: 10.5px;
         padding: 7px 10px;
+      }
+      .blizzard-top-btn {
+        font-size: 11px;
+        padding: 7px 13px;
       }
       .hero-banner {
         min-height: 74vh;
@@ -1339,28 +1378,36 @@
     <circle cx="520" cy="540" r="140" fill="rgba(255, 130, 155, 0.24)"/>
   </svg>
 
-  <!-- ==================== 6 ВКЛАДОК НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
+  <!-- ==================== 6 ВКЛАДОК НАВИГАЦИИ + МЕТЕЛЬ СПРАВА + ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
-    <nav class="top-nav" aria-label="Разделы сайта">
-      <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
-        ❄ Наша зима и карта
-      </button>
-      <button class="nav-tab-btn" id="nav-tab2" onclick="openTab('tab2')">
-        🍷 Будь мы рядом и письмо
-      </button>
-      <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
-        😈 The Binding of Isaac
-      </button>
-      <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
-        💍 Любовь и наша семья
-      </button>
-      <button class="nav-tab-btn" id="nav-tab5" onclick="openTab('tab5')">
-        ✦ Undertale
-      </button>
-      <button class="nav-tab-btn" id="nav-tab6" onclick="openTab('tab6')">
-        🌾 Stardew Valley
-      </button>
-    </nav>
+    <div class="top-header-row">
+      <nav class="top-nav" aria-label="Разделы сайта">
+        <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
+          ❄ Наша зима и карта
+        </button>
+        <button class="nav-tab-btn" id="nav-tab2" onclick="openTab('tab2')">
+          🍷 Будь мы рядом и письмо
+        </button>
+        <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
+          😈 The Binding of Isaac
+        </button>
+        <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
+          💍 Любовь и наша семья
+        </button>
+        <button class="nav-tab-btn" id="nav-tab5" onclick="openTab('tab5')">
+          ✦ Undertale
+        </button>
+        <button class="nav-tab-btn" id="nav-tab6" onclick="openTab('tab6')">
+          🌾 Stardew Valley
+        </button>
+      </nav>
+
+      <div class="top-right-slot">
+        <button class="blizzard-top-btn" onclick="toggleBlizzard()" id="blizzardBtn">
+          ❄ Усилить метель
+        </button>
+      </div>
+    </div>
 
     <div class="music-bar">
       <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()">▶ Включить музыку</button>
@@ -1391,9 +1438,6 @@
       <div class="hero-btns-row">
         <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
           ♥ Послать тепло через расстояние
-        </button>
-        <button class="blizzard-hero-btn" onclick="toggleBlizzard()" id="blizzardBtn">
-          ❄ Усилить метель
         </button>
       </div>
 
