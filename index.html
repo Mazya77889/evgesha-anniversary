@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>30.11.2025 • Женечка &amp; Мася</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600&family=Press+Start+2P&display=swap"
-    rel="stylesheet"
-  />
+  <title>30.11.2025 • Наша история — Женечка &amp; Мася</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #0e1522;
-      --bg-card: rgba(20, 31, 50, 0.78);
-      --text-main: #f4f7fc;
-      --text-muted: #c2d0e6;
+      --bg-dark: #0b1021;
+      --bg-card: rgba(20, 26, 48, 0.82);
+      --border-soft: rgba(255, 190, 205, 0.24);
+      --text-main: #fff5f7;
+      --text-muted: #e6d7e2;
       --accent-rose: #ff8fa3;
       --accent-gold: #ffd28a;
-      --border-soft: rgba(255, 255, 255, 0.14);
     }
 
     * {
@@ -31,17 +28,24 @@
 
     body {
       margin: 0;
+      padding: 0;
       min-height: 100vh;
       font-family: 'Montserrat', sans-serif;
       color: var(--text-main);
-      background: radial-gradient(circle at 50% 0%, #1d2f4d 0%, #0e1522 65%, #090d16 100%);
-      transition: background 0.6s ease;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 130, 160, 0.16), transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(130, 165, 255, 0.18), transparent 46%),
+        radial-gradient(circle at 50% 85%, rgba(255, 195, 135, 0.12), transparent 50%),
+        linear-gradient(175deg, #0b1021 0%, #151934 52%, #1d152b 100%);
       overflow-x: hidden;
-      position: relative;
+      transition: background 0.7s ease;
     }
 
     body.stardew-sunset-bg {
-      background: linear-gradient(180deg, #241936 0%, #582841 42%, #b55748 76%, #e8995a 100%);
+      background:
+        radial-gradient(circle at 75% 18%, rgba(255, 180, 95, 0.34), transparent 44%),
+        radial-gradient(circle at 22% 30%, rgba(255, 115, 135, 0.22), transparent 48%),
+        linear-gradient(180deg, #27192f 0%, #4c2334 45%, #2b1824 100%);
     }
 
     #snowCanvas {
@@ -50,19 +54,28 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+
+    body.stardew-snow-active #snowCanvas {
+      opacity: 1;
     }
 
     .bottom-snow-drift {
       position: fixed;
       left: 0;
-      right: 0;
       bottom: 0;
       width: 100%;
       height: 54px;
       pointer-events: none;
-      z-index: 2;
-      transition: transform 0.35s ease;
+      z-index: 3;
+      display: none;
+    }
+
+    body.stardew-snow-active .bottom-snow-drift {
+      display: block;
     }
 
     .screen-splash-overlay {
@@ -71,9 +84,9 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: 50;
       opacity: 0;
-      z-index: 40;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.35s ease;
     }
 
     .screen-splash-overlay.active {
@@ -82,153 +95,140 @@
 
     .floating-heart {
       position: fixed;
-      font-size: 20px;
-      color: #ff7597;
-      text-shadow: 0 0 12px rgba(255, 117, 151, 0.8);
       pointer-events: none;
+      font-size: 20px;
+      color: #ff8fa3;
+      text-shadow: 0 0 12px rgba(255, 143, 163, 0.85);
       z-index: 60;
-      animation: floatUpFade 1.5s ease-out forwards;
+      animation: floatUpHeart 1.5s ease-out forwards;
     }
 
-    @keyframes floatUpFade {
+    @keyframes floatUpHeart {
       0% {
-        transform: translateY(0) scale(0.8);
         opacity: 1;
+        transform: translateY(0) scale(0.85);
       }
       100% {
-        transform: translateY(-75px) scale(1.3);
         opacity: 0;
+        transform: translateY(-75px) scale(1.35);
       }
     }
 
-    /* Кнопка метели отдельно в самом верхнем правом углу */
+    /* Кнопка метели отдельно в правом верхнем углу */
     .blizzard-corner-btn {
       position: fixed;
-      top: 16px;
-      right: 18px;
-      z-index: 45;
-      background: rgba(14, 22, 36, 0.88);
-      backdrop-filter: blur(12px);
-      color: #dcebff;
-      border: 1px solid rgba(180, 214, 255, 0.45);
+      top: 12px;
+      right: 16px;
+      z-index: 40;
+      background: rgba(20, 26, 48, 0.82);
+      border: 1px solid rgba(255, 190, 205, 0.36);
+      color: #ffe8ee;
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 9px 15px;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 8px 14px;
       border-radius: 999px;
       cursor: pointer;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
       transition: 0.2s ease;
-      white-space: nowrap;
     }
 
     .blizzard-corner-btn:hover {
-      background: rgba(180, 214, 255, 0.22);
-      transform: translateY(-1px);
+      background: rgba(255, 155, 178, 0.26);
+      border-color: #ff9eb5;
     }
 
-    /* Навигация и плеер ровно по центру */
+    /* Полоска со страницами и музыка */
     .top-nav-wrap {
       position: sticky;
-      top: 12px;
+      top: 0;
       z-index: 30;
-      width: 100%;
-      max-width: 820px;
-      margin: 14px auto 0 auto;
-      padding: 0 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 9px;
+      background: rgba(11, 15, 31, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 190, 205, 0.18);
+      padding: 12px 16px 10px 16px;
     }
 
     .top-nav {
+      max-width: 1120px;
+      margin: 0 auto 8px auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: 6px;
-      background: rgba(12, 19, 32, 0.84);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 6px 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      gap: 8px;
     }
 
     .nav-tab-btn {
-      background: transparent;
-      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 190, 205, 0.22);
       color: var(--text-muted);
       font-family: 'Montserrat', sans-serif;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 500;
-      padding: 7px 12px;
+      padding: 8px 14px;
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s ease;
-      white-space: nowrap;
     }
 
     .nav-tab-btn:hover {
+      background: rgba(255, 155, 178, 0.16);
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
     }
 
     .nav-tab-btn.active {
-      color: #141926;
-      background: var(--accent-gold);
+      background: linear-gradient(135deg, rgba(255, 143, 163, 0.34), rgba(255, 210, 138, 0.24));
+      border-color: #ff9eb5;
+      color: #ffffff;
       font-weight: 600;
+      box-shadow: 0 0 16px rgba(255, 143, 163, 0.28);
     }
 
     .music-bar {
-      display: inline-flex;
-      justify-content: center;
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      background: rgba(15, 23, 38, 0.82);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 4px 14px 4px 6px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
     }
 
     .music-toggle-btn {
-      background: rgba(255, 143, 163, 0.2);
-      border: 1px solid rgba(255, 143, 163, 0.5);
-      color: #ffe3e8;
+      background: rgba(255, 168, 188, 0.2);
+      border: 1px solid rgba(255, 188, 204, 0.45);
+      color: #fff3f6;
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      padding: 4px 10px;
+      padding: 6px 14px;
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
     .music-toggle-btn:hover {
-      background: rgba(255, 143, 163, 0.32);
+      background: rgba(255, 168, 188, 0.34);
     }
 
     .music-track-label {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 600;
-      letter-spacing: 0.4px;
-      color: #ffe6cc;
-      line-height: 1.1;
+      color: #ffd8e2;
+      text-align: center;
     }
 
-    /* Вкладки */
+    /* Контейнер вкладок */
     .tab-panel {
       display: none;
-      position: relative;
-      z-index: 5;
       max-width: 820px;
       margin: 0 auto;
-      padding: 18px 16px 84px 16px;
+      padding: 28px 18px 86px 18px;
+      position: relative;
+      z-index: 10;
     }
 
     .tab-panel.active {
@@ -236,48 +236,60 @@
       animation: fadeIn 0.35s ease;
     }
 
-    /* Герой первой вкладки */
+    /* Герой-баннер */
     .hero-banner {
-      position: relative;
       min-height: 78vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
-      margin-bottom: 24px;
-      background: radial-gradient(circle at 50% 35%, rgba(255, 185, 198, 0.14), rgba(16, 26, 44, 0.72) 72%);
-      border: 1px solid var(--border-soft);
+      padding: 44px 26px;
       border-radius: 28px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      background: radial-gradient(circle at 50% 25%, rgba(255, 155, 180, 0.16), rgba(17, 23, 44, 0.82) 75%);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38), 0 0 36px rgba(255, 143, 163, 0.14);
+      margin-bottom: 26px;
     }
 
-    .hero-kicker {
-      font-size: 12px;
-      letter-spacing: 2px;
+    .hero-kicker,
+    .anime-tag,
+    .map-kicker,
+    .together-kicker,
+    .letter-kicker,
+    .aot-kicker,
+    .isaac-kicker,
+    .seasons-kicker,
+    .family-kicker,
+    .wife-kicker,
+    .sd-dark-tag {
+      font-size: 11px;
       text-transform: uppercase;
-      color: var(--accent-gold);
+      letter-spacing: 1.8px;
+      color: #ffc2d1;
+      text-align: center;
       margin-bottom: 10px;
     }
 
     .hero-date {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(46px, 9vw, 84px);
+      font-size: clamp(46px, 8vw, 76px);
       font-weight: 700;
-      margin: 0 0 12px 0;
-      color: #fff5f7;
+      line-height: 1.05;
+      margin: 0 0 16px 0;
+      color: #fff3f6;
+      text-shadow: 0 0 28px rgba(255, 155, 182, 0.45);
       cursor: pointer;
-      user-select: none;
-      text-shadow: 0 4px 24px rgba(255, 143, 163, 0.35);
+      text-align: center;
     }
 
     .hero-subtitle {
-      max-width: 560px;
-      font-size: 14.5px;
-      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 26px auto;
+      font-size: 15px;
+      line-height: 1.75;
       color: var(--text-muted);
-      margin: 0 0 26px 0;
+      text-align: center;
     }
 
     .hero-timer {
@@ -285,196 +297,211 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .h-time-card {
-      min-width: 88px;
+      min-width: 92px;
       padding: 14px 12px;
-      background: rgba(11, 18, 30, 0.75);
-      border: 1px solid rgba(255, 210, 138, 0.28);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 190, 205, 0.25);
+      text-align: center;
     }
 
     .h-time-card span {
+      display: block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 34px;
+      font-size: 36px;
       font-weight: 700;
-      color: var(--accent-gold);
-      line-height: 1;
+      line-height: 1.1;
+      color: #ffe3ea;
     }
 
     .h-time-card label {
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
       color: var(--text-muted);
     }
 
     .hero-btns-row {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .love-pulse-btn,
-    .mini-pill-btn,
-    .next-part-btn,
-    .c-chip,
-    .scene-tab-btn,
-    .open-letter-btn,
-    .s-mode-btn,
-    .ut-btn {
+    button {
       font-family: 'Montserrat', sans-serif;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
     .love-pulse-btn {
-      background: linear-gradient(135deg, #ff758f, #ff8fa3);
-      color: #1a0c12;
+      background: linear-gradient(135deg, #ff8fa3, #ffadc0);
+      color: #2c111b;
       border: none;
       font-size: 13px;
-      font-weight: 600;
-      padding: 11px 18px;
+      font-weight: 700;
+      padding: 12px 22px;
       border-radius: 999px;
-      box-shadow: 0 8px 22px rgba(255, 117, 143, 0.3);
+      box-shadow: 0 0 20px rgba(255, 143, 163, 0.36);
     }
 
     .love-pulse-btn:hover {
       transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(255, 143, 163, 0.55);
     }
 
     .love-note-toast {
-      margin-top: 16px;
-      min-height: 22px;
+      margin-top: 14px;
+      min-height: 20px;
       font-size: 13px;
-      color: #ffd6de;
+      color: #ffd8e2;
+      text-align: center;
     }
 
-    /* Карточки разделов */
+    /* Карточки и страницы — все надписи внутри по центру */
     .anime-card,
+    .visual-emotion-card,
     .map-card,
     .together-card,
     .letter-section,
+    .aot-card,
+    .eren-mikasa-card,
+    .isaac-card,
     .seasons-hero-card,
     .family-card,
-    .wife-vow-card,
-    .isaac-card,
-    .eren-mikasa-card,
-    .aot-card,
-    .visual-emotion-card,
     .sd-dark-card {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--border-soft);
-      border-radius: 24px;
-      padding: 32px 26px;
+      border-radius: 26px;
+      padding: 34px 28px;
       margin-bottom: 22px;
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
     }
 
-    .anime-header,
-    .map-top-bar {
+    .seasons-hero-card.season-winter {
+      background: radial-gradient(circle at 50% 15%, rgba(165, 210, 255, 0.22), rgba(20, 26, 48, 0.88) 78%);
+    }
+
+    .seasons-hero-card.season-spring {
+      background: radial-gradient(circle at 50% 15%, rgba(255, 175, 200, 0.24), rgba(28, 20, 42, 0.88) 78%);
+    }
+
+    .seasons-hero-card.season-summer {
+      background: radial-gradient(circle at 50% 15%, rgba(255, 215, 115, 0.24), rgba(32, 24, 34, 0.88) 78%);
+    }
+
+    .seasons-hero-card.season-autumn {
+      background: radial-gradient(circle at 50% 15%, rgba(255, 145, 85, 0.24), rgba(34, 20, 26, 0.88) 78%);
+    }
+
+    .anime-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .anime-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 175, 195, 0.12);
+      border: 1px solid rgba(255, 190, 205, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .anime-tag,
-    .map-kicker,
-    .together-kicker,
-    .letter-kicker,
-    .seasons-kicker,
-    .family-kicker,
-    .wife-kicker,
-    .isaac-kicker,
-    .aot-kicker,
-    .sd-dark-tag {
-      font-size: 11.5px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      margin-bottom: 8px;
+      margin: 0 auto;
     }
 
     .anime-card h2,
+    .visual-emotion-card h3,
     .map-card h2,
     .together-card h2,
     .letter-section h2,
-    .seasons-hero-card h2,
-    .family-card h3,
-    .isaac-card h2,
     .aot-card h2,
-    .visual-emotion-card h3,
-    .sd-dark-card h3 {
+    .eren-mikasa-card h2,
+    .isaac-card h2,
+    .seasons-hero-card h2,
+    .family-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 700;
-      margin: 0 0 12px 0;
-      color: #ffffff;
+      line-height: 1.2;
+      margin: 0 auto 14px auto;
+      text-align: center;
+      color: #fff3f6;
     }
 
     .anime-card p,
     .map-intro,
     .together-lead,
-    .family-card p,
-    .aot-card p {
-      font-size: 14px;
-      line-height: 1.75;
+    .aot-card p,
+    .eren-mikasa-card p,
+    .seasons-lead,
+    .family-card p {
+      max-width: 620px;
+      margin: 0 auto 14px auto;
+      font-size: 14.5px;
+      line-height: 1.78;
+      text-align: center;
       color: var(--text-muted);
-      margin: 0 0 14px 0;
     }
 
     .anime-footer-note,
-    .family-quote,
-    .aot-quote {
+    .aot-quote,
+    .family-quote {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 21px;
-      color: #ffd9e2;
-      margin-top: 10px;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      color: #ffbfd0;
+      margin-top: 12px;
+    }
+
+    .map-top-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .ticket-stub {
       margin-top: 16px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px dashed rgba(255, 210, 138, 0.45);
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255, 225, 185, 0.08);
+      border: 1px dashed rgba(255, 210, 138, 0.48);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content: center;
+      gap: 12px;
       font-size: 13px;
     }
 
     .mini-pill-btn {
-      background: rgba(255, 210, 138, 0.16);
-      border: 1px solid rgba(255, 210, 138, 0.45);
-      color: #ffe9c4;
+      background: rgba(255, 168, 188, 0.18);
+      border: 1px solid rgba(255, 188, 204, 0.48);
+      color: #ffe8ee;
       font-size: 12px;
-      padding: 7px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
+      box-shadow: 0 0 12px rgba(255, 155, 178, 0.16);
+    }
+
+    .mini-pill-btn:hover {
+      background: rgba(255, 168, 188, 0.3);
     }
 
     .emotion-svg-box,
@@ -484,35 +511,39 @@
     .hazel-eyes-stage,
     .mountain-hero-stage,
     .sd-farm-stage {
-      background: rgba(10, 16, 28, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      padding: 12px;
-      margin: 14px 0;
+      background: radial-gradient(circle at 50% 45%, rgba(255, 150, 176, 0.16), rgba(14, 18, 32, 0.68) 78%);
+      border: 1px solid rgba(255, 175, 195, 0.24);
+      box-shadow: inset 0 0 26px rgba(255, 143, 163, 0.12), 0 0 24px rgba(255, 143, 163, 0.14);
+      border-radius: 20px;
+      padding: 14px;
+      margin: 16px 0;
       text-align: center;
     }
 
     .emotion-caption {
-      font-size: 13.5px;
-      color: #ffe2e8;
-      margin: 10px 0;
+      font-size: 14px;
+      text-align: center;
+      color: #ffe4ea;
+      text-shadow: 0 0 12px rgba(255, 158, 182, 0.32);
+      margin: 12px 0;
     }
 
     /* Карта стран */
     .map-progress {
       font-size: 12px;
-      color: #ffd28a;
-      background: rgba(255, 210, 138, 0.12);
-      padding: 5px 12px;
+      color: #ffd6e0;
+      background: rgba(255, 158, 182, 0.16);
+      padding: 5px 14px;
       border-radius: 999px;
     }
 
     .map-canvas-box {
-      background: rgba(9, 15, 27, 0.72);
-      border: 1px solid rgba(184, 212, 255, 0.18);
-      border-radius: 18px;
-      padding: 8px;
-      margin-bottom: 14px;
+      background: rgba(11, 16, 30, 0.78);
+      border: 1px solid rgba(255, 178, 196, 0.24);
+      box-shadow: 0 0 24px rgba(255, 143, 163, 0.12);
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 16px;
     }
 
     .country-svg {
@@ -526,7 +557,7 @@
     }
 
     .pin-ring {
-      fill: rgba(255, 143, 163, 0.25);
+      fill: rgba(255, 143, 163, 0.28);
       opacity: 0;
       transition: 0.2s;
     }
@@ -547,7 +578,7 @@
     }
 
     .pin-label {
-      fill: #e9f1ff;
+      fill: #eef4ff;
       font-size: 12px;
       font-family: 'Montserrat', sans-serif;
       text-anchor: middle;
@@ -555,7 +586,7 @@
 
     .route-line {
       fill: none;
-      stroke: rgba(255, 210, 138, 0.22);
+      stroke: rgba(255, 210, 138, 0.24);
       stroke-width: 1.6;
       stroke-dasharray: 5 5;
     }
@@ -571,6 +602,7 @@
     .season-controls-bar {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
       margin-bottom: 16px;
     }
@@ -578,8 +610,8 @@
     .c-chip,
     .scene-tab-btn,
     .s-mode-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 175, 195, 0.08);
+      border: 1px solid rgba(255, 188, 204, 0.22);
       color: var(--text-muted);
       font-size: 12px;
       padding: 8px 14px;
@@ -589,97 +621,110 @@
     .c-chip.active,
     .scene-tab-btn.active,
     .s-mode-btn.active {
-      background: rgba(255, 210, 138, 0.22);
-      border-color: var(--accent-gold);
+      background: rgba(255, 155, 178, 0.26);
+      border-color: #ff9eb5;
       color: #ffffff;
       font-weight: 600;
+      box-shadow: 0 0 14px rgba(255, 155, 178, 0.3);
     }
 
     .country-detail-box,
     .scene-caption-box {
-      background: rgba(12, 20, 35, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(24, 18, 36, 0.78);
+      border: 1px solid rgba(255, 178, 196, 0.24);
+      box-shadow: 0 0 22px rgba(255, 143, 163, 0.14);
       border-radius: 18px;
-      padding: 18px;
+      padding: 20px;
+      text-align: center;
     }
 
     .detail-header {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .detail-country-name,
     .scene-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
+      font-size: 28px;
       margin: 0;
-      color: #fff4e4;
+      text-align: center;
+      color: #fff2f5;
     }
 
     .detail-badge {
-      font-size: 11.5px;
-      color: #ffd28a;
+      font-size: 12px;
+      text-align: center;
+      color: #ffc2d1;
     }
 
     .detail-story,
     .scene-desc {
-      font-size: 13.5px;
-      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto 12px auto;
+      font-size: 14px;
+      line-height: 1.75;
+      text-align: center;
       color: var(--text-muted);
-      margin: 0 0 10px 0;
     }
 
     .detail-feeling {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 19px;
-      color: #ffb8c6;
+      font-size: 22px;
+      text-align: center;
+      color: #ffbccb;
+      text-shadow: 0 0 14px rgba(255, 143, 163, 0.38);
     }
 
     /* Письмо */
     .envelope-visual {
       text-align: center;
-      padding: 20px;
-      border-radius: 18px;
-      background: rgba(255, 248, 231, 0.06);
-      border: 1px solid rgba(255, 210, 138, 0.25);
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255, 175, 195, 0.1);
+      border: 1px solid rgba(255, 188, 204, 0.34);
+      box-shadow: 0 0 24px rgba(255, 143, 163, 0.18);
       margin-bottom: 16px;
     }
 
     .wax-seal {
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       margin: 0 auto 10px auto;
       border-radius: 50%;
-      background: #9e2a3b;
+      background: #b52d46;
       color: #ffe5ec;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 18px rgba(255, 117, 143, 0.5);
     }
 
     .envelope-label {
       font-weight: 600;
-      color: #fff3dc;
+      text-align: center;
+      color: #fff3f6;
       margin-bottom: 4px;
     }
 
     .envelope-sub {
-      font-size: 12px;
+      font-size: 12.5px;
+      text-align: center;
       color: var(--text-muted);
     }
 
     .seal-secret-note {
       display: none;
       margin-top: 12px;
-      font-size: 13px;
+      font-size: 13.5px;
+      text-align: center;
       color: #ffd6de;
     }
 
@@ -689,23 +734,25 @@
     }
 
     .open-letter-btn {
-      background: #fff3dc;
-      color: #3a2314;
+      background: linear-gradient(135deg, #fff0f4, #ffe3c4);
+      color: #3a1d28;
       border: none;
       font-size: 13px;
       font-weight: 600;
-      padding: 10px 18px;
+      padding: 11px 20px;
       border-radius: 999px;
+      box-shadow: 0 0 18px rgba(255, 185, 200, 0.35);
     }
 
     .handwritten-sheet {
       display: none;
       margin-top: 18px;
-      background: #fff8e7;
-      color: #3d2514;
-      border-radius: 16px;
-      padding: 24px 20px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      background: #fff7ea;
+      color: #3d2228;
+      border-radius: 18px;
+      padding: 26px 22px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 28px rgba(255, 175, 195, 0.3);
     }
 
     .handwritten-sheet.open {
@@ -717,26 +764,29 @@
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #8c5832;
-      margin-bottom: 10px;
+      text-align: center;
+      color: #9c4c63;
+      margin-bottom: 12px;
     }
 
-    .handwritten-sheet p,
-    .wife-vow-card p {
+    .handwritten-sheet p {
+      max-width: 620px;
+      margin: 0 auto 14px auto;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 600;
-      line-height: 1.55;
-      margin: 0 0 12px 0;
+      line-height: 1.6;
+      text-align: center;
     }
 
     .sheet-signature {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
-      text-align: right;
-      color: #7c2d3b;
+      text-align: center;
+      color: #9e2a45;
+      margin-top: 8px;
     }
 
     /* Эрен и Микаса */
@@ -756,10 +806,12 @@
     }
 
     .aot-wings {
-      width: 56px;
-      height: 32px;
-      fill: rgba(255, 255, 255, 0.75);
-      margin-bottom: 8px;
+      width: 60px;
+      height: 34px;
+      fill: rgba(255, 224, 232, 0.85);
+      filter: drop-shadow(0 0 10px rgba(255, 158, 182, 0.45));
+      margin: 0 auto 8px auto;
+      display: block;
     }
 
     /* Isaac */
@@ -829,43 +881,61 @@
     /* Сезоны, глаза, горы */
     .season-anim-stage {
       text-align: center;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(11, 18, 30, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 22px 18px;
+      border-radius: 20px;
+      background: radial-gradient(circle at 50% 35%, rgba(255, 155, 180, 0.18), rgba(18, 16, 32, 0.72) 80%);
+      border: 1px solid rgba(255, 178, 196, 0.28);
+      box-shadow: 0 0 24px rgba(255, 143, 163, 0.16);
       margin-bottom: 14px;
     }
 
     .season-orb {
-      font-size: 42px;
-      margin-bottom: 8px;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 175, 195, 0.12);
+      box-shadow: 0 0 18px rgba(255, 175, 195, 0.35);
     }
 
     .season-stage-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
+      font-size: 28px;
       margin: 0 0 6px 0;
-      color: #fff4e0;
+      text-align: center;
+      color: #fff4f7;
     }
 
     .season-stage-text {
-      font-size: 13.5px;
-      line-height: 1.65;
+      max-width: 620px;
+      margin: 0 auto 16px auto;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: center;
       color: var(--text-muted);
-      margin: 0 0 14px 0;
+    }
+
+    .love-fill-wrap {
+      max-width: 620px;
+      margin: 0 auto;
     }
 
     .love-fill-header {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
       font-size: 11px;
-      color: var(--accent-gold);
+      color: #ffc8d6;
       margin-bottom: 6px;
     }
 
     .love-fill-track {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 11px;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 999px;
       overflow: hidden;
     }
@@ -873,7 +943,7 @@
     .love-fill-bar {
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, #ff8fa3, #ffd28a);
+      background: linear-gradient(90deg, #ff758f, #ffadc0, #ffd28a);
       transition: width 0.4s ease;
     }
 
@@ -898,29 +968,68 @@
       transform: translateX(28px);
     }
 
+    /* Красивый и трогательный финальный блок на вкладке 4 */
     .wife-vow-card {
       text-align: center;
-      background: linear-gradient(160deg, rgba(84, 34, 52, 0.72), rgba(26, 22, 42, 0.86));
-      border-color: rgba(255, 184, 198, 0.35);
+      padding: 44px 32px;
+      border-radius: 26px;
+      margin-bottom: 22px;
+      background: radial-gradient(circle at 50% 25%, rgba(255, 165, 190, 0.24), rgba(88, 30, 56, 0.86) 55%, rgba(34, 18, 40, 0.92) 100%);
+      border: 1px solid rgba(255, 192, 208, 0.48);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38), 0 0 44px rgba(255, 140, 170, 0.28);
     }
 
     .wife-ring-mark {
-      font-size: 28px;
-      margin-bottom: 6px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 16px rgba(255, 180, 200, 0.65));
+    }
+
+    .wife-vow-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(36px, 6vw, 48px);
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #fff2f6;
+      text-shadow: 0 0 24px rgba(255, 155, 182, 0.55);
+      margin: 0 auto 16px auto;
+    }
+
+    .wife-vow-card p {
+      max-width: 620px;
+      margin: 0 auto 16px auto;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.62;
+      text-align: center;
+      color: #ffe8ef;
+      text-shadow: 0 0 14px rgba(255, 165, 188, 0.22);
     }
 
     .wife-sign {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 25px;
+      font-size: 30px;
       font-weight: 700;
-      color: var(--accent-gold);
-      margin-top: 12px;
+      text-align: center;
+      color: #ffd8e3;
+      text-shadow: 0 0 20px rgba(255, 143, 163, 0.6);
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     /* Undertale */
     .ut-section {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       font-family: 'Press Start 2P', monospace;
     }
 
@@ -947,7 +1056,8 @@
     .ut-box {
       background: #06060a;
       border: 3px solid #ffffff;
-      padding: 16px;
+      box-shadow: 0 0 22px rgba(255, 143, 163, 0.16);
+      padding: 18px;
       display: flex;
       gap: 12px;
       align-items: flex-start;
@@ -958,7 +1068,7 @@
     }
 
     .ut-text {
-      font-size: 11px;
+      font-size: 11.5px;
       line-height: 1.85;
       color: #ffffff;
     }
@@ -982,7 +1092,7 @@
       color: #ffe600;
       font-family: 'Press Start 2P', monospace;
       font-size: 10px;
-      padding: 9px 12px;
+      padding: 10px 13px;
     }
 
     .ut-btn:hover {
@@ -993,7 +1103,8 @@
     .ut-save-card {
       background: #080a14;
       border: 2px solid #ffe600;
-      padding: 18px;
+      box-shadow: 0 0 22px rgba(255, 230, 0, 0.16);
+      padding: 20px;
       text-align: center;
     }
 
@@ -1004,7 +1115,7 @@
     }
 
     .ut-save-body {
-      font-size: 10px;
+      font-size: 10.5px;
       line-height: 1.9;
       color: #f4f7fc;
       white-space: pre-line;
@@ -1034,42 +1145,44 @@
     .next-part-bar {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .next-part-btn {
-      background: rgba(255, 210, 138, 0.16);
-      border: 1px solid rgba(255, 210, 138, 0.45);
-      color: #ffe8c2;
-      font-size: 13px;
+      background: rgba(255, 168, 188, 0.18);
+      border: 1px solid rgba(255, 188, 204, 0.48);
+      color: #ffe8ee;
+      font-size: 13.5px;
       font-weight: 600;
-      padding: 12px 20px;
+      padding: 13px 22px;
       border-radius: 999px;
+      box-shadow: 0 0 20px rgba(255, 143, 163, 0.22);
     }
 
     .next-part-btn:hover {
-      background: rgba(255, 210, 138, 0.28);
+      background: rgba(255, 168, 188, 0.3);
       transform: translateY(-2px);
     }
 
     /* Stardew Valley */
     .sd-dark-card {
-      background: rgba(36, 20, 28, 0.86);
-      border-color: rgba(240, 168, 104, 0.4);
+      background: rgba(36, 20, 28, 0.88);
+      border-color: rgba(240, 168, 104, 0.42);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 26px rgba(255, 175, 120, 0.16);
       font-family: 'Press Start 2P', monospace;
       text-align: center;
     }
 
     .sd-dark-card h3 {
       font-family: 'Press Start 2P', monospace;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 14.5px;
+      line-height: 1.75;
       color: #ffd28a;
     }
 
     .sd-dark-desc {
-      font-size: 10px;
-      line-height: 1.9;
+      font-size: 10.5px;
+      line-height: 1.95;
       color: #f5dcc0;
     }
 
@@ -1089,14 +1202,15 @@
     .sd-hearts-bar {
       display: flex;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
       flex-wrap: wrap;
       margin: 14px 0 18px 0;
     }
 
     .sd-px-heart {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.55));
       animation: beatHeart 1.8s infinite ease-in-out;
     }
 
@@ -1144,15 +1258,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: radial-gradient(circle at 50% 25%, rgba(255, 168, 92, 0.24) 0%, rgba(28, 22, 34, 0.94) 75%);
+      background: radial-gradient(circle at 50% 25%, rgba(255, 168, 92, 0.26) 0%, rgba(28, 22, 34, 0.94) 75%);
       border: 4px solid #e09156;
-      box-shadow: inset 0 0 0 4px #5e2c26, 0 20px 50px rgba(0, 0, 0, 0.55);
-      padding: 36px 24px 42px 24px;
+      box-shadow: inset 0 0 0 4px #5e2c26, 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 34px rgba(255, 168, 92, 0.22);
+      padding: 38px 26px 44px 26px;
       text-align: center;
       font-family: 'Press Start 2P', monospace;
       color: #fff2dc;
       overflow: hidden;
-      border-radius: 24px;
+      border-radius: 26px;
     }
 
     .firefly {
@@ -1185,10 +1299,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 84px;
-      height: 84px;
+      width: 88px;
+      height: 88px;
       margin: 10px auto 14px auto;
       cursor: pointer;
+      filter: drop-shadow(0 0 14px rgba(118, 196, 100, 0.5));
       animation: junimoHop 2.2s infinite ease-in-out;
     }
 
@@ -1200,18 +1315,18 @@
     }
 
     .sd-night-finale h2 {
-      font-size: 13px;
-      line-height: 1.8;
+      font-size: 13.5px;
+      line-height: 1.85;
       color: #ffd28a;
       margin: 0 0 16px 0;
-      max-width: 580px;
+      max-width: 600px;
     }
 
     .sd-night-text {
-      font-size: 10px;
+      font-size: 10.5px;
       line-height: 2;
       color: #f5dcc0;
-      max-width: 580px;
+      max-width: 600px;
       margin: 0 auto 22px auto;
     }
 
@@ -1235,15 +1350,15 @@
     .secret-letter {
       display: none;
       margin: 22px auto 0 auto;
-      max-width: 560px;
+      max-width: 580px;
       background: #fff8e7;
       color: #3d2514;
       border: 4px solid #b5733b;
-      padding: 20px 18px;
+      padding: 22px 20px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 600;
-      line-height: 1.55;
+      line-height: 1.6;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     }
 
@@ -1258,11 +1373,11 @@
       border-top: 2px dashed rgba(255, 210, 138, 0.45);
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 27px;
+      font-size: 29px;
       font-weight: 700;
       color: #ffe3b8;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
-      max-width: 600px;
+      text-shadow: 0 0 18px rgba(255, 190, 120, 0.5);
+      max-width: 620px;
     }
 
     .easter-counter-tiny {
@@ -1285,40 +1400,36 @@
       }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 860px) {
+      .top-nav-wrap {
+        padding: 44px 12px 10px 12px;
+      }
       .blizzard-corner-btn {
-        top: 10px;
+        top: 8px;
         right: 12px;
         font-size: 11px;
         padding: 7px 12px;
       }
-      .top-nav-wrap {
-        margin-top: 48px;
-      }
     }
 
     @media (max-width: 560px) {
-      .top-nav {
-        border-radius: 22px;
-        gap: 5px;
-      }
       .nav-tab-btn {
         font-size: 10.5px;
         padding: 7px 10px;
       }
       .music-track-label {
-        font-size: 15.5px;
+        font-size: 16.5px;
       }
       .hero-banner {
-        min-height: 74vh;
-        padding: 32px 16px;
+        min-height: 76vh;
+        padding: 34px 18px;
       }
       .h-time-card {
-        min-width: 72px;
+        min-width: 76px;
         padding: 12px 10px;
       }
       .h-time-card span {
-        font-size: 28px;
+        font-size: 30px;
       }
       .anime-card,
       .map-card,
@@ -1329,7 +1440,7 @@
       .wife-vow-card,
       .isaac-card,
       .eren-mikasa-card {
-        padding: 26px 18px;
+        padding: 28px 18px;
       }
       .anime-card h2,
       .map-card h2,
@@ -1338,7 +1449,13 @@
       .seasons-hero-card h2,
       .family-card h3,
       .isaac-card h2 {
-        font-size: 26px;
+        font-size: 28px;
+      }
+      .wife-vow-card p {
+        font-size: 22px;
+      }
+      .wife-sign {
+        font-size: 25px;
       }
       .ut-text {
         font-size: 10px;
@@ -1348,12 +1465,11 @@
       .sd-night-finale h2 {
         font-size: 11.5px;
       }
-      .handwritten-sheet p,
-      .wife-vow-card p {
-        font-size: 19px;
+      .handwritten-sheet p {
+        font-size: 20px;
       }
       .anniversary-final-vow {
-        font-size: 23px;
+        font-size: 24px;
       }
     }
   </style>
@@ -1363,18 +1479,15 @@
   <canvas id="snowCanvas"></canvas>
   <audio id="bgMusicPlayer" loop preload="metadata"></audio>
 
-  <!-- Кнопка метели отдельно в самом верхнем правом углу -->
   <button class="blizzard-corner-btn" onclick="toggleBlizzard()" id="blizzardBtn">
     ❄ Усилить метель
   </button>
 
-  <!-- Сугроб внизу на странице Stardew Valley -->
   <svg class="bottom-snow-drift" id="bottomSnowDrift" viewBox="0 0 1200 60" preserveAspectRatio="none">
     <path d="M0 30 Q 150 6, 300 28 T 600 24 T 900 30 T 1200 20 L 1200 60 L 0 60 Z" fill="rgba(244, 249, 255, 0.92)"/>
     <path d="M0 40 Q 220 20, 440 38 T 880 34 T 1200 38 L 1200 60 L 0 60 Z" fill="#ffffff"/>
   </svg>
 
-  <!-- Брызги на весь экран при победе над Мамой Айзека -->
   <svg class="screen-splash-overlay" id="screenSplashOverlay" viewBox="0 0 1000 1000" preserveAspectRatio="none">
     <circle cx="180" cy="220" r="95" fill="rgba(220, 45, 75, 0.34)"/>
     <circle cx="820" cy="260" r="110" fill="rgba(255, 110, 140, 0.32)"/>
@@ -1384,7 +1497,6 @@
     <circle cx="520" cy="540" r="140" fill="rgba(255, 130, 155, 0.24)"/>
   </svg>
 
-  <!-- ==================== 6 ВКЛАДОК НАВИГАЦИИ ПО ЦЕНТРУ + ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
     <nav class="top-nav" aria-label="Разделы сайта">
       <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
@@ -1724,7 +1836,11 @@
       <h2>То, что я написала для личной встречи</h2>
 
       <div class="envelope-visual">
-        <div class="wax-seal" onclick="toggleWaxSealSecret()" title="Секрет печати...">♥</div>
+        <div class="wax-seal" onclick="toggleWaxSealSecret()" title="Секрет печати...">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffe5ec">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
         <div class="envelope-label">Для Женечки — от Маси</div>
         <div class="envelope-sub">Написано с любовью к нашей годовщине • 30.11.2025</div>
         <div class="seal-secret-note" id="sealSecretNote">
@@ -1755,10 +1871,8 @@
 
     <section class="eren-mikasa-card" id="erenMikasaCard">
       <div class="aot-kicker">Атака титанов • Эрен и Микаса</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin:0 0 8px 0;color:#fff7ed;">
-        Обнять так крепко, чтобы забыть о разлуке
-      </h2>
-      <p style="font-size:13.5px;font-weight:300;color:#ead9cd;margin:0 0 12px 0;">
+      <h2>Обнять так крепко, чтобы забыть о разлуке</h2>
+      <p>
         Нажми на кнопку ниже — и Микаса обнимет Эрена, не сдерживая слёз радости и нежности.
       </p>
 
@@ -2004,7 +2118,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ (В КОНЦЕ: МАРИНА)                   -->
+  <!-- ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ (НАРИСОВАННЫЕ ИКОНКИ + ФИНАЛ)       -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab4">
 
@@ -2012,12 +2126,11 @@
       <div class="seasons-kicker">Так близко к Москве • Времена года и наша любовь</div>
       <h2>Сезоны проходят — а любовь заполняет всё</h2>
       <p class="seasons-lead">
-        Переключай времена года ниже — смотри, как меняется сам воздух вокруг: зимняя метель сменяется
-        весенними лепестками, летними светлячками и осенними листьями, а наша любовь остаётся полной на 100%.
+        Переключай времена года ниже — смотри, как меняется настроение вокруг, а наша любовь остаётся полной на 100%.
       </p>
 
       <div class="season-anim-stage">
-        <div class="season-orb" id="seasonOrb">❄</div>
+        <div class="season-orb" id="seasonOrb"></div>
         <h3 class="season-stage-title" id="seasonStageTitle">Зима — начало нашего тепла</h3>
         <p class="season-stage-text" id="seasonStageText">
           Снег за окном и тихие зимние вечера, когда в наших словах было столько нежности, что мороз снаружи казался совсем не страшным.
@@ -2035,11 +2148,11 @@
       </div>
 
       <div class="season-controls-bar">
-        <button class="s-mode-btn active" id="smode-winter" onclick="setSeasonShowcase('winter')">❄ Зима (метель)</button>
-        <button class="s-mode-btn" id="smode-spring" onclick="setSeasonShowcase('spring')">🌸 Весна (лепестки)</button>
-        <button class="s-mode-btn" id="smode-summer" onclick="setSeasonShowcase('summer')">✨ Лето (светлячки)</button>
-        <button class="s-mode-btn" id="smode-autumn" onclick="setSeasonShowcase('autumn')">🍂 Осень (листья)</button>
-        <button class="s-mode-btn" id="smode-auto" onclick="toggleAutoSeasons()">⟳ Авто-смена сезонов</button>
+        <button class="s-mode-btn active" id="smode-winter" onclick="setSeasonShowcase('winter')">Зима</button>
+        <button class="s-mode-btn" id="smode-spring" onclick="setSeasonShowcase('spring')">Весна</button>
+        <button class="s-mode-btn" id="smode-summer" onclick="setSeasonShowcase('summer')">Лето</button>
+        <button class="s-mode-btn" id="smode-autumn" onclick="setSeasonShowcase('autumn')">Осень</button>
+        <button class="s-mode-btn" id="smode-auto" onclick="toggleAutoSeasons()">Авто-смена сезонов</button>
       </div>
     </section>
 
@@ -2047,7 +2160,7 @@
       <div class="family-kicker">Наши карие глаза • Взгляд друг на друга</div>
       <h3>Два карих взгляда, в которых светится любовь</h3>
       <p>
-        У нас обоих карие глаза — тёплые, глубокие и родные. Тыкни на наши глаза ниже, чтобы в них зажглись сердечки ♥
+        У нас обоих карие глаза — тёплые, глубокие и родные. Нажми на наши глаза ниже, чтобы в них засияли нарисованные сердечки.
       </p>
 
       <div class="hazel-eyes-stage" id="hazelEyesStage" onclick="toggleEyesHearts()">
@@ -2057,7 +2170,7 @@
           <circle cx="165" cy="78" r="30" fill="#592e16"/>
           <circle class="brown-pupil" cx="165" cy="78" r="14" fill="#1e100a"/>
           <circle class="brown-pupil" cx="153" cy="65" r="5" fill="#ffffff" opacity="0.8"/>
-          <text class="eye-heart-mark" x="165" y="90" text-anchor="middle" font-size="34" fill="#ff5e84">♥</text>
+          <path class="eye-heart-mark" d="M 165 96 L 151 82 C 145 76, 149 66, 157 66 C 161 66, 164 69, 165 72 C 166 69, 169 66, 173 66 C 181 66, 185 76, 179 82 Z" fill="#ff5e84"/>
           <text x="165" y="144" text-anchor="middle" font-size="11" fill="#f3d5bc" font-family="Montserrat">Карие глаза • Она</text>
 
           <path d="M 305 78 Q 395 24 485 78 Q 395 132 305 78 Z" fill="#fff7f0" stroke="#e6bfa0" stroke-width="3"/>
@@ -2065,11 +2178,11 @@
           <circle cx="395" cy="78" r="30" fill="#592e16"/>
           <circle class="brown-pupil" cx="395" cy="78" r="14" fill="#1e100a"/>
           <circle class="brown-pupil" cx="383" cy="65" r="5" fill="#ffffff" opacity="0.8"/>
-          <text class="eye-heart-mark" x="395" y="90" text-anchor="middle" font-size="34" fill="#ff5e84">♥</text>
+          <path class="eye-heart-mark" d="M 395 96 L 381 82 C 375 76, 379 66, 387 66 C 391 66, 394 69, 395 72 C 396 69, 399 66, 403 66 C 411 66, 415 76, 409 82 Z" fill="#ff5e84"/>
           <text x="395" y="144" text-anchor="middle" font-size="11" fill="#f3d5bc" font-family="Montserrat">Карие глаза • Он</text>
         </svg>
         <div class="emotion-caption" id="eyesHeartCaption" style="margin-bottom:0;">
-          «Нажми на глаза — и в каждом карем взгляде засияют сердечки ♥»
+          «Нажми на глаза — и в каждом карем взгляде засияют сердечки»
         </div>
       </div>
     </section>
@@ -2095,7 +2208,7 @@
           </g>
         </svg>
         <button class="mini-pill-btn" onclick="moveMountainsDemo()" id="moveMountainsBtn" style="margin-top:8px;">
-          ⛰ Сдвинуть горы его силой
+          Сдвинуть горы его силой
         </button>
       </div>
 
@@ -2104,7 +2217,7 @@
         что кажется, будто он даже горы свернёт ради нас. И у него удалось сделать мою жизнь раем,
         ведь мой рай — это он.
       </p>
-      <div class="family-quote">«Он — самый красивый и сильный мужчина на свете, и мой рай — это он ♥»</div>
+      <div class="family-quote">«Он — самый красивый и сильный мужчина на свете, и мой рай — это он»</div>
     </section>
 
     <section class="family-card">
@@ -2134,7 +2247,13 @@
     </section>
 
     <section class="wife-vow-card" id="wifeVowSection">
-      <div class="wife-ring-mark">💍 ♥</div>
+      <div class="wife-ring-mark">
+        <svg width="54" height="40" viewBox="0 0 64 44" fill="none">
+          <circle cx="24" cy="26" r="11" stroke="#ffd6e0" stroke-width="2.6"/>
+          <circle cx="40" cy="26" r="11" stroke="#ffd28a" stroke-width="2.6"/>
+          <polygon points="40,6 45,12 40,16 35,12" fill="#ffd6e0" stroke="#ffffff" stroke-width="1.2"/>
+        </svg>
+      </div>
       <div class="wife-kicker">Моё самое главное обещание</div>
       <h2>Я стану твоей женой</h2>
       <p>
@@ -2145,7 +2264,12 @@
         Я хочу разделить с тобой жизнь, стать твоей верной спутницей, опорой и самым родным человеком —
         в радости и в любых переменах, в каждом новом сезоне и в каждом нашем завтра.
       </p>
-      <div class="wife-sign">Навсегда твоя, твоя будущая жена — Марина ♥</div>
+      <div class="wife-sign">
+        <span>Навсегда твоя, твоя будущая жена — Марина</span>
+        <svg width="22" height="20" viewBox="0 0 24 22" fill="#ff9eb5">
+          <path d="M12 20.5L10.55 19.18C5.4 14.5 2 11.42 2 7.65C2 4.57 4.42 2.15 7.5 2.15C9.24 2.15 10.91 2.96 12 4.24C13.09 2.96 14.76 2.15 16.5 2.15C19.58 2.15 22 4.57 22 7.65C22 11.42 18.6 14.5 13.45 19.18L12 20.5Z"/>
+        </svg>
+      </div>
     </section>
 
     <div class="next-part-bar">
@@ -2271,7 +2395,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 6: STARDEW VALLEY (ЗАКАТ, ЕВГЕША, СНЕГ ВНИЗУ, ДЖУНИМИК, ФИНАЛ) -->
+  <!-- ВКЛАДКА 6: STARDEW VALLEY                                             -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab6">
 
@@ -2398,7 +2522,6 @@
   </section>
 
   <script>
-    // ПАСХАЛКИ (ВСЕГО 5)
     const foundEasterEggs = new Set();
     const TOTAL_EASTER_EGGS = 5;
 
@@ -2414,7 +2537,6 @@
       updateEasterCounter();
     }
 
-    // 0. МУЗЫКА ПО ВКЛАДКАМ
     const tracksByTab = {
       tab1: { src: 'the-dragon-boy.mp3', title: 'The Dragon Boy' },
       tab2: { src: 'howls-moving-castle.mp3', title: 'Howl\'s Moving Castle' },
@@ -2475,8 +2597,15 @@
 
     syncTrackForTab('tab1', false);
 
-    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
     let activeFamilySeason = 'winter';
+
+    function updateStardewSnowVisibility(tabId) {
+      if (tabId === 'tab6') {
+        document.body.classList.add('stardew-snow-active');
+      } else {
+        document.body.classList.remove('stardew-snow-active');
+      }
+    }
 
     function openTab(tabId) {
       currentTabId = tabId;
@@ -2498,17 +2627,15 @@
         document.body.classList.remove('stardew-sunset-bg');
       }
 
-      if (tabId === 'tab4') {
-        weatherMode = activeFamilySeason;
-      } else {
-        weatherMode = 'winter';
-      }
+      updateStardewSnowVisibility(tabId);
+      weatherMode = tabId === 'tab4' ? activeFamilySeason : 'winter';
 
       syncTrackForTab(tabId, true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 1. ТАЙМЕР + ПАСХАЛКА 1 (ДАТА 30.11.2025) + ПАСХАЛКА 2 (КЛАВИША H / Р)
+    updateStardewSnowVisibility('tab1');
+
     const startDate = new Date(2025, 10, 30, 0, 0, 0);
 
     function updateTimer() {
@@ -2559,7 +2686,6 @@
       }
     });
 
-    // 2. ЖИВОЙ ФОН: ЗИМА, ВЕСНА, ЛЕТО, ОСЕНЬ
     const canvas = document.getElementById('snowCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -2657,8 +2783,7 @@
 
     function toggleBlizzard() {
       isBlizzard = !isBlizzard;
-      const drift = document.getElementById('bottomSnowDrift');
-      drift.style.transform = isBlizzard ? 'translateY(4px) scaleY(1.25)' : 'translateY(0) scaleY(1)';
+      document.body.classList.toggle('blizzard-on', isBlizzard);
       document.getElementById('blizzardBtn').textContent = isBlizzard
         ? '❄ Ослабить ветер'
         : '❄ Усилить метель';
@@ -2707,7 +2832,6 @@
       }
     }
 
-    // 4. КАРТА СТРАН
     const countryData = {
       ukraine: {
         name: "Украина",
@@ -2798,11 +2922,10 @@
         "«Никакие преграды не отменят того, что мы нашли друг друга»";
     }
 
-    // 5. СЦЕНА «БУДЬ МЫ РЯДОМ»
     const togetherScenes = {
       dinner: {
         title: "Вечер при свечах с бокалом вина",
-        desc: "Представь, что мы рядом в этот день. Я бы приготовила для тебя вкусный ужин, зажгла тёплые свечи, налила бы вино и просто смотрела бы на тебя — с благодарностью за то, что мы наконец вместе."
+        desc: "Представь, что мы наконец рядом в этот день. Я бы приготовила для тебя вкусный ужин, зажгла тёплые свечи, налила бы вино и просто смотрела бы на тебя — с благодарностью за то, что мы наконец вместе."
       },
       dress: {
         title: "В красивом платье, с подарком и в твоих объятиях",
@@ -2829,7 +2952,6 @@
       document.getElementById('sceneDesc').textContent = data.desc;
     }
 
-    // 6. ПИСЬМО + ПАСХАЛКА 3 (ПЕЧАТЬ НА КОНВЕРТЕ) + ЭРЕН + МИКАСА
     function toggleWaxSealSecret() {
       unlockEasterEgg('waxSeal');
       document.getElementById('sealSecretNote').classList.toggle('open');
@@ -2864,7 +2986,6 @@
       }
     }
 
-    // 6.4 ISAAC + ПАСХАЛКА 4 (ПОБЕДА НАД МАМОЙ)
     function toggleBrimstoneHearts() {
       const card = document.getElementById('isaacStageCard');
       const btn = document.getElementById('brimstoneBtn');
@@ -2912,11 +3033,10 @@
       document.getElementById('deathCountSvg').textContent = teachingAttempts;
     }
 
-    // 6.5 СЕЗОНЫ, КАРИЕ ГЛАЗА И ГОРЫ НА ВКЛАДКЕ 4
     const seasonsShowcaseData = {
       winter: {
         cls: 'season-winter',
-        orb: '❄',
+        iconSvg: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#dceeff" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07M12 6l-2.5-2.5M12 6l2.5-2.5M12 18l-2.5 2.5M12 18l2.5 2.5"/></svg>`,
         title: 'Зима — начало нашего тепла',
         text: 'Снег за окном и тихие зимние вечера, когда в наших словах было столько нежности, что мороз снаружи казался совсем не страшным.',
         fill: '100%',
@@ -2924,7 +3044,7 @@
       },
       spring: {
         cls: 'season-spring',
-        orb: '🌸',
+        iconSvg: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffc2d4" stroke-width="1.8"><circle cx="12" cy="7" r="3.5" fill="rgba(255,175,198,0.35)"/><circle cx="16.8" cy="10.5" r="3.5" fill="rgba(255,175,198,0.35)"/><circle cx="15" cy="16.2" r="3.5" fill="rgba(255,175,198,0.35)"/><circle cx="9" cy="16.2" r="3.5" fill="rgba(255,175,198,0.35)"/><circle cx="7.2" cy="10.5" r="3.5" fill="rgba(255,175,198,0.35)"/><circle cx="12" cy="12" r="2.5" fill="#ffd28a"/></svg>`,
         title: 'Весна — дыхание новых надежд',
         text: 'Всё вокруг расцветает, и наша любовь заполняет каждый день свежим светом, улыбками и верой в нашу скорую встречу.',
         fill: '100%',
@@ -2932,7 +3052,7 @@
       },
       summer: {
         cls: 'season-summer',
-        orb: '✨',
+        iconSvg: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffe48f" stroke-width="1.8"><path d="M12 3l2.2 6.2L20.5 11l-5.3 3.8L17 21l-5-3.7L7 21l1.8-6.2L3.5 11l6.3-1.8L12 3z" fill="rgba(255,220,120,0.3)"/></svg>`,
         title: 'Лето — тёплый свет и светлячки',
         text: 'Длинные светлые вечера, когда даже на расстоянии чувствуешь тепло родного человека так ясно, словно он рядом за руку.',
         fill: '100%',
@@ -2940,7 +3060,7 @@
       },
       autumn: {
         cls: 'season-autumn',
-        orb: '🍂',
+        iconSvg: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffad78" stroke-width="1.8" stroke-linecap="round"><path d="M20 4C11 4 5 10 5 19c6 0 12-3 15-15z" fill="rgba(255,150,95,0.28)"/><path d="M5 19L15 9"/></svg>`,
         title: 'Осень — глубина и верность',
         text: 'Шуршание листьев и уютная тишина, в которой наша любовь звучит особенно зрело, спокойно и по-настоящему навсегда.',
         fill: '100%',
@@ -2971,12 +3091,14 @@
       const activeBtn = document.getElementById(`smode-${key}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      document.getElementById('seasonOrb').textContent = data.orb;
+      document.getElementById('seasonOrb').innerHTML = data.iconSvg;
       document.getElementById('seasonStageTitle').textContent = data.title;
       document.getElementById('seasonStageText').textContent = data.text;
       document.getElementById('loveFillBar').style.width = data.fill;
       document.getElementById('loveFillPercent').textContent = data.label;
     }
+
+    setSeasonShowcase('winter');
 
     function toggleAutoSeasons() {
       const autoBtn = document.getElementById('smode-auto');
@@ -2984,10 +3106,10 @@
         clearInterval(autoSeasonTimer);
         autoSeasonTimer = null;
         autoBtn.classList.remove('active');
-        autoBtn.textContent = '⟳ Авто-смена сезонов';
+        autoBtn.textContent = 'Авто-смена сезонов';
       } else {
         autoBtn.classList.add('active');
-        autoBtn.textContent = '⏸ Остановить цикл';
+        autoBtn.textContent = 'Остановить цикл';
         autoSeasonTimer = setInterval(() => {
           autoSeasonIndex = (autoSeasonIndex + 1) % seasonOrder.length;
           setSeasonShowcase(seasonOrder[autoSeasonIndex]);
@@ -3002,8 +3124,8 @@
       const cap = document.getElementById('eyesHeartCaption');
       stage.classList.toggle('eyes-love-active', eyesHeartsOn);
       cap.textContent = eyesHeartsOn
-        ? '«В обоих карих глазах зажглись сердечки — только для нас двоих ♥»'
-        : '«Нажми на глаза — и в каждом карем взгляде засияют сердечки ♥»';
+        ? '«В обоих карих глазах зажглись сердечки — только для нас двоих»'
+        : '«Нажми на глаза — и в каждом карем взгляде засияют сердечки»';
     }
 
     let mountainsMovedState = false;
@@ -3013,11 +3135,10 @@
       const btn = document.getElementById('moveMountainsBtn');
       stage.classList.toggle('mountains-moved', mountainsMovedState);
       btn.textContent = mountainsMovedState
-        ? '⛰ Горы сдвинуты его силой ♥'
-        : '⛰ Сдвинуть горы его силой';
+        ? 'Горы сдвинуты его силой'
+        : 'Сдвинуть горы его силой';
     }
 
-    // 7. UNDERTALE ИНТЕРАКТИВ
     const utLines = [
       "* Под тихую мелодию Fallen Down Женечка и Мася идут вперёд вместе.",
       "* Женечка, с 30 ноября 2025 года моё сердце всегда выбирает тебя.",
@@ -3094,7 +3215,6 @@
       document.getElementById('utSweetPhrase').textContent = sweetUtPhrases[sweetUtIdx];
     }
 
-    // 8. STARDEW VALLEY (ЗАКАТ, СЕЗОНЫ, ДЖУНИМИК + ПАСХАЛКА 5)
     let sunMoodIdx = 0;
     const sunMoods = [
       "Именно со Stardew Valley началась наша история — тихая, тёплая и родная, как закат над долиной ♥",
