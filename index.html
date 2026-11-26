@@ -40,25 +40,44 @@
     z-index: 1;
   }
 
-  /* ==================== ВЕРХНЯЯ НАВИГАЦИЯ (3 КНОПКИ) ==================== */
+  /* Всплывающие искорки при нажатии на сердечко любви */
+  .floating-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99;
+    font-size: 20px;
+    color: #ff9eb5;
+    text-shadow: 0 0 12px rgba(255, 130, 160, 0.9);
+    animation: floatUpHeart 1.5s ease-out forwards;
+  }
+
+  @keyframes floatUpHeart {
+    0% { opacity: 1; transform: translate(-50%, 0) scale(0.8); }
+    100% { opacity: 0; transform: translate(-50%, -85px) scale(1.35); }
+  }
+
+  /* ==================== ВЕРХНЯЯ НАВИГАЦИЯ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== */
   .top-nav-wrap {
     position: sticky;
-    top: 14px;
+    top: 12px;
     z-index: 50;
-    max-width: 840px;
-    margin: 14px auto 0 auto;
-    padding: 0 18px;
+    max-width: 860px;
+    margin: 12px auto 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .top-nav {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
-    background: rgba(12, 19, 34, 0.82);
+    background: rgba(12, 19, 34, 0.84);
     border: 1px solid rgba(204, 224, 255, 0.24);
     backdrop-filter: blur(14px);
-    padding: 10px 12px;
+    padding: 9px 12px;
     border-radius: 999px;
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
   }
@@ -67,16 +86,13 @@
     background: transparent;
     border: 1px solid transparent;
     color: #cddbf0;
-    padding: 10px 18px;
+    padding: 9px 16px;
     border-radius: 999px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 7px;
   }
 
   .nav-tab-btn:hover {
@@ -91,6 +107,45 @@
     box-shadow: 0 4px 18px rgba(247, 202, 208, 0.18);
   }
 
+  .music-bar {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(16, 23, 38, 0.82);
+    border: 1px solid rgba(247, 202, 208, 0.3);
+    backdrop-filter: blur(12px);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    color: #e6eefc;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .music-toggle-btn {
+    background: rgba(255, 158, 178, 0.22);
+    border: 1px solid rgba(255, 179, 194, 0.55);
+    color: #fff3f6;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .music-toggle-btn:hover {
+    background: rgba(255, 158, 178, 0.36);
+  }
+
+  .music-track-label {
+    color: #ffd6de;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+  }
+
   /* Контейнеры вкладок */
   .tab-panel {
     display: none;
@@ -98,7 +153,7 @@
     z-index: 2;
     max-width: 840px;
     margin: 0 auto;
-    padding: 24px 18px 80px 18px;
+    padding: 20px 18px 80px 18px;
     flex-direction: column;
     gap: 50px;
     animation: tabFadeIn 0.45s ease;
@@ -113,7 +168,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Кнопка перехода к следующей части внизу каждой вкладки */
   .next-part-bar {
     display: flex;
     justify-content: center;
@@ -138,9 +192,9 @@
     transform: translateY(-2px);
   }
 
-  /* ==================== 1. ГЛАВНЫЙ ЗИМНИЙ БАННЕР ==================== */
+  /* ==================== 1. ГЛАВНЫЙ ЗИМНИЙ БАННЕР + КНОПКА ЛЮБВИ ==================== */
   .hero-banner {
-    min-height: 78vh;
+    min-height: 76vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -182,7 +236,7 @@
     line-height: 1.8;
     color: #dce7f7;
     max-width: 540px;
-    margin: 0 auto 36px auto;
+    margin: 0 auto 34px auto;
   }
 
   .hero-timer {
@@ -190,7 +244,7 @@
     justify-content: center;
     gap: 14px;
     flex-wrap: wrap;
-    margin-bottom: 34px;
+    margin-bottom: 30px;
   }
 
   .h-time-card {
@@ -226,15 +280,23 @@
     color: #9ec0f5;
   }
 
+  .hero-controls-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
   .wind-btn {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #eef5ff;
-    padding: 12px 24px;
+    padding: 12px 22px;
     border-radius: 999px;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     cursor: pointer;
     transition: all 0.25s ease;
   }
@@ -243,6 +305,34 @@
     background: rgba(247, 202, 208, 0.22);
     border-color: #f7cad0;
     transform: scale(1.03);
+  }
+
+  .love-pulse-btn {
+    background: linear-gradient(135deg, rgba(255, 125, 155, 0.32) 0%, rgba(255, 185, 145, 0.28) 100%);
+    border: 1px solid rgba(255, 175, 192, 0.75);
+    color: #fff5f7;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(255, 130, 160, 0.28);
+    transition: all 0.25s ease;
+  }
+
+  .love-pulse-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 28px rgba(255, 145, 170, 0.48);
+  }
+
+  .love-note-toast {
+    margin-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #ffdbe3;
+    min-height: 28px;
   }
 
   /* ==================== 2. ЧЕТЫРЕ ЗИМНИХ БЛОКА ==================== */
@@ -869,6 +959,7 @@
   }
   .ut-status .red { color: #ff3b3b; }
   .ut-status .yellow { color: #ffe600; }
+  .ut-status .cyan { color: #7ae5ff; }
 
   .ut-box {
     background: rgba(5, 7, 12, 0.86);
@@ -880,6 +971,11 @@
     gap: 16px;
     position: relative;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  .ut-waterfall-box {
+    border-color: #7ae5ff;
+    background: linear-gradient(180deg, rgba(6, 18, 30, 0.9) 0%, rgba(10, 26, 40, 0.92) 100%);
   }
 
   .ut-click { cursor: pointer; }
@@ -944,7 +1040,6 @@
     white-space: pre-wrap;
   }
 
-  /* Тёмные уютные карточки Stardew Valley (3 новых блока + финал с Джунимо) */
   .sd-dark-card {
     position: relative;
     background: linear-gradient(180deg, rgba(32, 23, 18, 0.9) 0%, rgba(22, 28, 25, 0.92) 100%);
@@ -1044,7 +1139,6 @@
     color: #fff2d6;
   }
 
-  /* Финальный блок с Джунимо */
   .sd-night-finale {
     position: relative;
     background: linear-gradient(180deg, rgba(26, 20, 18, 0.94) 0%, rgba(18, 28, 24, 0.96) 100%);
@@ -1163,8 +1257,9 @@
 <body>
 
   <canvas id="snowCanvas"></canvas>
+  <audio id="bgMusicPlayer" loop preload="metadata"></audio>
 
-  <!-- ==================== 3 КНОПКИ НАВИГАЦИИ ВВЕРХУ ==================== -->
+  <!-- ==================== 3 КНОПКИ НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
     <nav class="top-nav" aria-label="Разделы сайта">
       <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
@@ -1177,6 +1272,11 @@
         🎮 Мир игр и Джунимо
       </button>
     </nav>
+
+    <div class="music-bar">
+      <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()">▶ Включить музыку</button>
+      <span class="music-track-label" id="musicTrackName">The Dragon Boy</span>
+    </div>
   </div>
 
   <!-- ===================================================================== -->
@@ -1199,12 +1299,20 @@
         <div class="h-time-card"><span id="seconds">0</span><label>Секунд</label></div>
       </div>
 
-      <button class="wind-btn" onclick="toggleBlizzard()" id="blizzardBtn">
-        ❄ Усилить зимнюю метель
-      </button>
+      <div class="hero-controls-row">
+        <button class="wind-btn" onclick="toggleBlizzard()" id="blizzardBtn">
+          ❄ Усилить зимнюю метель
+        </button>
+        <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
+          ♥ Послать тепло через расстояние
+        </button>
+      </div>
+
+      <div class="love-note-toast" id="loveToast">
+        Нажми на сердечко, чтобы отправить мне тёплый импульс через километры ♥
+      </div>
     </header>
 
-    <!-- 5 сантиметров в секунду -->
     <section class="anime-card shape-sakura">
       <div class="anime-header">
         <div class="anime-icon">
@@ -1223,7 +1331,6 @@
       <div class="anime-footer-note">«Мы всегда найдём друг друга под одним небом»</div>
     </section>
 
-    <!-- Унесённые призраками -->
     <section class="anime-card shape-ticket">
       <div class="anime-header">
         <div class="anime-icon">
@@ -1231,7 +1338,7 @@
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
         </div>
-        <div class="anime-tag">Унесённые призраками • Поезд в один конец</div>
+        <div class="anime-tag">Унесённые призраками • The Dragon Boy</div>
       </div>
       <h2>Билет в наше общее путешествие</h2>
       <p>
@@ -1245,7 +1352,6 @@
       </div>
     </section>
 
-    <!-- Ходячий замок -->
     <section class="anime-card shape-castle">
       <div class="anime-header">
         <div class="anime-icon">
@@ -1264,7 +1370,6 @@
       <div class="anime-footer-note">«Сердце — тяжёлая ноша, но вдвоём её нести легко»</div>
     </section>
 
-    <!-- Ветер крепчает -->
     <section class="anime-card shape-wind">
       <div class="anime-header">
         <div class="anime-icon">
@@ -1284,7 +1389,6 @@
       <div class="anime-footer-note">«Ветер крепчает — значит, нам пора лететь дальше вдвоём»</div>
     </section>
 
-    <!-- Интерактивная карта попыток встреч -->
     <section class="map-card" id="meetingMapSection">
       <div class="map-top-bar">
         <div class="map-kicker">География наших попыток • Между нами</div>
@@ -1393,12 +1497,12 @@
   </main>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ЛИЧНОЕ ПИСЬМО И АТАКА ТИТАНОВ            -->
+  <!-- ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И АТАКА ТИТАНОВ                  -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab2">
 
     <section class="together-card" id="togetherSceneSection">
-      <div class="together-kicker">Мечта о нашей годовщине • Вдвоём</div>
+      <div class="together-kicker">Мечта о нашей годовщине • Howl's Moving Castle</div>
       <h2>Если бы мы были рядом в этот день</h2>
       <p class="together-lead">
         В саму годовщину мы не сможем быть рядом физически, но я хочу, чтобы ты представил этот вечер
@@ -1466,7 +1570,6 @@
       </div>
     </section>
 
-    <!-- Личное письмо -->
     <section class="letter-section" id="personalLetterSection">
       <div class="letter-kicker">Письмо для тебя • Из рук в руки</div>
       <h2>То, что я написала для личной встречи</h2>
@@ -1498,7 +1601,6 @@
       </div>
     </section>
 
-    <!-- Атака титанов (3 блока) -->
     <section class="aot-card">
       <svg class="aot-wings" viewBox="0 0 64 36">
         <path d="M30 14 C22 6, 10 5, 2 11 C9 12, 14 15, 18 19 C11 19, 6 22, 3 26 C11 25, 19 26, 27 23 L30 20 Z"/>
@@ -1545,14 +1647,13 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 3: UNDERTALE (4 БЛОКА) И РАСШИРЕННЫЙ STARDEW VALLEY + ДЖУНИМО -->
+  <!-- ВКЛАДКА 3: UNDERTALE + WATERFALL + РАСШИРЕННЫЙ STARDEW VALLEY       -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab3">
 
-    <!-- Undertale 1 -->
     <section class="ut-section">
-      <div class="ut-status">ЕВГЕША &nbsp;&nbsp; LV 99 &nbsp;&nbsp; <span class="red">♥ РЕШИМОСТЬ</span></div>
-      <div class="ut-box ut-click" onclick="cycleUtLine()">
+      <div class="ut-status">ЕВГЕША &nbsp;&nbsp; LV 99 &nbsp;&nbsp; <span class="cyan">✦ WATERFALL</span> &nbsp;&nbsp; <span class="red">♥ РЕШИМОСТЬ</span></div>
+      <div class="ut-box ut-waterfall-box ut-click" onclick="cycleUtLine()">
         <svg style="width:18px;height:18px;flex-shrink:0;margin-top:2px;" viewBox="0 0 16 16" fill="#ff2a2a">
           <path d="M2 2h4v2h4V2h4v2h2v6h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V4h2V2z"/>
         </svg>
@@ -1561,11 +1662,10 @@
       </div>
       <div class="ut-actions">
         <button class="ut-btn" onclick="utReaction(0)">♥ Обнять Марину</button>
-        <button class="ut-btn" onclick="utReaction(1)">♥ Согреть руки</button>
+        <button class="ut-btn" onclick="utReaction(1)">✦ Посмотреть на звёздный свет</button>
       </div>
     </section>
 
-    <!-- Undertale 2 -->
     <section class="ut-section">
       <div class="ut-status">[ACT] &nbsp;&nbsp; <span class="yellow">★ ПРОВЕРИТЬ ЧУВСТВА</span></div>
       <div class="ut-box">
@@ -1581,7 +1681,6 @@
       </div>
     </section>
 
-    <!-- Undertale 3 -->
     <section class="ut-section">
       <div class="ut-status">[ITEM] &nbsp;&nbsp; <span class="yellow">★ НАШ РЮКЗАК ВОСПОМИНАНИЙ</span></div>
       <div class="ut-box">
@@ -1597,17 +1696,15 @@
       </div>
     </section>
 
-    <!-- Undertale 4 -->
     <section class="ut-section">
       <div class="ut-save-card">
         <div class="ut-save-title">★ ТОЧКА СОХРАНЕНИЯ ДОСТИГНУТА ★</div>
-        <div class="ut-save-body">* Вид на зимнее небо рядом с Евгешей наполняет Марину РЕШИМОСТЬЮ.
+        <div class="ut-save-body">* Мерцающий свет Водопада и голос Евгеши наполняют Марину РЕШИМОСТЬЮ.
 * Все тревоги обнулены. Уровень любви: МАКСИМУМ.
 * Файл «30.11.2025 — Навсегда» успешно сохранён ♥</div>
       </div>
     </section>
 
-    <!-- Stardew Valley — Часть 1 (Новая): 10 сердечек близости -->
     <section class="sd-dark-card">
       <div class="sd-dark-tag">STARDEW VALLEY • УРОВЕНЬ ДРУЖБЫ: 10/10</div>
       <h3>Максимальная шкала сердечек</h3>
@@ -1629,7 +1726,6 @@
       </div>
     </section>
 
-    <!-- Stardew Valley — Часть 2 (Новая): Сезоны нашей долины -->
     <section class="sd-dark-card">
       <div class="sd-dark-tag">STARDEW VALLEY • ВРЕМЕНА ГОДА</div>
       <h3>Четыре сезона нашего года</h3>
@@ -1644,7 +1740,6 @@
       </div>
     </section>
 
-    <!-- Stardew Valley — Часть 3 (Новая): Наши будущие квесты -->
     <section class="sd-dark-card">
       <div class="sd-dark-tag">STARDEW VALLEY • ДОСКА ОБЪЯВЛЕНИЙ</div>
       <h3>Наши главные квесты впереди</h3>
@@ -1664,7 +1759,6 @@
       </div>
     </section>
 
-    <!-- Stardew Valley — Финал с Джунимо и тайной запиской -->
     <footer class="sd-night-finale">
       <div class="firefly ff1"></div>
       <div class="firefly ff2"></div>
@@ -1714,8 +1808,67 @@
   </section>
 
   <script>
-    // 0. ПЕРЕКЛЮЧЕНИЕ ТРЁХ ВКЛАДОК САЙТА
+    // 0. МУЗЫКА ПО ВКЛАДКАМ (загрузи эти файлы в репозиторий на GitHub)
+    const tracksByTab = {
+      tab1: { src: 'the-dragon-boy.mp3', title: 'The Dragon Boy' },
+      tab2: { src: 'howls-moving-castle.mp3', title: 'Howl\'s Moving Castle' },
+      tab3: { src: 'waterfall.mp3', title: 'Undertale — Waterfall' }
+    };
+
+    const audioEl = document.getElementById('bgMusicPlayer');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicTrackName = document.getElementById('musicTrackName');
+    let currentTabId = 'tab1';
+    let isMusicPlaying = false;
+
+    function syncTrackForTab(tabId, autoPlayIfActive) {
+      const track = tracksByTab[tabId];
+      if (!track) return;
+      musicTrackName.textContent = track.title;
+
+      const wasPlaying = !audioEl.paused;
+      if (audioEl.getAttribute('data-track') !== track.src) {
+        audioEl.setAttribute('data-track', track.src);
+        audioEl.src = track.src;
+        audioEl.load();
+      }
+
+      if (autoPlayIfActive && (wasPlaying || isMusicPlaying)) {
+        audioEl.play().then(() => {
+          isMusicPlaying = true;
+          musicBtn.textContent = '⏸ Пауза';
+        }).catch(() => {
+          musicBtn.textContent = '▶ Включить музыку';
+        });
+      }
+    }
+
+    function toggleMusic() {
+      const track = tracksByTab[currentTabId];
+      if (!audioEl.src || audioEl.getAttribute('data-track') !== track.src) {
+        audioEl.setAttribute('data-track', track.src);
+        audioEl.src = track.src;
+      }
+
+      if (audioEl.paused) {
+        audioEl.play().then(() => {
+          isMusicPlaying = true;
+          musicBtn.textContent = '⏸ Пауза';
+        }).catch(() => {
+          musicTrackName.textContent = `${track.title} (загрузи ${track.src} на GitHub)`;
+        });
+      } else {
+        audioEl.pause();
+        isMusicPlaying = false;
+        musicBtn.textContent = '▶ Включить музыку';
+      }
+    }
+
+    syncTrackForTab('tab1', false);
+
+    // ПЕРЕКЛЮЧЕНИЕ ТРЁХ ВКЛАДОК
     function openTab(tabId) {
+      currentTabId = tabId;
       document.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.remove('active');
       });
@@ -1728,6 +1881,7 @@
       if (targetPanel) targetPanel.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
 
+      syncTrackForTab(tabId, true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1799,6 +1953,34 @@
       document.getElementById('blizzardBtn').textContent = isBlizzard
         ? '❄ Вернуть тихий снегопад'
         : '❄ Усилить зимнюю метель';
+    }
+
+    // 2.5 КНОПКА-СЕРДЕЧКО «ПОСЛАТЬ ТЕПЛО ЧЕРЕЗ РАССТОЯНИЕ»
+    let loveCount = 0;
+    const loveMessages = [
+      "Тепло отправлено Евгеше! Даже сквозь километры моё сердце с тобой ♥",
+      "Ещё одно крепкое обнимание летит к тебе через расстояние ♥",
+      "Ты — самое родное и светлое, что есть в моей жизни, Евгеша ♥",
+      "Никакие границы не остановят мою любовь к тебе ♥"
+    ];
+
+    function sendLoveAcrossDistance(e) {
+      loveCount++;
+      const msg = loveMessages[(loveCount - 1) % loveMessages.length];
+      document.getElementById('loveToast').textContent = `${msg} (импульсов отправлено: ${loveCount})`;
+
+      const x = e && e.clientX ? e.clientX : window.innerWidth / 2;
+      const y = e && e.clientY ? e.clientY : window.innerHeight / 2;
+
+      for (let i = 0; i < 6; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = i % 2 === 0 ? '♥' : '✦';
+        heart.style.left = `${x + (Math.random() * 60 - 30)}px`;
+        heart.style.top = `${y + (Math.random() * 20 - 10)}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+      }
     }
 
     // 3. БИЛЕТ «УНЕСЁННЫЕ ПРИЗРАКАМИ»
@@ -1944,16 +2126,16 @@
       btn.textContent = isOpen ? '✉ Скрыть письмо' : '✉ Открыть письмо';
     }
 
-    // 7. UNDERTALE ИНТЕРАКТИВ
+    // 7. UNDERTALE + WATERFALL ИНТЕРАКТИВ
     const utLines = [
+      "* Под тихий звук Waterfall Евгеша и Марина смотрят на мерцающий свет.",
       "* Евгеша, с 30 ноября 2025 года моё сердце всегда выбирает тебя.",
-      "* Даже в самую холодную метель с тобой внутри становится тепло.",
       "* Твоя Марина рядом. Это наполняет тебя РЕШИМОСТЬЮ."
     ];
 
     const utReactions = [
       "* Марина крепко обнимает тебя. Все HP полностью восстановлены!",
-      "* Ты согреваешь её ладони. Уровень уюта вырос до бесконечности!"
+      "* Вокруг мерцают сотни крошечных звёздочек Waterfall. Тебе спокойно и тепло."
     ];
 
     let utIdx = 0;
