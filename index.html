@@ -55,12 +55,8 @@
       height: 100%;
       pointer-events: none;
       z-index: 2;
-      opacity: 0;
-      transition: opacity 0.45s ease;
-    }
-
-    body.stardew-snow-active #snowCanvas {
       opacity: 1;
+      transition: opacity 0.45s ease;
     }
 
     .bottom-snow-drift {
@@ -71,10 +67,6 @@
       height: 54px;
       pointer-events: none;
       z-index: 3;
-      display: none;
-    }
-
-    body.stardew-snow-active .bottom-snow-drift {
       display: block;
     }
 
@@ -117,16 +109,16 @@
     /* Кнопка метели отдельно в правом верхнем углу */
     .blizzard-corner-btn {
       position: fixed;
-      top: 12px;
-      right: 16px;
+      top: 14px;
+      right: 18px;
       z-index: 40;
-      background: rgba(20, 26, 48, 0.82);
-      border: 1px solid rgba(255, 190, 205, 0.36);
+      background: rgba(20, 26, 48, 0.86);
+      border: 1px solid rgba(255, 190, 205, 0.38);
       color: #ffe8ee;
       font-family: 'Montserrat', sans-serif;
       font-size: 11.5px;
       font-weight: 600;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 999px;
       cursor: pointer;
       backdrop-filter: blur(10px);
@@ -139,19 +131,22 @@
       border-color: #ff9eb5;
     }
 
-    /* Полоска со страницами и музыка */
+    /* Скруглённая шапка со страницами и музыкой */
     .top-nav-wrap {
       position: sticky;
-      top: 0;
+      top: 10px;
       z-index: 30;
-      background: rgba(11, 15, 31, 0.84);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 190, 205, 0.18);
-      padding: 12px 16px 10px 16px;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(13, 18, 36, 0.84);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 190, 205, 0.26);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.36);
     }
 
     .top-nav {
-      max-width: 1120px;
       margin: 0 auto 8px auto;
       display: flex;
       flex-wrap: wrap;
@@ -161,12 +156,12 @@
 
     .nav-tab-btn {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 190, 205, 0.22);
+      border: 1px solid rgba(255, 190, 205, 0.24);
       color: var(--text-muted);
       font-family: 'Montserrat', sans-serif;
       font-size: 12px;
       font-weight: 500;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s ease;
@@ -202,7 +197,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 12px;
       font-weight: 600;
-      padding: 6px 14px;
+      padding: 6px 15px;
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s ease;
@@ -611,10 +606,10 @@
     .scene-tab-btn,
     .s-mode-btn {
       background: rgba(255, 175, 195, 0.08);
-      border: 1px solid rgba(255, 188, 204, 0.22);
+      border: 1px solid rgba(255, 188, 204, 0.24);
       color: var(--text-muted);
       font-size: 12px;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 999px;
     }
 
@@ -1236,19 +1231,20 @@
     }
 
     .sd-season-btn {
-      background: #3b1c20;
-      border: 2px solid #c97b42;
+      background: rgba(59, 28, 32, 0.85);
+      border: 1.5px solid rgba(201, 123, 66, 0.85);
       color: #ffebd2;
       font-family: 'Press Start 2P', monospace;
       font-size: 9px;
-      padding: 9px 12px;
+      padding: 10px 15px;
+      border-radius: 999px;
       cursor: pointer;
       transition: 0.15s;
     }
 
     .sd-season-btn:hover,
     .sd-season-btn.active {
-      background: #632e31;
+      background: rgba(99, 46, 49, 0.92);
       border-color: #ffd28a;
       color: #ffffff;
     }
@@ -1337,6 +1333,7 @@
       font-family: 'Press Start 2P', monospace;
       font-size: 10px;
       padding: 13px 18px;
+      border-radius: 999px;
       cursor: pointer;
       transition: 0.2s;
     }
@@ -1400,9 +1397,15 @@
       }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
+      body {
+        padding-top: 42px;
+      }
       .top-nav-wrap {
-        padding: 44px 12px 10px 12px;
+        top: 6px;
+        border-radius: 26px;
+        margin: 0 10px;
+        padding: 12px 12px;
       }
       .blizzard-corner-btn {
         top: 8px;
@@ -1415,7 +1418,7 @@
     @media (max-width: 560px) {
       .nav-tab-btn {
         font-size: 10.5px;
-        padding: 7px 10px;
+        padding: 7px 11px;
       }
       .music-track-label {
         font-size: 16.5px;
@@ -2599,14 +2602,6 @@
 
     let activeFamilySeason = 'winter';
 
-    function updateStardewSnowVisibility(tabId) {
-      if (tabId === 'tab6') {
-        document.body.classList.add('stardew-snow-active');
-      } else {
-        document.body.classList.remove('stardew-snow-active');
-      }
-    }
-
     function openTab(tabId) {
       currentTabId = tabId;
       document.querySelectorAll('.tab-panel').forEach(panel => {
@@ -2627,14 +2622,11 @@
         document.body.classList.remove('stardew-sunset-bg');
       }
 
-      updateStardewSnowVisibility(tabId);
       weatherMode = tabId === 'tab4' ? activeFamilySeason : 'winter';
 
       syncTrackForTab(tabId, true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    updateStardewSnowVisibility('tab1');
 
     const startDate = new Date(2025, 10, 30, 0, 0, 0);
 
