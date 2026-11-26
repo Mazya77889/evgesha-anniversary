@@ -352,6 +352,13 @@
     color: #9ec0f5;
   }
 
+  .hero-btns-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
   .love-pulse-btn {
     background: linear-gradient(135deg, rgba(255, 125, 155, 0.32) 0%, rgba(255, 185, 145, 0.28) 100%);
     border: 1px solid rgba(255, 175, 192, 0.75);
@@ -369,6 +376,24 @@
   .love-pulse-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 28px rgba(255, 145, 170, 0.48);
+  }
+
+  .heart-key-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 182, 198, 0.5);
+    color: #ffe2e8;
+    padding: 13px 20px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .heart-key-btn:hover {
+    background: rgba(255, 158, 178, 0.22);
+    transform: translateY(-1px);
   }
 
   .love-note-toast {
@@ -947,6 +972,50 @@
   }
   .s-mode-btn:hover, .s-mode-btn.active { background: rgba(255, 158, 178, 0.28); border-color: #ffb8c8; color: #ffffff; font-weight: 500; }
 
+  /* Визуализация наших карих глаз и сильного мужчины, сворачивающего горы */
+  .hazel-eyes-stage {
+    border-radius: 22px;
+    padding: 24px 18px;
+    text-align: center;
+    background: radial-gradient(circle at 50% 40%, rgba(168, 106, 62, 0.25) 0%, rgba(15, 16, 28, 0.92) 85%);
+    border: 1px solid rgba(224, 168, 120, 0.38);
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .hazel-eyes-stage:hover {
+    border-color: #ff9eb5;
+    transform: translateY(-2px);
+  }
+  .eye-heart-mark {
+    opacity: 0;
+    transform: scale(0.4);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .eyes-love-active .eye-heart-mark {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  .eyes-love-active .brown-pupil {
+    opacity: 0.15;
+  }
+
+  .mountain-hero-stage {
+    border-radius: 22px;
+    padding: 24px 18px;
+    text-align: center;
+    background: radial-gradient(circle at 50% 35%, rgba(255, 180, 120, 0.22) 0%, rgba(14, 18, 30, 0.92) 85%);
+    border: 1px solid rgba(244, 198, 142, 0.36);
+    margin-bottom: 18px;
+  }
+  .mountain-shift-group {
+    transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mountains-moved .mountain-shift-group {
+    transform: translateX(48px) rotate(4deg);
+  }
+
   .family-card {
     background: linear-gradient(155deg, rgba(36, 24, 38, 0.82) 0%, rgba(18, 22, 38, 0.88) 100%);
     border: 1px solid rgba(255, 204, 214, 0.28); border-radius: 28px; padding: 34px 28px;
@@ -1244,12 +1313,17 @@
         <div class="h-time-card"><span id="seconds">0</span><label>Секунд</label></div>
       </div>
 
-      <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
-        ♥ Послать тепло через расстояние
-      </button>
+      <div class="hero-btns-row">
+        <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
+          ♥ Послать тепло через расстояние
+        </button>
+        <button class="heart-key-btn" onclick="triggerHeartKeyEasterEgg(event)">
+          ♥ Клавиша H / Сердечки
+        </button>
+      </div>
 
       <div class="love-note-toast" id="loveToast">
-        Нажми на сердечко, чтобы отправить мне тёплый импульс через километры ♥
+        Нажми на сердечко или клавишу H (или Р), чтобы запустить сердечки по экрану ♥
       </div>
     </header>
 
@@ -1855,6 +1929,75 @@
     </section>
 
     <section class="family-card">
+      <div class="family-kicker">Наши карие глаза • Взгляд друг на друга</div>
+      <h3>Два карих взгляда, в которых светится любовь</h3>
+      <p>
+        У нас обоих карие глаза — тёплые, глубокие и родные. Тыкни на наши глаза ниже, чтобы в них зажглись сердечки ♥
+      </p>
+
+      <div class="hazel-eyes-stage" id="hazelEyesStage" onclick="toggleEyesHearts()">
+        <svg viewBox="0 0 560 155" width="100%" style="max-height:155px;display:block;">
+          <!-- Левый карий глаз -->
+          <path d="M 75 78 Q 165 24 255 78 Q 165 132 75 78 Z" fill="#fff7f0" stroke="#e6bfa0" stroke-width="3"/>
+          <circle cx="165" cy="78" r="38" fill="#7c4727"/>
+          <circle cx="165" cy="78" r="30" fill="#592e16"/>
+          <circle class="brown-pupil" cx="165" cy="78" r="14" fill="#1e100a"/>
+          <circle class="brown-pupil" cx="153" cy="65" r="5" fill="#ffffff" opacity="0.8"/>
+          <text class="eye-heart-mark" x="165" y="90" text-anchor="middle" font-size="34" fill="#ff5e84">♥</text>
+          <text x="165" y="144" text-anchor="middle" font-size="11" fill="#f3d5bc" font-family="Montserrat">Карие глаза • Она</text>
+
+          <!-- Правый карий глаз -->
+          <path d="M 305 78 Q 395 24 485 78 Q 395 132 305 78 Z" fill="#fff7f0" stroke="#e6bfa0" stroke-width="3"/>
+          <circle cx="395" cy="78" r="38" fill="#7c4727"/>
+          <circle cx="395" cy="78" r="30" fill="#592e16"/>
+          <circle class="brown-pupil" cx="395" cy="78" r="14" fill="#1e100a"/>
+          <circle class="brown-pupil" cx="383" cy="65" r="5" fill="#ffffff" opacity="0.8"/>
+          <text class="eye-heart-mark" x="395" y="90" text-anchor="middle" font-size="34" fill="#ff5e84">♥</text>
+          <text x="395" y="144" text-anchor="middle" font-size="11" fill="#f3d5bc" font-family="Montserrat">Карие глаза • Он</text>
+        </svg>
+        <div class="emotion-caption" id="eyesHeartCaption" style="margin-bottom:0;">
+          «Нажми на глаза — и в каждом карем взгляде засияют сердечки ♥»
+        </div>
+      </div>
+    </section>
+
+    <section class="family-card">
+      <div class="family-kicker">Мой самый сильный и красивый мужчина • Мой рай</div>
+      <h3>Он способен свернуть даже горы</h3>
+
+      <div class="mountain-hero-stage" id="mountainHeroStage">
+        <svg viewBox="0 0 600 185" width="100%" style="max-height:185px;display:block;">
+          <!-- Сильный мужчина слева -->
+          <circle cx="135" cy="48" r="16" fill="#f2d2be"/>
+          <path d="M 118 42 Q 135 28 152 42 Z" fill="#3a281d"/>
+          <path d="M 102 72 Q 135 62 168 72 L 160 138 L 110 138 Z" fill="#5c3d2e"/>
+          <!-- Мощная рука, сдвигающая гору -->
+          <path d="M 164 82 Q 225 76 268 92" fill="none" stroke="#f2d2be" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="272" cy="93" r="8" fill="#f2d2be"/>
+          <line x1="118" y1="138" x2="108" y2="170" stroke="#364156" stroke-width="9" stroke-linecap="round"/>
+          <line x1="152" y1="138" x2="162" y2="170" stroke="#364156" stroke-width="9" stroke-linecap="round"/>
+
+          <!-- Горы, которые он сворачивает -->
+          <g class="mountain-shift-group">
+            <polygon points="295,168 385,46 475,168" fill="#56688a" stroke="#9eb4db" stroke-width="2"/>
+            <polygon points="385,46 364,76 385,68 406,76" fill="#eef5ff"/>
+            <polygon points="415,168 488,74 560,168" fill="#435270" stroke="#859bc4" stroke-width="1.8"/>
+          </g>
+        </svg>
+        <button class="mini-pill-btn" onclick="moveMountainsDemo()" id="moveMountainsBtn" style="margin-top:8px;">
+          ⛰ Сдвинуть горы его силой
+        </button>
+      </div>
+
+      <p>
+        Он самый красивый и сильный мужчина на свете — рядом с ним чувствуешь такую мощь, опору и тепло,
+        что кажется, будто он даже горы свернёт ради нас. И у него удалось сделать мою жизнь раем,
+        ведь мой рай — это он.
+      </p>
+      <div class="family-quote">«Он — самый красивый и сильный мужчина на свете, и мой рай — это он ♥»</div>
+    </section>
+
+    <section class="family-card">
       <div class="family-kicker">Любовь в мелочах • Настоящая близость</div>
       <h3>Любовь, которая не требует громких слов</h3>
       <p>
@@ -2255,7 +2398,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 1. ТАЙМЕР + ПАСХАЛКА 1 (ДАТА 30.11.2025) + ПАСХАЛКА 2 (КЛАВИША H)
+    // 1. ТАЙМЕР + ПАСХАЛКА 1 (ДАТА 30.11.2025) + ПАСХАЛКА 2 (КЛАВИША H / Р + КНОПКА)
     const startDate = new Date(2025, 10, 30, 0, 0, 0);
 
     function updateTimer() {
@@ -2281,21 +2424,37 @@
     }
 
     function spawnHeartBurst(x, y) {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 8; i++) {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
         heart.textContent = i % 2 === 0 ? '♥' : '✦';
-        heart.style.left = `${x + (Math.random() * 70 - 35)}px`;
-        heart.style.top = `${y + (Math.random() * 24 - 12)}px`;
+        heart.style.left = `${x + (Math.random() * 110 - 55)}px`;
+        heart.style.top = `${y + (Math.random() * 44 - 22)}px`;
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 1500);
       }
     }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key && e.key.toLowerCase() === 'h') {
+    function triggerHeartKeyEasterEgg(e) {
+      unlockEasterEgg('keyH');
+      const x = e && e.clientX ? e.clientX : window.innerWidth * (0.25 + Math.random() * 0.5);
+      const y = e && e.clientY ? e.clientY : window.innerHeight * 0.5;
+      spawnHeartBurst(x, y);
+      document.getElementById('loveToast').textContent =
+        '✦ Сердечки запущены! Клавиша H / Р тоже работает ♥';
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      const k = (e.key || '').toLowerCase();
+      const c = (e.code || '').toLowerCase();
+      if (k === 'h' || k === 'р' || c === 'keyh') {
         unlockEasterEgg('keyH');
-        spawnHeartBurst(window.innerWidth * Math.random(), window.innerHeight * 0.55);
+        spawnHeartBurst(
+          window.innerWidth * (0.2 + Math.random() * 0.6),
+          window.innerHeight * (0.35 + Math.random() * 0.35)
+        );
       }
     });
 
@@ -2652,7 +2811,7 @@
       document.getElementById('deathCountSvg').textContent = teachingAttempts;
     }
 
-    // 6.5 СЕЗОНЫ НА ВКЛАДКЕ 4
+    // 6.5 СЕЗОНЫ, КАРИЕ ГЛАЗА И ГОРЫ НА ВКЛАДКЕ 4
     const seasonsShowcaseData = {
       winter: {
         cls: 'season-winter',
@@ -2733,6 +2892,28 @@
           setSeasonShowcase(seasonOrder[autoSeasonIndex]);
         }, 2800);
       }
+    }
+
+    let eyesHeartsOn = false;
+    function toggleEyesHearts() {
+      eyesHeartsOn = !eyesHeartsOn;
+      const stage = document.getElementById('hazelEyesStage');
+      const cap = document.getElementById('eyesHeartCaption');
+      stage.classList.toggle('eyes-love-active', eyesHeartsOn);
+      cap.textContent = eyesHeartsOn
+        ? '«В обоих карих глазах зажглись сердечки — только для нас двоих ♥»'
+        : '«Нажми на глаза — и в каждом карем взгляде засияют сердечки ♥»';
+    }
+
+    let mountainsMovedState = false;
+    function moveMountainsDemo() {
+      mountainsMovedState = !mountainsMovedState;
+      const stage = document.getElementById('mountainHeroStage');
+      const btn = document.getElementById('moveMountainsBtn');
+      stage.classList.toggle('mountains-moved', mountainsMovedState);
+      btn.textContent = mountainsMovedState
+        ? '⛰ Горы сдвинуты его силой ♥'
+        : '⛰ Сдвинуть горы его силой';
     }
 
     // 7. UNDERTALE ИНТЕРАКТИВ
