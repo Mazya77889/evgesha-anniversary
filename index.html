@@ -40,6 +40,32 @@
     z-index: 1;
   }
 
+  /* ==================== ЗАКРЕПЛЁННАЯ КНОПКА МЕТЕЛИ В ПРАВОМ ВЕРХНЕМ УГЛУ ==================== */
+  .floating-weather-btn {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 70;
+    background: rgba(14, 22, 38, 0.88);
+    border: 1px solid rgba(196, 224, 255, 0.45);
+    color: #eef5ff;
+    padding: 9px 15px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    transition: all 0.25s ease;
+  }
+
+  .floating-weather-btn:hover {
+    border-color: #ffd6de;
+    background: rgba(247, 202, 208, 0.22);
+    transform: translateY(-1px);
+  }
+
   .floating-heart {
     position: fixed;
     pointer-events: none;
@@ -60,9 +86,9 @@
     position: sticky;
     top: 12px;
     z-index: 50;
-    max-width: 960px;
+    max-width: 1060px;
     margin: 12px auto 0 auto;
-    padding: 0 14px;
+    padding: 0 185px 0 14px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -71,12 +97,12 @@
   .top-nav {
     display: flex;
     justify-content: center;
-    gap: 7px;
+    gap: 6px;
     flex-wrap: wrap;
     background: rgba(12, 19, 34, 0.86);
     border: 1px solid rgba(204, 224, 255, 0.24);
     backdrop-filter: blur(14px);
-    padding: 9px 12px;
+    padding: 8px 12px;
     border-radius: 999px;
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
   }
@@ -85,10 +111,10 @@
     background: transparent;
     border: 1px solid transparent;
     color: #cddbf0;
-    padding: 8px 14px;
+    padding: 8px 12px;
     border-radius: 999px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -152,7 +178,7 @@
     z-index: 2;
     max-width: 840px;
     margin: 0 auto;
-    padding: 20px 18px 80px 18px;
+    padding: 22px 18px 80px 18px;
     flex-direction: column;
     gap: 48px;
     animation: tabFadeIn 0.45s ease;
@@ -279,41 +305,14 @@
     color: #9ec0f5;
   }
 
-  .hero-controls-row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .wind-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #eef5ff;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.8px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .wind-btn:hover {
-    background: rgba(247, 202, 208, 0.22);
-    border-color: #f7cad0;
-    transform: scale(1.03);
-  }
-
   .love-pulse-btn {
     background: linear-gradient(135deg, rgba(255, 125, 155, 0.32) 0%, rgba(255, 185, 145, 0.28) 100%);
     border: 1px solid rgba(255, 175, 192, 0.75);
     color: #fff5f7;
-    padding: 12px 24px;
+    padding: 13px 26px;
     border-radius: 999px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 0 22px rgba(255, 130, 160, 0.28);
@@ -334,7 +333,7 @@
     min-height: 28px;
   }
 
-  /* ==================== 2. ЧЕТЫРЕ ЗИМНИХ БЛОКА ==================== */
+  /* ==================== 2. ЧЕТЫРЕ ЗИМНИХ БЛОКА + ЧУВСТВЕННАЯ СЦЕНА НИТИ ==================== */
   .anime-card {
     position: relative;
     padding: 36px 32px;
@@ -434,6 +433,40 @@
     background: rgba(244, 208, 146, 0.3);
   }
 
+  /* Визуальный блок чувств (Страница 1: Нить сквозь небо) */
+  .visual-emotion-card {
+    border-radius: 28px;
+    padding: 30px 24px;
+    text-align: center;
+    background: linear-gradient(160deg, rgba(22, 28, 52, 0.85) 0%, rgba(38, 24, 42, 0.85) 100%);
+    border: 1px solid rgba(255, 198, 214, 0.35);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 46px rgba(0, 0, 0, 0.42);
+  }
+
+  .visual-emotion-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    margin: 0 0 12px 0;
+    color: #fff2f6;
+  }
+
+  .emotion-svg-box {
+    border-radius: 20px;
+    background: rgba(10, 14, 26, 0.72);
+    border: 1px solid rgba(255, 214, 224, 0.24);
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+
+  .emotion-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #ffdbe3;
+    margin: 10px 0 14px 0;
+  }
+
   /* ==================== ИНТЕРАКТИВНАЯ КАРТА ВСТРЕЧ ==================== */
   .map-card {
     background: linear-gradient(155deg, rgba(16, 26, 46, 0.85) 0%, rgba(28, 34, 54, 0.85) 100%);
@@ -518,9 +551,7 @@
     cursor: pointer;
     transition: transform 0.25s ease;
   }
-  .pin-group:hover .pin-core {
-    r: 8.5;
-  }
+  .pin-group:hover .pin-core { r: 8.5; }
   .pin-ring {
     fill: none;
     stroke: rgba(255, 214, 224, 0.55);
@@ -643,7 +674,7 @@
     color: #f4d092;
   }
 
-  /* ==================== ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И АТАКА ТИТАНОВ ==================== */
+  /* ==================== ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И ЭРЕН + МИКАСА ==================== */
   .together-card {
     background: linear-gradient(155deg, rgba(46, 26, 36, 0.78) 0%, rgba(22, 24, 42, 0.86) 100%);
     border: 1px solid rgba(255, 198, 208, 0.34);
@@ -724,9 +755,7 @@
     transition: all 0.2s ease;
   }
 
-  .scene-tab-btn:hover {
-    background: rgba(255, 194, 206, 0.18);
-  }
+  .scene-tab-btn:hover { background: rgba(255, 194, 206, 0.18); }
 
   .scene-tab-btn.active {
     background: rgba(255, 158, 178, 0.28);
@@ -889,6 +918,49 @@
     text-align: right;
   }
 
+  /* Визуализация Эрена и Микасы (объятия и слёзы) */
+  .eren-mikasa-card {
+    background: linear-gradient(160deg, rgba(28, 22, 34, 0.88) 0%, rgba(18, 22, 32, 0.92) 100%);
+    border: 1px solid rgba(235, 198, 148, 0.48);
+    border-radius: 26px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.48);
+  }
+
+  .em-stage {
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% 35%, rgba(255, 175, 145, 0.2) 0%, rgba(12, 14, 24, 0.9) 80%);
+    border: 1px solid rgba(235, 198, 148, 0.25);
+    padding: 18px 12px;
+    margin: 16px 0;
+  }
+
+  #mikasaGroup {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  #erenGroup {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hugging #mikasaGroup {
+    transform: translateX(36px) rotate(3deg);
+  }
+  .hugging #erenGroup {
+    transform: translateX(-28px) rotate(-2deg);
+  }
+  .tear-drop {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .hugging .tear-drop {
+    opacity: 1;
+    animation: tearFall 1.8s infinite ease-in;
+  }
+  @keyframes tearFall {
+    0% { transform: translateY(0); opacity: 0.95; }
+    100% { transform: translateY(22px); opacity: 0; }
+  }
+
   .aot-card {
     background: linear-gradient(160deg, rgba(22, 25, 36, 0.84) 0%, rgba(36, 28, 34, 0.82) 100%);
     border: 1px solid rgba(235, 198, 148, 0.42);
@@ -940,7 +1012,112 @@
     color: #ebc694;
   }
 
-  /* ==================== ВКЛАДКА 3 (НОВАЯ): ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ ==================== */
+  /* ==================== ВКЛАДКА 3 (НОВАЯ): THE BINDING OF ISAAC & R.E.P.O. ==================== */
+  .isaac-card {
+    background: linear-gradient(160deg, rgba(36, 20, 26, 0.9) 0%, rgba(18, 14, 22, 0.94) 100%);
+    border: 1.5px solid rgba(235, 145, 155, 0.42);
+    border-radius: 26px;
+    padding: 32px 26px;
+    text-align: center;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .isaac-kicker {
+    font-size: 10.5px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #ff9eb0;
+    margin-bottom: 8px;
+  }
+
+  .isaac-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    margin: 0 0 12px 0;
+    color: #fff3f6;
+  }
+
+  .isaac-card p {
+    font-size: 14px;
+    line-height: 1.82;
+    font-weight: 300;
+    color: #eddce2;
+    max-width: 600px;
+    margin: 0 auto 16px auto;
+  }
+
+  .isaac-stage {
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% 45%, rgba(160, 55, 75, 0.22) 0%, rgba(10, 8, 14, 0.94) 82%);
+    border: 1px solid rgba(255, 165, 180, 0.28);
+    padding: 18px 12px;
+    margin-bottom: 16px;
+  }
+
+  .isaac-bob {
+    animation: isaacFloat 2.4s infinite ease-in-out;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .azazel-bob {
+    animation: isaacFloat 2.4s infinite ease-in-out 0.6s;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes isaacFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+
+  .brimstone-beam {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .brimstone-active .brimstone-beam {
+    opacity: 1;
+  }
+
+  .repo-card {
+    background: linear-gradient(160deg, rgba(24, 34, 28, 0.9) 0%, rgba(16, 22, 26, 0.94) 100%);
+    border: 1.5px solid rgba(155, 235, 175, 0.42);
+    border-radius: 26px;
+    padding: 32px 26px;
+    text-align: center;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.48);
+  }
+
+  .repo-kicker {
+    font-size: 10.5px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #9ef5b5;
+    margin-bottom: 8px;
+  }
+
+  .repo-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 33px;
+    margin: 0 0 12px 0;
+    color: #f2fff6;
+  }
+
+  .repo-card p {
+    font-size: 14px;
+    line-height: 1.85;
+    font-weight: 300;
+    color: #dff2e5;
+    max-width: 610px;
+    margin: 0 auto 14px auto;
+  }
+
+  .repo-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #b8ffca;
+  }
+
+  /* ==================== ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ ==================== */
   .seasons-hero-card {
     position: relative;
     border-radius: 32px;
@@ -1042,7 +1219,6 @@
     margin: 0 auto 18px auto;
   }
 
-  /* Шкала заполнения любовью */
   .love-fill-wrap {
     max-width: 540px;
     margin: 0 auto;
@@ -1101,7 +1277,6 @@
     font-weight: 500;
   }
 
-  /* Блоки семьи и любви */
   .family-card {
     background: linear-gradient(155deg, rgba(36, 24, 38, 0.82) 0%, rgba(18, 22, 38, 0.88) 100%);
     border: 1px solid rgba(255, 204, 214, 0.28);
@@ -1142,7 +1317,6 @@
     color: #ffd9c2;
   }
 
-  /* Торжественный финал: я стану твоей женой */
   .wife-vow-card {
     position: relative;
     text-align: center;
@@ -1196,7 +1370,7 @@
     margin-top: 10px;
   }
 
-  /* ==================== ВКЛАДКА 4: UNDERTALE + WATERFALL + STARDEW VALLEY ==================== */
+  /* ==================== ВКЛАДКА 5: UNDERTALE + STARDEW VALLEY (ЖЕНЯ И МАСЯ) ==================== */
   .ut-section {
     font-family: 'Press Start 2P', monospace;
     display: flex;
@@ -1327,6 +1501,22 @@
     color: #d9c3a3;
     max-width: 600px;
     margin: 0 auto 14px auto;
+  }
+
+  .sd-farm-stage {
+    background: linear-gradient(180deg, #1b2836 0%, #243b2c 65%, #1d3547 65%, #162a3a 100%);
+    border: 3px solid #6e472b;
+    padding: 18px 12px;
+    margin: 14px auto;
+    max-width: 620px;
+  }
+
+  .bobber-float {
+    animation: bobberDip 1.8s infinite ease-in-out;
+  }
+  @keyframes bobberDip {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
   }
 
   .sd-hearts-bar {
@@ -1492,14 +1682,19 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @media (max-width: 760px) {
+    .top-nav-wrap { padding: 54px 12px 0 12px; }
+    .floating-weather-btn { top: 10px; right: 12px; font-size: 11px; padding: 8px 13px; }
+  }
+
   @media (max-width: 560px) {
-    .top-nav { border-radius: 22px; gap: 6px; }
-    .nav-tab-btn { font-size: 11px; padding: 7px 11px; }
+    .top-nav { border-radius: 22px; gap: 5px; }
+    .nav-tab-btn { font-size: 10.5px; padding: 7px 10px; }
     .hero-banner { min-height: 74vh; padding: 32px 16px; }
     .h-time-card { min-width: 72px; padding: 12px 10px; }
     .h-time-card span { font-size: 28px; }
-    .anime-card, .map-card, .together-card, .letter-section, .seasons-hero-card, .family-card, .wife-vow-card { padding: 26px 18px; }
-    .anime-card h2, .map-card h2, .together-card h2, .letter-section h2, .seasons-hero-card h2, .family-card h3 { font-size: 26px; }
+    .anime-card, .map-card, .together-card, .letter-section, .seasons-hero-card, .family-card, .wife-vow-card, .isaac-card, .repo-card, .eren-mikasa-card { padding: 26px 18px; }
+    .anime-card h2, .map-card h2, .together-card h2, .letter-section h2, .seasons-hero-card h2, .family-card h3, .isaac-card h2, .repo-card h2 { font-size: 26px; }
     .ut-text { font-size: 10px; line-height: 1.75; }
     .aot-card h2 { font-size: 27px; }
     .sd-dark-card h3, .sd-night-finale h2 { font-size: 11.5px; }
@@ -1512,7 +1707,12 @@
   <canvas id="snowCanvas"></canvas>
   <audio id="bgMusicPlayer" loop preload="metadata"></audio>
 
-  <!-- ==================== 4 КНОПКИ НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
+  <!-- ЗАКРЕПЛЁННАЯ КНОПКА МЕТЕЛИ В ПРАВОМ ВЕРХНЕМ УГЛУ (ДОСТУПНА НА ВСЕХ СТРАНИЦАХ) -->
+  <button class="floating-weather-btn" onclick="toggleBlizzard()" id="blizzardBtn">
+    ❄ Усилить метель
+  </button>
+
+  <!-- ==================== 5 КНОПОК НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
     <nav class="top-nav" aria-label="Разделы сайта">
       <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
@@ -1522,10 +1722,13 @@
         🍷 Будь мы рядом и письмо
       </button>
       <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
-        💍 Любовь и наша семья
+        😈 Айзек и R.E.P.O.
       </button>
       <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
-        🎮 Мир игр и Джунимо
+        💍 Любовь и наша семья
+      </button>
+      <button class="nav-tab-btn" id="nav-tab5" onclick="openTab('tab5')">
+        🎮 Undertale и Stardew
       </button>
     </nav>
 
@@ -1536,7 +1739,7 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 1: ЗИМНИЙ БАННЕР, 4 АНИМЕ-БЛОКА И КАРТА ПОПЫТОК ВСТРЕЧ         -->
+  <!-- ВКЛАДКА 1: ЗИМНИЙ БАННЕР, 4 АНИМЕ-БЛОКА, СЦЕНА ЧУВСТВ И КАРТА          -->
   <!-- ===================================================================== -->
   <main class="tab-panel active" id="tab1">
 
@@ -1555,14 +1758,9 @@
         <div class="h-time-card"><span id="seconds">0</span><label>Секунд</label></div>
       </div>
 
-      <div class="hero-controls-row">
-        <button class="wind-btn" onclick="toggleBlizzard()" id="blizzardBtn">
-          ❄ Усилить зимнюю метель
-        </button>
-        <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
-          ♥ Послать тепло через расстояние
-        </button>
-      </div>
+      <button class="love-pulse-btn" onclick="sendLoveAcrossDistance(event)">
+        ♥ Послать тепло через расстояние
+      </button>
 
       <div class="love-note-toast" id="loveToast">
         Нажми на сердечко, чтобы отправить мне тёплый импульс через километры ♥
@@ -1643,6 +1841,32 @@
         которую мы проживаем вместе с 30 ноября 2025 года.
       </p>
       <div class="anime-footer-note">«Ветер крепчает — значит, нам пора лететь дальше вдвоём»</div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК ЧУВСТВ НА 1-Й СТРАНИЦЕ -->
+    <section class="visual-emotion-card">
+      <div class="anime-tag" style="margin-bottom:8px;">Невидимая нить • Между нашими сердцами</div>
+      <h3>Два силуэта под одним зимним небом</h3>
+      <div class="emotion-svg-box">
+        <svg viewBox="0 0 600 175" width="100%" style="max-height:175px;display:block;">
+          <circle cx="140" cy="40" r="2" fill="#fff"/>
+          <circle cx="300" cy="24" r="2.5" fill="#ffd6de"/>
+          <circle cx="465" cy="44" r="2" fill="#fff"/>
+          <!-- Левый силуэт (Марина) -->
+          <circle cx="180" cy="78" r="16" fill="#f7cad0"/>
+          <path d="M 162 145 Q 180 96 198 145 Z" fill="#f7cad0"/>
+          <line id="leftArm" x1="190" y1="112" x2="245" y2="104" stroke="#f7cad0" stroke-width="4" stroke-linecap="round"/>
+          <!-- Правый силуэт (Женя, выше ростом) -->
+          <circle cx="420" cy="64" r="18" fill="#a9ccf7"/>
+          <path d="M 398 145 Q 420 84 442 145 Z" fill="#a9ccf7"/>
+          <line id="rightArm" x1="406" y1="104" x2="355" y2="104" stroke="#a9ccf7" stroke-width="4.5" stroke-linecap="round"/>
+          <!-- Нить сердца -->
+          <path id="heartThread" d="M 245 104 Q 300 78 355 104" fill="none" stroke="#ff8fa3" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <text id="centerHeartSvg" x="300" y="96" text-anchor="middle" font-size="22" fill="#ff8fa3">♥</text>
+        </svg>
+      </div>
+      <div class="emotion-caption" id="threadEmotionCaption">«Даже на расстоянии наши ладони тянутся друг к другу»</div>
+      <button class="love-pulse-btn" onclick="pulseThreadConnection()">♥ Соединить наши ладони</button>
     </section>
 
     <section class="map-card" id="meetingMapSection">
@@ -1753,7 +1977,7 @@
   </main>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И АТАКА ТИТАНОВ                  -->
+  <!-- ВКЛАДКА 2: «БУДЬ МЫ РЯДОМ», ПИСЬМО И ЭРЕН + МИКАСА (АТАКА ТИТАНОВ)   -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab2">
 
@@ -1774,7 +1998,6 @@
             </radialGradient>
           </defs>
           <rect width="680" height="215" fill="url(#warmGlow)"/>
-
           <path d="M 70 172 Q 340 156 610 172 L 635 198 L 45 198 Z" fill="rgba(255, 224, 194, 0.12)" stroke="rgba(255, 214, 185, 0.28)"/>
 
           <rect x="155" y="128" width="14" height="36" rx="4" fill="#fff1dc"/>
@@ -1857,6 +2080,61 @@
       </div>
     </section>
 
+    <!-- НОВЫЙ ЧУВСТВЕННЫЙ БЛОК: ЭРЕН И МИКАСА (ОБЪЯТИЯ И СЛЁЗЫ ПО КНОПКЕ) -->
+    <section class="eren-mikasa-card" id="erenMikasaCard">
+      <div class="aot-kicker">Атака титанов • Эрен и Микаса</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin:0 0 8px 0;color:#fff7ed;">
+        Обнять так крепко, чтобы забыть о разлуке
+      </h2>
+      <p style="font-size:13.5px;font-weight:300;color:#ead9cd;margin:0 0 12px 0;">
+        Нажми на кнопку ниже — и Микаса обнимет Эрена, не сдерживая слёз радости и нежности.
+      </p>
+
+      <div class="em-stage">
+        <svg viewBox="0 0 560 210" width="100%" style="max-height:210px;display:block;">
+          <!-- МИКАСА (слева, с красным шарфом) -->
+          <g id="mikasaGroup">
+            <!-- Волосы -->
+            <path d="M 192 78 Q 216 55 240 78 L 244 118 L 188 118 Z" fill="#1d1f2b"/>
+            <!-- Лицо -->
+            <circle cx="216" cy="88" r="18" fill="#f7dfd4"/>
+            <!-- Глаза с грустью/нежностью -->
+            <circle cx="222" cy="87" r="2.2" fill="#232533"/>
+            <!-- Слезинка -->
+            <path class="tear-drop" d="M 224 91 Q 227 97 224 101 Q 221 97 224 91 Z" fill="#8be0ff"/>
+            <!-- Красный шарф -->
+            <rect x="198" y="104" width="36" height="12" rx="6" fill="#c93648"/>
+            <path d="M 202 114 L 194 142 L 206 142 L 212 114 Z" fill="#b3293a"/>
+            <!-- Плащ/тело -->
+            <path d="M 194 116 L 238 116 L 246 188 L 186 188 Z" fill="#3a473e"/>
+            <!-- Рука для объятий -->
+            <path d="M 232 124 Q 262 126 278 122" fill="none" stroke="#f7dfd4" stroke-width="6" stroke-linecap="round"/>
+          </g>
+
+          <!-- ЭРЕН (справа, выше ростом) -->
+          <g id="erenGroup">
+            <!-- Волосы -->
+            <path d="M 314 64 Q 344 42 374 66 L 376 96 L 312 96 Z" fill="#3a2921"/>
+            <!-- Лицо -->
+            <circle cx="344" cy="76" r="20" fill="#f2d6c8"/>
+            <circle cx="337" cy="75" r="2.2" fill="#2b4a3e"/>
+            <!-- Плащ/тело -->
+            <path d="M 316 98 L 372 98 L 382 188 L 306 188 Z" fill="#2f3a34"/>
+            <!-- Рука для объятий -->
+            <path d="M 320 114 Q 288 118 272 126" fill="none" stroke="#f2d6c8" stroke-width="6.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Сердечко над ними при объятии -->
+          <text id="emHeart" x="280" y="42" text-anchor="middle" font-size="24" fill="#ff9eb0" opacity="0.35">♥</text>
+        </svg>
+      </div>
+
+      <button class="love-pulse-btn" onclick="toggleErenMikasaHug()" id="emHugBtn">
+        ♥ Обнять Эрена и прижаться щекой
+      </button>
+      <div class="emotion-caption" id="emCaption">«Спасибо, что повязал на меня этот шарф…»</div>
+    </section>
+
     <section class="aot-card">
       <svg class="aot-wings" viewBox="0 0 64 36">
         <path d="M30 14 C22 6, 10 5, 2 11 C9 12, 14 15, 18 19 C11 19, 6 22, 3 26 C11 25, 19 26, 27 23 L30 20 Z"/>
@@ -1896,23 +2174,148 @@
 
     <div class="next-part-bar">
       <button class="next-part-btn" onclick="openTab('tab3')">
-        Перейти к 3-й части: Любовь, сезоны и наша семья →
+        Перейти к 3-й части: The Binding of Isaac и R.E.P.O. →
       </button>
     </div>
 
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 3 (НОВАЯ): ЛЮБОВЬ, СЕЗОНЫ ГОДА И НАША СЕМЬЯ                  -->
+  <!-- ВКЛАДКА 3 (НОВАЯ): THE BINDING OF ISAAC (3 БЛОКА) + R.E.P.O. (2 БЛОКА) -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab3">
+
+    <!-- Блок 1 Айзека: Фигурки Айзека и Азазеля с интерактивной анимацией -->
+    <section class="isaac-card" id="isaacStageCard">
+      <div class="isaac-kicker">The Binding of Isaac • Айзек и Азазель</div>
+      <h2>Даже в самых тёмных подземельях — мы вдвоём</h2>
+      <p>
+        Сколько бы этажей, слепых комнат и сложных боссов ни выпадало в забеге, рядом с тобой любой ран
+        превращается в идеальную синергию. Нажми на кнопку — и Азазель выпустит луч сердечек для тебя!
+      </p>
+
+      <div class="isaac-stage">
+        <svg viewBox="0 0 560 200" width="100%" style="max-height:200px;display:block;">
+          <!-- АЙЗЕК (слева) -->
+          <g class="isaac-bob">
+            <!-- Голова -->
+            <ellipse cx="165" cy="82" rx="34" ry="30" fill="#f4c7bc" stroke="#3a2323" stroke-width="2.5"/>
+            <!-- Глаза -->
+            <circle cx="152" cy="82" r="7" fill="#1e1518"/>
+            <circle cx="150" cy="80" r="2.2" fill="#ffffff"/>
+            <circle cx="178" cy="82" r="7" fill="#1e1518"/>
+            <circle cx="176" cy="80" r="2.2" fill="#ffffff"/>
+            <!-- Потоки слёз -->
+            <rect x="148" y="89" width="7" height="19" rx="3" fill="#7ad7ff" opacity="0.8"/>
+            <rect x="175" y="89" width="7" height="19" rx="3" fill="#7ad7ff" opacity="0.8"/>
+            <!-- Рот -->
+            <path d="M 159 98 Q 165 94 171 98" fill="none" stroke="#3a2323" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- Тело -->
+            <rect x="150" y="112" width="30" height="28" rx="10" fill="#f4c7bc" stroke="#3a2323" stroke-width="2.5"/>
+            <text x="165" y="162" text-anchor="middle" font-size="11" fill="#ffd6de" font-family="Montserrat">Айзек</text>
+          </g>
+
+          <!-- Луч Сера / Brimstone из сердечек -->
+          <g class="brimstone-beam">
+            <line x1="215" y1="88" x2="345" y2="88" stroke="#ff5e7e" stroke-width="12" stroke-linecap="round" opacity="0.55"/>
+            <text x="280" y="94" text-anchor="middle" font-size="22" fill="#ffe3ea">♥ ♥ ♥</text>
+          </g>
+
+          <!-- АЗАЗЕЛЬ (справа, с рожками и крылышками) -->
+          <g class="azazel-bob">
+            <!-- Крылышки -->
+            <path d="M 366 108 C 344 92, 336 112, 354 126 Z" fill="#231820" stroke="#ff758f" stroke-width="1.5"/>
+            <path d="M 424 108 C 446 92, 454 112, 436 126 Z" fill="#231820" stroke="#ff758f" stroke-width="1.5"/>
+            <!-- Рожки -->
+            <path d="M 372 60 Q 360 44 378 48" fill="none" stroke="#1f151b" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 418 60 Q 430 44 412 48" fill="none" stroke="#1f151b" stroke-width="5" stroke-linecap="round"/>
+            <!-- Голова -->
+            <ellipse cx="395" cy="82" rx="34" ry="30" fill="#443038" stroke="#181014" stroke-width="2.5"/>
+            <!-- Волосы-чёлка -->
+            <path d="M 362 76 L 376 62 L 390 74 L 404 60 L 426 76 Z" fill="#1e1418"/>
+            <!-- Красные глаза -->
+            <circle cx="382" cy="84" r="6.5" fill="#ff3b5c"/>
+            <circle cx="408" cy="84" r="6.5" fill="#ff3b5c"/>
+            <!-- Улыбка -->
+            <path d="M 388 98 Q 395 104 402 98" fill="none" stroke="#ff9eb0" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- Тело -->
+            <rect x="380" y="112" width="30" height="28" rx="10" fill="#443038" stroke="#181014" stroke-width="2.5"/>
+            <text x="395" y="162" text-anchor="middle" font-size="11" fill="#ff9eb0" font-family="Montserrat">Азазель</text>
+          </g>
+        </svg>
+      </div>
+
+      <button class="love-pulse-btn" onclick="toggleBrimstoneHearts()" id="brimstoneBtn">
+        😈 Зарядить Brimstone любовью
+      </button>
+    </section>
+
+    <!-- Блок 2 Айзека -->
+    <section class="isaac-card">
+      <div class="isaac-kicker">Комната сокровищ • Редчайший артефакт</div>
+      <h2>Ты — мой главный предмет уровня «Quality 4»</h2>
+      <p>
+        В *The Binding of Isaac* можно перебрать сотни сундуков в поисках заветного золотого пьедестала,
+        но мне повезло больше всех: 30 ноября 2025 года мне выпал самый ценный артефакт в жизни — ты, Евгеша.
+        С тобой не страшен ни один босс и ни одно проклятие этажа.
+      </p>
+      <div class="anime-footer-note">«Sacred Heart + Brimstone отдыхают рядом с тем, как сильно я тебя люблю»</div>
+    </section>
+
+    <!-- Блок 3 Айзека -->
+    <section class="isaac-card">
+      <div class="isaac-kicker">Сделка на всю жизнь • Красные и вечные сердца</div>
+      <h2>Полная шкала сердец для тебя</h2>
+      <p>
+        Пусть в каждом нашем совместном дне будет максимум здоровья, удачи на максимум и ни одной потерянной
+        слезинки зря. Я всегда буду прикрывать твою спину в любом забеге.
+      </p>
+      <div class="anime-footer-note">«Твоя Марина — твой вечный спутник в каждом ране ♥»</div>
+    </section>
+
+    <!-- Блок 1 R.E.P.O. (Шуточный, с любовью) -->
+    <section class="repo-card">
+      <div class="repo-kicker">R.E.P.O. • Настоящая проверка на прочность</div>
+      <h2>Даже когда тебя буквально тошнило от R.E.P.O.</h2>
+      <p>
+        Я до сих пор с улыбкой вспоминаю, как ты заходил в *R.E.P.O.* и тебя буквально тошнило от этой игры —
+        от её укачивающей камеры, странных монстров и хаоса вокруг. Честно? Даже в те моменты, когда тебе было
+        плохо от экрана и хотелось всё закрыть, ты оставался для меня самым милым и родным человеком на свете.
+      </p>
+      <div class="repo-quote">«Никакой вестибулярный аппарат не сравнится с моей любовью к тебе ♥»</div>
+    </section>
+
+    <!-- Блок 2 R.E.P.O. (Когда он злится, что проигрывает) -->
+    <section class="repo-card">
+      <div class="repo-kicker">R.E.P.O. • Режим «Сердитый Женя»</div>
+      <h2>Я люблю тебя даже когда ты злишься из-за проигрыша</h2>
+      <p>
+        Когда хрупкая ваза разбивается за секунду до выхода, монстр выпрыгивает из-за угла, а ты начинаешь
+        по-настоящему злиться и ворчать на весь мир — для меня это отдельный вид искусства.
+        Я люблю тебя в любом виде: спокойным, сонным, смеющимся и даже грозно ворчащим после поражения.
+      </p>
+      <div class="repo-quote">«Мой самый любимый ворчун — даже на нулевом счёте ты всегда побеждаешь в моём сердце»</div>
+    </section>
+
+    <div class="next-part-bar">
+      <button class="next-part-btn" onclick="openTab('tab4')">
+        Перейти к 4-й части: Любовь, сезоны и наша семья →
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- ВКЛАДКА 4: ЛЮБОВЬ, СЕЗОНЫ ГОДА (С ЖИВЫМ ФОНОМ) И НАША СЕМЬЯ           -->
+  <!-- ===================================================================== -->
+  <section class="tab-panel" id="tab4">
 
     <section class="seasons-hero-card season-winter" id="seasonsHeroCard">
       <div class="seasons-kicker">Так близко к Москве • Времена года и наша любовь</div>
       <h2>Сезоны проходят — а любовь заполняет всё</h2>
       <p class="seasons-lead">
-        Время течёт, меняются пейзажи за окном, приходят и уходят сезоны, но наша любовь не тускнеет —
-        она разливается глубже, заполняя собой каждый день, каждую мысль и всё пространство между нами.
+        Переключай времена года ниже — смотри, как меняется сам воздух вокруг: зимняя метель сменяется
+        весенними лепестками, летними светлячками и осенними листьями, а наша любовь остаётся полной на 100%.
       </p>
 
       <div class="season-anim-stage">
@@ -1934,10 +2337,10 @@
       </div>
 
       <div class="season-controls-bar">
-        <button class="s-mode-btn active" id="smode-winter" onclick="setSeasonShowcase('winter')">❄ Зима</button>
-        <button class="s-mode-btn" id="smode-spring" onclick="setSeasonShowcase('spring')">🌸 Весна</button>
-        <button class="s-mode-btn" id="smode-summer" onclick="setSeasonShowcase('summer')">☀ Лето</button>
-        <button class="s-mode-btn" id="smode-autumn" onclick="setSeasonShowcase('autumn')">🍂 Осень</button>
+        <button class="s-mode-btn active" id="smode-winter" onclick="setSeasonShowcase('winter')">❄ Зима (метель)</button>
+        <button class="s-mode-btn" id="smode-spring" onclick="setSeasonShowcase('spring')">🌸 Весна (лепестки)</button>
+        <button class="s-mode-btn" id="smode-summer" onclick="setSeasonShowcase('summer')">✨ Лето (светлячки)</button>
+        <button class="s-mode-btn" id="smode-autumn" onclick="setSeasonShowcase('autumn')">🍂 Осень (листья)</button>
         <button class="s-mode-btn" id="smode-auto" onclick="toggleAutoSeasons()">⟳ Авто-смена сезонов</button>
       </div>
     </section>
@@ -1984,17 +2387,17 @@
     </section>
 
     <div class="next-part-bar">
-      <button class="next-part-btn" onclick="openTab('tab4')">
-        Перейти к 4-й части: Мир игр и Джунимо →
+      <button class="next-part-btn" onclick="openTab('tab5')">
+        Перейти к 5-й части: Undertale и Stardew Valley →
       </button>
     </div>
 
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 4: UNDERTALE + WATERFALL + РАСШИРЕННЫЙ STARDEW VALLEY       -->
+  <!-- ВКЛАДКА 5: UNDERTALE + STARDEW VALLEY (ЖЕНЯ РЫБАЧИТ, МАСЯ ПОЛИВАЕТ)   -->
   <!-- ===================================================================== -->
-  <section class="tab-panel" id="tab4">
+  <section class="tab-panel" id="tab5">
 
     <section class="ut-section">
       <div class="ut-status">ЕВГЕША &nbsp;&nbsp; LV 99 &nbsp;&nbsp; <span class="cyan">✦ WATERFALL</span> &nbsp;&nbsp; <span class="red">♥ РЕШИМОСТЬ</span></div>
@@ -2047,6 +2450,79 @@
         <div class="ut-save-body">* Мерцающий свет Водопада и голос Евгеши наполняют Марину РЕШИМОСТЬЮ.
 * Все тревоги обнулены. Уровень любви: МАКСИМУМ.
 * Файл «30.11.2025 — Навсегда» успешно сохранён ♥</div>
+      </div>
+    </section>
+
+    <!-- НОВЫЙ ЧУВСТВЕННЫЙ БЛОК STARDEW VALLEY: ЖЕНЯ РЫБАЧИТ, МАСЯ ПОЛИВАЕТ ЦВЕТЫ -->
+    <section class="sd-dark-card">
+      <div class="sd-dark-tag">STARDEW VALLEY • НАША УЮТНАЯ ФЕРМА</div>
+      <h3>Утро у озера: Женя рыбачит, а Мася поливает цветы</h3>
+
+      <div class="sd-farm-stage">
+        <svg viewBox="0 0 560 190" width="100%" style="max-height:190px;display:block;">
+          <!-- Подпись и персонаж МАСЯ (слева, на траве у грядок) -->
+          <text x="125" y="28" text-anchor="middle" font-size="11" fill="#ffb3c6" font-family="'Press Start 2P', monospace">Мася ♥</text>
+          <!-- Волосы Маси -->
+          <rect x="111" y="42" width="28" height="24" fill="#7c5638"/>
+          <!-- Голова -->
+          <rect x="115" y="46" width="20" height="18" fill="#f7d7c4"/>
+          <rect x="127" y="52" width="3" height="3" fill="#2b1b12"/>
+          <!-- Платье/рубашка -->
+          <rect x="115" y="64" width="20" height="24" fill="#e86f88"/>
+          <!-- Ноги -->
+          <rect x="117" y="88" width="6" height="14" fill="#3c4c70"/>
+          <rect x="127" y="88" width="6" height="14" fill="#3c4c70"/>
+          <!-- Лейка в руке -->
+          <rect x="137" y="70" width="14" height="10" fill="#89a8b8"/>
+          <line x1="151" y1="73" x2="160" y2="68" stroke="#89a8b8" stroke-width="3"/>
+          <!-- Капли воды -->
+          <g id="waterDrops" opacity="0.85">
+            <circle cx="166" cy="76" r="2" fill="#7ae5ff"/>
+            <circle cx="172" cy="84" r="2" fill="#7ae5ff"/>
+            <circle cx="168" cy="92" r="2" fill="#7ae5ff"/>
+          </g>
+          <!-- Цветочки на грядке -->
+          <g id="sdFlowers">
+            <rect x="168" y="96" width="4" height="12" fill="#52b765"/>
+            <circle cx="170" cy="94" r="5" fill="#ff8fa3"/>
+            <rect x="188" y="96" width="4" height="12" fill="#52b765"/>
+            <circle cx="190" cy="94" r="5" fill="#ffd27d"/>
+          </g>
+
+          <!-- Деревянный мостик над водой -->
+          <rect x="275" y="102" width="115" height="12" fill="#8c5a36" stroke="#472b16" stroke-width="2"/>
+          <rect x="295" y="114" width="8" height="28" fill="#5e3a20"/>
+          <rect x="360" y="114" width="8" height="28" fill="#5e3a20"/>
+
+          <!-- Подпись и персонаж ЖЕНЯ (на мостике с удочкой) -->
+          <text x="335" y="24" text-anchor="middle" font-size="11" fill="#9ec5ff" font-family="'Press Start 2P', monospace">Женя ♥</text>
+          <!-- Волосы Жени -->
+          <rect x="323" y="34" width="24" height="10" fill="#38281d"/>
+          <!-- Голова -->
+          <rect x="325" y="42" width="20" height="18" fill="#f2d2be"/>
+          <rect x="339" y="48" width="3" height="3" fill="#1e1510"/>
+          <!-- Куртка/рубашка -->
+          <rect x="323" y="60" width="24" height="28" fill="#4675b8"/>
+          <!-- Ноги -->
+          <rect x="326" y="88" width="7" height="14" fill="#2c3545"/>
+          <rect x="337" y="88" width="7" height="14" fill="#2c3545"/>
+          <!-- Удочка -->
+          <line x1="347" y1="68" x2="432" y2="38" stroke="#c9934b" stroke-width="3"/>
+          <!-- Леска -->
+          <line x1="432" y1="38" x2="432" y2="142" stroke="#dce8f7" stroke-width="1.2"/>
+          <!-- Поплавок на воде -->
+          <g class="bobber-float">
+            <circle cx="432" cy="144" r="5" fill="#ff3b3b"/>
+            <path d="M 427 144 A 5 5 0 0 0 437 144 Z" fill="#ffffff"/>
+          </g>
+        </svg>
+      </div>
+
+      <button class="sd-gift-btn" onclick="waterSdPlants()" id="sdWaterBtn">
+        💧 Полить цветочки вместе
+      </button>
+      <div class="sd-dark-desc" id="sdFarmNote" style="margin-top:12px;">
+        Ты спокойно ловишь рыбу у мостика, я поливаю наши цветы — и больше для счастья ничего не нужно.
       </div>
     </section>
 
@@ -2153,12 +2629,13 @@
   </section>
 
   <script>
-    // 0. МУЗЫКА ПО ВКЛАДКАМ (загрузи эти 4 mp3-файла в репозиторий на GitHub)
+    // 0. МУЗЫКА ПО ВКЛАДКАМ
     const tracksByTab = {
       tab1: { src: 'the-dragon-boy.mp3', title: 'The Dragon Boy' },
       tab2: { src: 'howls-moving-castle.mp3', title: 'Howl\'s Moving Castle' },
-      tab3: { src: 'tak-blizko-k-moskve.mp3', title: 'Так близко к Москве' },
-      tab4: { src: 'waterfall.mp3', title: 'Undertale — Waterfall' }
+      tab3: { src: 'isaac.mp3', title: 'The Binding of Isaac & R.E.P.O.' },
+      tab4: { src: 'tak-blizko-k-moskve.mp3', title: 'Так близко к Москве' },
+      tab5: { src: 'waterfall.mp3', title: 'Undertale — Waterfall' }
     };
 
     const audioEl = document.getElementById('bgMusicPlayer');
@@ -2212,7 +2689,9 @@
 
     syncTrackForTab('tab1', false);
 
-    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК + СИНХРОНИЗАЦИЯ ФОНА ПОГОДЫ
+    let activeFamilySeason = 'winter';
+
     function openTab(tabId) {
       currentTabId = tabId;
       document.querySelectorAll('.tab-panel').forEach(panel => {
@@ -2226,6 +2705,13 @@
       const targetBtn = document.getElementById(`nav-${tabId}`);
       if (targetPanel) targetPanel.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
+
+      // На вкладке семьи фон следует за выбранным сезоном, на остальных — зима
+      if (tabId === 'tab4') {
+        weatherMode = activeFamilySeason;
+      } else {
+        weatherMode = 'winter';
+      }
 
       syncTrackForTab(tabId, true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2245,60 +2731,111 @@
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // 2. АНИМИРОВАННЫЙ ПАДАЮЩИЙ СНЕГ И МЕТЕЛЬ
+    // 2. ЖИВОЙ ФОН: ЗИМА (СНЕГ/МЕТЕЛЬ), ВЕСНА (ЛЕПЕСТКИ), ЛЕТО (СВЕТЛЯЧКИ), ОСЕНЬ (ЛИСТЬЯ)
     const canvas = document.getElementById('snowCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     let isBlizzard = false;
+    let weatherMode = 'winter';
 
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     });
 
-    const flakes = [];
+    const particles = [];
+    const autumnColors = ['#ff8c42', '#e85d3f', '#f4b942', '#d94e34'];
+
     for (let i = 0; i < 130; i++) {
-      flakes.push({
+      particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: Math.random() * 2.8 + 1,
+        r: Math.random() * 2.8 + 1.2,
         speedY: Math.random() * 1.2 + 0.5,
         speedX: Math.random() * 0.8 - 0.4,
-        opacity: Math.random() * 0.65 + 0.25
+        opacity: Math.random() * 0.65 + 0.25,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.04,
+        color: autumnColors[i % autumnColors.length]
       });
     }
 
-    function drawSnow() {
+    function drawWeather() {
       ctx.clearRect(0, 0, width, height);
-      for (let f of flakes) {
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 247, 255, ${f.opacity})`;
-        ctx.fill();
+      for (let p of particles) {
+        p.angle += p.spin;
+        const multY = isBlizzard ? 2.6 : 1;
+        const windX = isBlizzard ? 3.0 : p.speedX;
 
-        const multY = isBlizzard ? 2.8 : 1;
-        const windX = isBlizzard ? 3.2 : f.speedX;
+        if (weatherMode === 'summer') {
+          // Летние светлячки мягко парят и мерцают
+          const glow = 0.35 + 0.65 * Math.abs(Math.sin(p.angle * 1.5));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r + 1.4, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 232, 115, ${glow})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#ffd000';
+          ctx.fill();
+          ctx.shadowBlur = 0;
 
-        f.y += f.speedY * multY;
-        f.x += windX + Math.sin(f.y * 0.01) * 0.3;
+          p.y -= p.speedY * 0.45 * multY;
+          p.x += Math.sin(p.angle) * 0.9 + (isBlizzard ? 1.8 : 0);
+          if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+        } else if (weatherMode === 'spring') {
+          // Весенние розовые лепестки
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r * 2.2, p.r * 1.1, 0, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 182, 206, ${p.opacity + 0.15})`;
+          ctx.fill();
+          ctx.restore();
 
-        if (f.y > height) {
-          f.y = -5;
-          f.x = Math.random() * width;
+          p.y += p.speedY * 0.95 * multY;
+          p.x += windX + Math.sin(p.angle) * 1.1;
+          if (p.y > height + 10) { p.y = -10; p.x = Math.random() * width; }
+        } else if (weatherMode === 'autumn') {
+          // Осенние листья
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r * 2.6, p.r * 1.3, 0, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = Math.min(0.9, p.opacity + 0.2);
+          ctx.fill();
+          ctx.restore();
+          ctx.globalAlpha = 1;
+
+          p.y += p.speedY * 1.15 * multY;
+          p.x += windX + Math.cos(p.angle) * 1.3;
+          if (p.y > height + 10) { p.y = -10; p.x = Math.random() * width; }
+        } else {
+          // Зимний снег и метель
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(240, 247, 255, ${p.opacity})`;
+          ctx.fill();
+
+          p.y += p.speedY * multY;
+          p.x += windX + Math.sin(p.y * 0.01) * 0.3;
+          if (p.y > height) { p.y = -5; p.x = Math.random() * width; }
         }
-        if (f.x > width) f.x = 0;
-        if (f.x < 0) f.x = width;
+
+        if (p.x > width) p.x = 0;
+        if (p.x < 0) p.x = width;
       }
-      requestAnimationFrame(drawSnow);
+      requestAnimationFrame(drawWeather);
     }
-    drawSnow();
+    drawWeather();
 
     function toggleBlizzard() {
       isBlizzard = !isBlizzard;
       document.getElementById('blizzardBtn').textContent = isBlizzard
-        ? '❄ Вернуть тихий снегопад'
-        : '❄ Усилить зимнюю метель';
+        ? '❄ Ослабить ветер'
+        : '❄ Усилить метель';
     }
 
     // 2.5 КНОПКА-СЕРДЕЧКО «ПОСЛАТЬ ТЕПЛО ЧЕРЕЗ РАССТОЯНИЕ»
@@ -2326,6 +2863,21 @@
         heart.style.top = `${y + (Math.random() * 20 - 10)}px`;
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 1500);
+      }
+    }
+
+    // Интерактив нити на 1-й странице
+    let threadConnected = false;
+    function pulseThreadConnection() {
+      threadConnected = !threadConnected;
+      const heart = document.getElementById('centerHeartSvg');
+      const cap = document.getElementById('threadEmotionCaption');
+      if (threadConnected) {
+        heart.setAttribute('font-size', '34');
+        cap.textContent = '«Наши ладони встретились — расстояние исчезло ♥»';
+      } else {
+        heart.setAttribute('font-size', '22');
+        cap.textContent = '«Даже на расстоянии наши ладони тянутся друг к другу»';
       }
     }
 
@@ -2472,7 +3024,38 @@
       btn.textContent = isOpen ? '✉ Скрыть письмо' : '✉ Открыть письмо';
     }
 
-    // 6.5 АНИМАЦИЯ СМЕНЫ СЕЗОНОВ И ЗАПОЛНЕНИЯ ЛЮБОВЬЮ (ВКЛАДКА 3)
+    // 6.2 ОБЪЯТИЯ ЭРЕНА И МИКАСЫ
+    let isEmHugging = false;
+    function toggleErenMikasaHug() {
+      isEmHugging = !isEmHugging;
+      const card = document.getElementById('erenMikasaCard');
+      const heart = document.getElementById('emHeart');
+      const btn = document.getElementById('emHugBtn');
+      const cap = document.getElementById('emCaption');
+
+      card.classList.toggle('hugging', isEmHugging);
+      if (isEmHugging) {
+        heart.setAttribute('opacity', '1');
+        heart.setAttribute('font-size', '34');
+        btn.textContent = '♥ Они обнимаются…';
+        cap.textContent = '«Я никуда тебя не отпущу, сколько бы раз ни пришлось начинать заново ♥»';
+      } else {
+        heart.setAttribute('opacity', '0.35');
+        heart.setAttribute('font-size', '24');
+        btn.textContent = '♥ Обнять Эрена и прижаться щекой';
+        cap.textContent = '«Спасибо, что повязал на меня этот шарф…»';
+      }
+    }
+
+    // 6.4 АЗАЗЕЛЬ И АЙЗЕК (BRIMSTONE ИЗ СЕРДЕЧЕК)
+    function toggleBrimstoneHearts() {
+      const card = document.getElementById('isaacStageCard');
+      const btn = document.getElementById('brimstoneBtn');
+      const active = card.classList.toggle('brimstone-active');
+      btn.textContent = active ? '♥ Сплошной поток сердечек!' : '😈 Зарядить Brimstone любовью';
+    }
+
+    // 6.5 АНИМАЦИЯ СМЕНЫ СЕЗОНОВ И ЗАПОЛНЕНИЯ ЛЮБОВЬЮ + ЖИВОЙ ФОН (ВКЛАДКА 4)
     const seasonsShowcaseData = {
       winter: {
         cls: 'season-winter',
@@ -2492,8 +3075,8 @@
       },
       summer: {
         cls: 'season-summer',
-        orb: '☀',
-        title: 'Лето — тёплый свет на душе',
+        orb: '✨',
+        title: 'Лето — тёплый свет и светлячки',
         text: 'Длинные светлые вечера, когда даже на расстоянии чувствуешь тепло родного человека так ясно, словно он рядом за руку.',
         fill: '100%',
         label: '100% • НАПОЛНЯЕТ КАЖДЫЙ МИГ'
@@ -2515,6 +3098,11 @@
     function setSeasonShowcase(key) {
       const data = seasonsShowcaseData[key];
       if (!data) return;
+
+      activeFamilySeason = key;
+      if (currentTabId === 'tab4') {
+        weatherMode = key;
+      }
 
       const card = document.getElementById('seasonsHeroCard');
       card.classList.remove('season-winter', 'season-spring', 'season-summer', 'season-autumn');
@@ -2611,7 +3199,32 @@
       document.getElementById('utItemText').textContent = itemTexts[i];
     }
 
-    // 8. ПЕРЕКЛЮЧАТЕЛЬ СЕЗОНОВ В STARDEW VALLEY
+    // 8. ПЕРЕКЛЮЧАТЕЛЬ СЕЗОНОВ И ПОЛИВ В STARDEW VALLEY
+    let watered = false;
+    function waterSdPlants() {
+      watered = !watered;
+      const flowers = document.getElementById('sdFlowers');
+      const note = document.getElementById('sdFarmNote');
+      if (watered) {
+        flowers.innerHTML = `
+          <rect x="168" y="92" width="4" height="16" fill="#52b765"/>
+          <circle cx="170" cy="88" r="8" fill="#ff8fa3"/>
+          <rect x="188" y="92" width="4" height="16" fill="#52b765"/>
+          <circle cx="190" cy="88" r="8" fill="#ffd27d"/>
+          <text x="180" y="76" text-anchor="middle" font-size="12" fill="#ff9eb0">♥</text>
+        `;
+        note.textContent = "Цветочки расцвели, а у Жени на крючке — золотая рыбка! Самый уютный день на ферме ♥";
+      } else {
+        flowers.innerHTML = `
+          <rect x="168" y="96" width="4" height="12" fill="#52b765"/>
+          <circle cx="170" cy="94" r="5" fill="#ff8fa3"/>
+          <rect x="188" y="96" width="4" height="12" fill="#52b765"/>
+          <circle cx="190" cy="94" r="5" fill="#ffd27d"/>
+        `;
+        note.textContent = "Ты спокойно ловишь рыбу у мостика, я поливаю наши цветы — и больше для счастья ничего не нужно.";
+      }
+    }
+
     const sdSeasons = {
       winter: "30 ноября 2025 началась наша первая зима. За окном падал снег, а наши вечерние разговоры грели лучше любого камина.",
       spring: "Весной расцвели новые мечты и надежды на встречу — каждый день с тобой приносил свежее дыхание и улыбки.",
