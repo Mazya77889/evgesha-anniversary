@@ -40,7 +40,6 @@
     z-index: 1;
   }
 
-  /* Всплывающие искорки при нажатии на сердечко любви */
   .floating-heart {
     position: fixed;
     pointer-events: none;
@@ -61,9 +60,9 @@
     position: sticky;
     top: 12px;
     z-index: 50;
-    max-width: 860px;
+    max-width: 960px;
     margin: 12px auto 0 auto;
-    padding: 0 16px;
+    padding: 0 14px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -72,9 +71,9 @@
   .top-nav {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     flex-wrap: wrap;
-    background: rgba(12, 19, 34, 0.84);
+    background: rgba(12, 19, 34, 0.86);
     border: 1px solid rgba(204, 224, 255, 0.24);
     backdrop-filter: blur(14px);
     padding: 9px 12px;
@@ -86,10 +85,10 @@
     background: transparent;
     border: 1px solid transparent;
     color: #cddbf0;
-    padding: 9px 16px;
+    padding: 8px 14px;
     border-radius: 999px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -112,7 +111,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(16, 23, 38, 0.82);
+    background: rgba(16, 23, 38, 0.84);
     border: 1px solid rgba(247, 202, 208, 0.3);
     backdrop-filter: blur(12px);
     padding: 6px 14px;
@@ -155,7 +154,7 @@
     margin: 0 auto;
     padding: 20px 18px 80px 18px;
     flex-direction: column;
-    gap: 50px;
+    gap: 48px;
     animation: tabFadeIn 0.45s ease;
   }
 
@@ -171,7 +170,7 @@
   .next-part-bar {
     display: flex;
     justify-content: center;
-    padding-top: 8px;
+    padding-top: 6px;
   }
 
   .next-part-btn {
@@ -760,7 +759,6 @@
     margin: 0;
   }
 
-  /* Конверт и личное письмо */
   .letter-section {
     background: linear-gradient(155deg, rgba(34, 27, 24, 0.85) 0%, rgba(20, 22, 34, 0.88) 100%);
     border: 1px solid rgba(244, 208, 146, 0.38);
@@ -891,7 +889,6 @@
     text-align: right;
   }
 
-  /* Атака титанов */
   .aot-card {
     background: linear-gradient(160deg, rgba(22, 25, 36, 0.84) 0%, rgba(36, 28, 34, 0.82) 100%);
     border: 1px solid rgba(235, 198, 148, 0.42);
@@ -943,7 +940,263 @@
     color: #ebc694;
   }
 
-  /* ==================== ВКЛАДКА 3: UNDERTALE + РАСШИРЕННЫЙ STARDEW VALLEY ==================== */
+  /* ==================== ВКЛАДКА 3 (НОВАЯ): ЛЮБОВЬ, СЕЗОНЫ И СЕМЬЯ ==================== */
+  .seasons-hero-card {
+    position: relative;
+    border-radius: 32px;
+    padding: 36px 28px;
+    border: 1px solid rgba(255, 214, 224, 0.34);
+    background: linear-gradient(155deg, rgba(44, 28, 46, 0.84) 0%, rgba(22, 26, 44, 0.9) 100%);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: background 0.9s ease, border-color 0.9s ease;
+  }
+
+  .seasons-hero-card.season-winter {
+    background: linear-gradient(155deg, rgba(22, 36, 62, 0.88) 0%, rgba(36, 48, 76, 0.88) 100%);
+    border-color: rgba(175, 214, 255, 0.45);
+  }
+  .seasons-hero-card.season-spring {
+    background: linear-gradient(155deg, rgba(58, 30, 48, 0.88) 0%, rgba(38, 46, 48, 0.88) 100%);
+    border-color: rgba(255, 194, 214, 0.5);
+  }
+  .seasons-hero-card.season-summer {
+    background: linear-gradient(155deg, rgba(64, 44, 24, 0.88) 0%, rgba(32, 48, 56, 0.88) 100%);
+    border-color: rgba(255, 224, 150, 0.5);
+  }
+  .seasons-hero-card.season-autumn {
+    background: linear-gradient(155deg, rgba(64, 30, 22, 0.88) 0%, rgba(36, 22, 28, 0.9) 100%);
+    border-color: rgba(255, 168, 122, 0.5);
+  }
+
+  .seasons-kicker {
+    font-size: 10.5px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #ffd6de;
+    margin-bottom: 10px;
+  }
+
+  .seasons-hero-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #fff8fa;
+  }
+
+  .seasons-lead {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #f2e6ee;
+    margin: 0 0 22px 0;
+  }
+
+  .season-anim-stage {
+    position: relative;
+    border-radius: 22px;
+    padding: 24px 20px;
+    background: rgba(11, 14, 26, 0.65);
+    border: 1px solid rgba(255, 224, 232, 0.24);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .season-orb {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    margin: 0 auto 14px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.28), rgba(255, 165, 185, 0.12));
+    box-shadow: 0 0 36px rgba(255, 185, 200, 0.35);
+    animation: orbFloat 3.4s infinite ease-in-out;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.07) translateY(-6px); }
+  }
+
+  .season-stage-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff2f5;
+    margin: 0 0 8px 0;
+  }
+
+  .season-stage-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.82;
+    text-align: center;
+    color: #f3e8ef;
+    max-width: 600px;
+    margin: 0 auto 18px auto;
+  }
+
+  /* Шкала заполнения любовью */
+  .love-fill-wrap {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .love-fill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #ffd6de;
+    margin-bottom: 7px;
+  }
+
+  .love-fill-track {
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    border: 1px solid rgba(255, 214, 224, 0.3);
+  }
+
+  .love-fill-bar {
+    height: 100%;
+    width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #9ec5ff 0%, #ffb3c6 50%, #ffd29d 100%);
+    box-shadow: 0 0 18px rgba(255, 165, 185, 0.75);
+    transition: width 0.8s ease;
+  }
+
+  .season-controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9px;
+  }
+
+  .s-mode-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 214, 224, 0.32);
+    color: #f5e8ee;
+    padding: 9px 15px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .s-mode-btn:hover, .s-mode-btn.active {
+    background: rgba(255, 158, 178, 0.28);
+    border-color: #ffb8c8;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  /* Блоки семьи и любви */
+  .family-card {
+    background: linear-gradient(155deg, rgba(36, 24, 38, 0.82) 0%, rgba(18, 22, 38, 0.88) 100%);
+    border: 1px solid rgba(255, 204, 214, 0.28);
+    border-radius: 28px;
+    padding: 34px 28px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42);
+  }
+
+  .family-kicker {
+    font-size: 10.5px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #f7c7d2;
+    margin-bottom: 8px;
+  }
+
+  .family-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 33px;
+    font-weight: 700;
+    margin: 0 0 14px 0;
+    color: #fff6f8;
+  }
+
+  .family-card p {
+    font-size: 14.5px;
+    line-height: 1.85;
+    font-weight: 300;
+    color: #ece0e8;
+    margin: 0 0 14px 0;
+  }
+
+  .family-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #ffd9c2;
+  }
+
+  /* Торжественный финал: я стану твоей женой */
+  .wife-vow-card {
+    position: relative;
+    text-align: center;
+    border-radius: 34px;
+    padding: 44px 30px;
+    background:
+      radial-gradient(circle at 50% 15%, rgba(255, 196, 210, 0.22) 0%, transparent 60%),
+      linear-gradient(160deg, rgba(52, 26, 40, 0.9) 0%, rgba(22, 18, 34, 0.94) 100%);
+    border: 1.5px solid rgba(255, 214, 185, 0.52);
+    box-shadow: 0 26px 64px rgba(0, 0, 0, 0.55), inset 0 0 45px rgba(255, 198, 210, 0.08);
+  }
+
+  .wife-ring-mark {
+    font-size: 34px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 14px rgba(255, 210, 175, 0.65));
+  }
+
+  .wife-kicker {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ffd6b8;
+    margin-bottom: 10px;
+  }
+
+  .wife-vow-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 44px);
+    font-weight: 700;
+    margin: 0 0 18px 0;
+    color: #fff9fa;
+    line-height: 1.18;
+  }
+
+  .wife-vow-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    line-height: 1.65;
+    color: #ffeef2;
+    max-width: 620px;
+    margin: 0 auto 18px auto;
+  }
+
+  .wife-sign {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffd6de;
+    margin-top: 10px;
+  }
+
+  /* ==================== ВКЛАДКА 4: UNDERTALE + WATERFALL + STARDEW VALLEY ==================== */
   .ut-section {
     font-family: 'Press Start 2P', monospace;
     display: flex;
@@ -1241,16 +1494,16 @@
 
   @media (max-width: 560px) {
     .top-nav { border-radius: 22px; gap: 6px; }
-    .nav-tab-btn { font-size: 11px; padding: 8px 12px; }
+    .nav-tab-btn { font-size: 11px; padding: 7px 11px; }
     .hero-banner { min-height: 74vh; padding: 32px 16px; }
     .h-time-card { min-width: 72px; padding: 12px 10px; }
     .h-time-card span { font-size: 28px; }
-    .anime-card, .map-card, .together-card, .letter-section { padding: 26px 18px; }
-    .anime-card h2, .map-card h2, .together-card h2, .letter-section h2 { font-size: 26px; }
+    .anime-card, .map-card, .together-card, .letter-section, .seasons-hero-card, .family-card, .wife-vow-card { padding: 26px 18px; }
+    .anime-card h2, .map-card h2, .together-card h2, .letter-section h2, .seasons-hero-card h2, .family-card h3 { font-size: 26px; }
     .ut-text { font-size: 10px; line-height: 1.75; }
     .aot-card h2 { font-size: 27px; }
     .sd-dark-card h3, .sd-night-finale h2 { font-size: 11.5px; }
-    .handwritten-sheet p { font-size: 19px; }
+    .handwritten-sheet p, .wife-vow-card p { font-size: 19px; }
   }
 </style>
 </head>
@@ -1259,7 +1512,7 @@
   <canvas id="snowCanvas"></canvas>
   <audio id="bgMusicPlayer" loop preload="metadata"></audio>
 
-  <!-- ==================== 3 КНОПКИ НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
+  <!-- ==================== 4 КНОПКИ НАВИГАЦИИ + МУЗЫКАЛЬНЫЙ ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
     <nav class="top-nav" aria-label="Разделы сайта">
       <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
@@ -1269,6 +1522,9 @@
         🍷 Будь мы рядом и письмо
       </button>
       <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
+        💍 Любовь и наша семья
+      </button>
+      <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
         🎮 Мир игр и Джунимо
       </button>
     </nav>
@@ -1640,16 +1896,105 @@
 
     <div class="next-part-bar">
       <button class="next-part-btn" onclick="openTab('tab3')">
-        Перейти к 3-й части: Undertale и Stardew Valley →
+        Перейти к 3-й части: Любовь, сезоны и наша семья →
       </button>
     </div>
 
   </section>
 
   <!-- ===================================================================== -->
-  <!-- ВКЛАДКА 3: UNDERTALE + WATERFALL + РАСШИРЕННЫЙ STARDEW VALLEY       -->
+  <!-- ВКЛАДКА 3 (НОВАЯ): ЛЮБОВЬ, СЕЗОНЫ ГОДА И НАША СЕМЬЯ                  -->
   <!-- ===================================================================== -->
   <section class="tab-panel" id="tab3">
+
+    <section class="seasons-hero-card season-winter" id="seasonsHeroCard">
+      <div class="seasons-kicker">Так близко к Москве • Времена года и наша любовь</div>
+      <h2>Сезоны проходят — а любовь заполняет всё</h2>
+      <p class="seasons-lead">
+        Время течёт, меняются пейзажи за окном, приходят и уходят сезоны, но наша любовь не тускнеет —
+        она разливается глубже, заполняя собой каждый день, каждую мысль и всё пространство между нами.
+      </p>
+
+      <div class="season-anim-stage">
+        <div class="season-orb" id="seasonOrb">❄</div>
+        <h3 class="season-stage-title" id="seasonStageTitle">Зима — начало нашего тепла</h3>
+        <p class="season-stage-text" id="seasonStageText">
+          Снег за окном и тихие зимние вечера, когда в наших словах было столько нежности, что мороз снаружи казался совсем не страшным.
+        </p>
+
+        <div class="love-fill-wrap">
+          <div class="love-fill-header">
+            <span>НАША ЛЮБОВЬ ЗАПОЛНЯЕТ ПРОСТРАНСТВО</span>
+            <span id="loveFillPercent">100% • БЕЗ ГРАНИЦ</span>
+          </div>
+          <div class="love-fill-track">
+            <div class="love-fill-bar" id="loveFillBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="season-controls-bar">
+        <button class="s-mode-btn active" id="smode-winter" onclick="setSeasonShowcase('winter')">❄ Зима</button>
+        <button class="s-mode-btn" id="smode-spring" onclick="setSeasonShowcase('spring')">🌸 Весна</button>
+        <button class="s-mode-btn" id="smode-summer" onclick="setSeasonShowcase('summer')">☀ Лето</button>
+        <button class="s-mode-btn" id="smode-autumn" onclick="setSeasonShowcase('autumn')">🍂 Осень</button>
+        <button class="s-mode-btn" id="smode-auto" onclick="toggleAutoSeasons()">⟳ Авто-смена сезонов</button>
+      </div>
+    </section>
+
+    <section class="family-card">
+      <div class="family-kicker">Любовь в мелочах • Настоящая близость</div>
+      <h3>Любовь, которая не требует громких слов</h3>
+      <p>
+        Настоящая любовь живёт в том, как спокойно становится на душе, когда слышишь родной голос,
+        в умении выслушать, поддержать и не отпустить, когда трудно. Мы прошли через разлуку и ожидание,
+        и это только доказало, насколько глубоко мы дороги друг другу.
+      </p>
+      <div class="family-quote">«Там, где есть настоящая любовь, расстояние — лишь временная глава»</div>
+    </section>
+
+    <section class="family-card">
+      <div class="family-kicker">Наш дом • Семейный очаг</div>
+      <h3>Семья — это когда рядом свой человек</h3>
+      <p>
+        Для меня семья — это не просто стены и крыша над головой. Это утро, когда никуда не нужно спешить,
+        общий смех на кухне, тёплый плед на двоих, тихое понимание с полуслова и ощущение, что дома
+        тебя всегда ждут и любят просто за то, кто ты есть.
+      </p>
+      <p>
+        Я вижу наше будущее как светлый, спокойный мир, в котором мы строим нашу семью бережно,
+        честно и с бесконечным теплом друг к другу.
+      </p>
+      <div class="family-quote">«Дом там, где бьётся твоё сердце рядом с моим»</div>
+    </section>
+
+    <section class="wife-vow-card" id="wifeVowSection">
+      <div class="wife-ring-mark">💍 ♥</div>
+      <div class="wife-kicker">Моё самое главное обещание</div>
+      <h2>Я стану твоей женой</h2>
+      <p>
+        Любимый Евгеша, глядя на весь наш путь и на всё, что ещё ждёт нас впереди, я хочу сказать
+        тебе с самой глубокой нежностью: я обязательно стану твоей женой.
+      </p>
+      <p>
+        Я хочу разделить с тобой жизнь, стать твоей верной спутницей, опорой и самым родным человеком —
+        в радости и в любых переменах, в каждом новом сезоне и в каждом нашем завтра.
+      </p>
+      <div class="wife-sign">Навсегда твоя, твоя будущая жена — Марина ♥</div>
+    </section>
+
+    <div class="next-part-bar">
+      <button class="next-part-btn" onclick="openTab('tab4')">
+        Перейти к 4-й части: Мир игр и Джунимо →
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- ВКЛАДКА 4: UNDERTALE + WATERFALL + РАСШИРЕННЫЙ STARDEW VALLEY       -->
+  <!-- ===================================================================== -->
+  <section class="tab-panel" id="tab4">
 
     <section class="ut-section">
       <div class="ut-status">ЕВГЕША &nbsp;&nbsp; LV 99 &nbsp;&nbsp; <span class="cyan">✦ WATERFALL</span> &nbsp;&nbsp; <span class="red">♥ РЕШИМОСТЬ</span></div>
@@ -1808,11 +2153,12 @@
   </section>
 
   <script>
-    // 0. МУЗЫКА ПО ВКЛАДКАМ (загрузи эти файлы в репозиторий на GitHub)
+    // 0. МУЗЫКА ПО ВКЛАДКАМ (загрузи эти 4 mp3-файла в репозиторий на GitHub)
     const tracksByTab = {
       tab1: { src: 'the-dragon-boy.mp3', title: 'The Dragon Boy' },
       tab2: { src: 'howls-moving-castle.mp3', title: 'Howl\'s Moving Castle' },
-      tab3: { src: 'waterfall.mp3', title: 'Undertale — Waterfall' }
+      tab3: { src: 'tak-blizko-k-moskve.mp3', title: 'Так близко к Москве' },
+      tab4: { src: 'waterfall.mp3', title: 'Undertale — Waterfall' }
     };
 
     const audioEl = document.getElementById('bgMusicPlayer');
@@ -1866,7 +2212,7 @@
 
     syncTrackForTab('tab1', false);
 
-    // ПЕРЕКЛЮЧЕНИЕ ТРЁХ ВКЛАДОК
+    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
     function openTab(tabId) {
       currentTabId = tabId;
       document.querySelectorAll('.tab-panel').forEach(panel => {
@@ -2124,6 +2470,84 @@
       const btn = document.getElementById('openLetterBtn');
       const isOpen = sheet.classList.toggle('open');
       btn.textContent = isOpen ? '✉ Скрыть письмо' : '✉ Открыть письмо';
+    }
+
+    // 6.5 АНИМАЦИЯ СМЕНЫ СЕЗОНОВ И ЗАПОЛНЕНИЯ ЛЮБОВЬЮ (ВКЛАДКА 3)
+    const seasonsShowcaseData = {
+      winter: {
+        cls: 'season-winter',
+        orb: '❄',
+        title: 'Зима — начало нашего тепла',
+        text: 'Снег за окном и тихие зимние вечера, когда в наших словах было столько нежности, что мороз снаружи казался совсем не страшным.',
+        fill: '100%',
+        label: '100% • СОГРЕВАЕТ ДАЖЕ ЗИМОЙ'
+      },
+      spring: {
+        cls: 'season-spring',
+        orb: '🌸',
+        title: 'Весна — дыхание новых надежд',
+        text: 'Всё вокруг расцветает, и наша любовь заполняет каждый день свежим светом, улыбками и верой в нашу скорую встречу.',
+        fill: '100%',
+        label: '100% • РАСЦВЕТАЕТ С КАЖДЫМ ДНЁМ'
+      },
+      summer: {
+        cls: 'season-summer',
+        orb: '☀',
+        title: 'Лето — тёплый свет на душе',
+        text: 'Длинные светлые вечера, когда даже на расстоянии чувствуешь тепло родного человека так ясно, словно он рядом за руку.',
+        fill: '100%',
+        label: '100% • НАПОЛНЯЕТ КАЖДЫЙ МИГ'
+      },
+      autumn: {
+        cls: 'season-autumn',
+        orb: '🍂',
+        title: 'Осень — глубина и верность',
+        text: 'Шуршание листьев и уютная тишина, в которой наша любовь звучит особенно зрело, спокойно и по-настоящему навсегда.',
+        fill: '100%',
+        label: '100% • БЕЗ ГРАНИЦ И ВРЕМЕНИ'
+      }
+    };
+
+    const seasonOrder = ['winter', 'spring', 'summer', 'autumn'];
+    let autoSeasonTimer = null;
+    let autoSeasonIndex = 0;
+
+    function setSeasonShowcase(key) {
+      const data = seasonsShowcaseData[key];
+      if (!data) return;
+
+      const card = document.getElementById('seasonsHeroCard');
+      card.classList.remove('season-winter', 'season-spring', 'season-summer', 'season-autumn');
+      card.classList.add(data.cls);
+
+      document.querySelectorAll('.s-mode-btn').forEach(btn => {
+        if (btn.id !== 'smode-auto') btn.classList.remove('active');
+      });
+      const activeBtn = document.getElementById(`smode-${key}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.getElementById('seasonOrb').textContent = data.orb;
+      document.getElementById('seasonStageTitle').textContent = data.title;
+      document.getElementById('seasonStageText').textContent = data.text;
+      document.getElementById('loveFillBar').style.width = data.fill;
+      document.getElementById('loveFillPercent').textContent = data.label;
+    }
+
+    function toggleAutoSeasons() {
+      const autoBtn = document.getElementById('smode-auto');
+      if (autoSeasonTimer) {
+        clearInterval(autoSeasonTimer);
+        autoSeasonTimer = null;
+        autoBtn.classList.remove('active');
+        autoBtn.textContent = '⟳ Авто-смена сезонов';
+      } else {
+        autoBtn.classList.add('active');
+        autoBtn.textContent = '⏸ Остановить цикл';
+        autoSeasonTimer = setInterval(() => {
+          autoSeasonIndex = (autoSeasonIndex + 1) % seasonOrder.length;
+          setSeasonShowcase(seasonOrder[autoSeasonIndex]);
+        }, 2800);
+      }
     }
 
     // 7. UNDERTALE + WATERFALL ИНТЕРАКТИВ
