@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Montserrat:wght@300;400;500;600&family=Press+Start+2P&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600&family=Press+Start+2P&display=swap"
     rel="stylesheet"
   />
   <style>
@@ -101,37 +101,54 @@
       }
     }
 
-    /* Навигация, кнопка метели справа и плеер по центру */
+    /* Кнопка метели отдельно в самом верхнем правом углу */
+    .blizzard-corner-btn {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      z-index: 45;
+      background: rgba(14, 22, 36, 0.88);
+      backdrop-filter: blur(12px);
+      color: #dcebff;
+      border: 1px solid rgba(180, 214, 255, 0.45);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 9px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .blizzard-corner-btn:hover {
+      background: rgba(180, 214, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    /* Навигация и плеер ровно по центру */
     .top-nav-wrap {
       position: sticky;
-      top: 10px;
+      top: 12px;
       z-index: 30;
       width: 100%;
-      max-width: 1180px;
-      margin: 12px auto 0 auto;
+      max-width: 820px;
+      margin: 14px auto 0 auto;
       padding: 0 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-    }
-
-    .top-header-row {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .top-nav {
-      grid-column: 2;
-      justify-self: center;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 7px;
-      background: rgba(12, 19, 32, 0.82);
+      align-items: center;
+      gap: 6px;
+      background: rgba(12, 19, 32, 0.84);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-soft);
       border-radius: 999px;
@@ -139,24 +156,18 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
-    .top-right-slot {
-      grid-column: 3;
-      justify-self: end;
-      display: flex;
-      align-items: center;
-    }
-
     .nav-tab-btn {
       background: transparent;
       border: 1px solid transparent;
       color: var(--text-muted);
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
-      padding: 7px 13px;
+      padding: 7px 12px;
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s ease;
+      white-space: nowrap;
     }
 
     .nav-tab-btn:hover {
@@ -170,38 +181,17 @@
       font-weight: 600;
     }
 
-    .blizzard-top-btn {
-      background: rgba(14, 22, 36, 0.85);
-      backdrop-filter: blur(12px);
-      color: #dcebff;
-      border: 1px solid rgba(180, 214, 255, 0.45);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 9px 15px;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
-      transition: 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .blizzard-top-btn:hover {
-      background: rgba(180, 214, 255, 0.22);
-      transform: translateY(-1px);
-    }
-
     .music-bar {
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      background: rgba(15, 23, 38, 0.78);
+      background: rgba(15, 23, 38, 0.82);
       backdrop-filter: blur(10px);
       border: 1px solid var(--border-soft);
       border-radius: 999px;
-      padding: 4px 12px 4px 6px;
-      font-size: 11.5px;
+      padding: 4px 14px 4px 6px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
     }
 
     .music-toggle-btn {
@@ -214,10 +204,21 @@
       padding: 4px 10px;
       border-radius: 999px;
       cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .music-toggle-btn:hover {
+      background: rgba(255, 143, 163, 0.32);
     }
 
     .music-track-label {
-      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      color: #ffe6cc;
+      line-height: 1.1;
     }
 
     /* Вкладки */
@@ -1284,14 +1285,15 @@
       }
     }
 
-    @media (max-width: 920px) {
-      .top-header-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    @media (max-width: 720px) {
+      .blizzard-corner-btn {
+        top: 10px;
+        right: 12px;
+        font-size: 11px;
+        padding: 7px 12px;
       }
-      .top-right-slot {
-        justify-self: center;
+      .top-nav-wrap {
+        margin-top: 48px;
       }
     }
 
@@ -1304,9 +1306,8 @@
         font-size: 10.5px;
         padding: 7px 10px;
       }
-      .blizzard-top-btn {
-        font-size: 11px;
-        padding: 7px 13px;
+      .music-track-label {
+        font-size: 15.5px;
       }
       .hero-banner {
         min-height: 74vh;
@@ -1362,6 +1363,11 @@
   <canvas id="snowCanvas"></canvas>
   <audio id="bgMusicPlayer" loop preload="metadata"></audio>
 
+  <!-- Кнопка метели отдельно в самом верхнем правом углу -->
+  <button class="blizzard-corner-btn" onclick="toggleBlizzard()" id="blizzardBtn">
+    ❄ Усилить метель
+  </button>
+
   <!-- Сугроб внизу на странице Stardew Valley -->
   <svg class="bottom-snow-drift" id="bottomSnowDrift" viewBox="0 0 1200 60" preserveAspectRatio="none">
     <path d="M0 30 Q 150 6, 300 28 T 600 24 T 900 30 T 1200 20 L 1200 60 L 0 60 Z" fill="rgba(244, 249, 255, 0.92)"/>
@@ -1378,36 +1384,28 @@
     <circle cx="520" cy="540" r="140" fill="rgba(255, 130, 155, 0.24)"/>
   </svg>
 
-  <!-- ==================== 6 ВКЛАДОК НАВИГАЦИИ + МЕТЕЛЬ СПРАВА + ПЛЕЕР ==================== -->
+  <!-- ==================== 6 ВКЛАДОК НАВИГАЦИИ ПО ЦЕНТРУ + ПЛЕЕР ==================== -->
   <div class="top-nav-wrap">
-    <div class="top-header-row">
-      <nav class="top-nav" aria-label="Разделы сайта">
-        <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
-          ❄ Наша зима и карта
-        </button>
-        <button class="nav-tab-btn" id="nav-tab2" onclick="openTab('tab2')">
-          🍷 Будь мы рядом и письмо
-        </button>
-        <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
-          😈 The Binding of Isaac
-        </button>
-        <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
-          💍 Любовь и наша семья
-        </button>
-        <button class="nav-tab-btn" id="nav-tab5" onclick="openTab('tab5')">
-          ✦ Undertale
-        </button>
-        <button class="nav-tab-btn" id="nav-tab6" onclick="openTab('tab6')">
-          🌾 Stardew Valley
-        </button>
-      </nav>
-
-      <div class="top-right-slot">
-        <button class="blizzard-top-btn" onclick="toggleBlizzard()" id="blizzardBtn">
-          ❄ Усилить метель
-        </button>
-      </div>
-    </div>
+    <nav class="top-nav" aria-label="Разделы сайта">
+      <button class="nav-tab-btn active" id="nav-tab1" onclick="openTab('tab1')">
+        ❄ Наша зима и карта
+      </button>
+      <button class="nav-tab-btn" id="nav-tab2" onclick="openTab('tab2')">
+        🍷 Будь мы рядом и письмо
+      </button>
+      <button class="nav-tab-btn" id="nav-tab3" onclick="openTab('tab3')">
+        😈 The Binding of Isaac
+      </button>
+      <button class="nav-tab-btn" id="nav-tab4" onclick="openTab('tab4')">
+        💍 Любовь и наша семья
+      </button>
+      <button class="nav-tab-btn" id="nav-tab5" onclick="openTab('tab5')">
+        ✦ Undertale
+      </button>
+      <button class="nav-tab-btn" id="nav-tab6" onclick="openTab('tab6')">
+        🌾 Stardew Valley
+      </button>
+    </nav>
 
     <div class="music-bar">
       <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()">▶ Включить музыку</button>
